@@ -46,7 +46,7 @@ public class JetpackGame extends Game {
 	@Override
 	public void gameLoop() {
 
-		
+		System.out.println("oi");
 		
 		switch (currentGameState) {
 		case MainMenu:
