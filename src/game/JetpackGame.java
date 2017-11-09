@@ -1,6 +1,7 @@
 package game;
 
 import game.scenes.Credits;
+import game.scenes.GameOver;
 import game.scenes.Gameplay;
 import game.scenes.MainMenu;
 import game.scenes.Scene;
@@ -39,17 +40,13 @@ public class JetpackGame extends Game {
 		menu = new MainMenu();
 		credits = new Credits();
 		gameplay = new Gameplay();
-		//gameOver = new 
+		gameOver = new GameOver();
 		
 	}
 
 	@Override
 	public void gameLoop() {
 
-
-		System.out.println("oi3");
-
-		
 		switch (currentGameState) {
 		case MainMenu:
 			currentScene = menu;
@@ -66,7 +63,13 @@ public class JetpackGame extends Game {
 			currentScene = credits;
 			currentScene.draw(getGraphics2D()); 
 			currentScene.update();
-			break;			
+			break;
+			
+		case GameOver:
+			currentScene = gameOver;
+			currentScene.draw(getGraphics2D()); 
+			currentScene.update();
+			break;
 		case Help:
 			//Help
 			break;
