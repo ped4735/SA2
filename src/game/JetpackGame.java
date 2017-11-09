@@ -46,7 +46,9 @@ public class JetpackGame extends Game {
 	@Override
 	public void gameLoop() {
 
+
 		System.out.println("oi3");
+
 		
 		switch (currentGameState) {
 		case MainMenu:
@@ -62,7 +64,7 @@ public class JetpackGame extends Game {
 			break;
 		case Credits:
 			currentScene = credits;
-			currentScene.draw(getGraphics2D());
+			currentScene.draw(getGraphics2D()); 
 			currentScene.update();
 			break;			
 		case Help:
