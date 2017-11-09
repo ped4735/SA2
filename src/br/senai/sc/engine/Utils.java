@@ -1,5 +1,6 @@
 package br.senai.sc.engine;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -79,5 +80,6 @@ public class Utils {
 	public void setNomeJogo(String nomeJogo) {
 		this.nomeJogo = nomeJogo;
 	}
-
+	
+	
 }
