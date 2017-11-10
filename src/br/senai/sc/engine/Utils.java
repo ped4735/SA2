@@ -1,6 +1,7 @@
 package br.senai.sc.engine;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -15,6 +16,7 @@ public class Utils {
 	private int width;
 	private int height;
 	private String nomeJogo;
+	private Graphics2D graphics2d;
 
 	public static Utils getInstance() {
 		if (instance == null) {
@@ -22,7 +24,7 @@ public class Utils {
 		}
 		return instance;
 	}
-
+	
 	/**
 	 * M�todo respons�vel por carregar uma imagem dispon�vel em packages.
 	 * 
@@ -80,6 +82,24 @@ public class Utils {
 	public void setNomeJogo(String nomeJogo) {
 		this.nomeJogo = nomeJogo;
 	}
+
+	public Graphics2D getGraphics2d() {
+		return graphics2d;
+	}
+
+	public void setGraphics2d(Graphics2D graphics2d) {
+		this.graphics2d = graphics2d;
+	}
 	
+	public void desenharRetangulo(int x, int y, int width, int height, Color color) {
+		getGraphics2d().setColor(color);
+		getGraphics2d().fillRect(x, y, width, height);
+	}
 	
+	public void desenharCirculo(int x, int y, int width, int height, Color color) {
+		getGraphics2d().setColor(color);
+		getGraphics2d().fillOval(x, y, width, height);
+	}
+
+
 }
