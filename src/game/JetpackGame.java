@@ -1,6 +1,7 @@
 package game;
 
 import game.scenes.Credits;
+import game.scenes.GameOver;
 import game.scenes.Gameplay;
 import game.scenes.MainMenu;
 import game.scenes.Opening;
@@ -40,10 +41,15 @@ public class JetpackGame extends Game {
 		menu = new MainMenu();
 		credits = new Credits();
 		gameplay = new Gameplay();
+<<<<<<< HEAD
 		opening = new Opening();
 		// gameOver = new
 		currentGameState = GameStates.OpeningPreMenu;
 
+=======
+		gameOver = new GameOver();
+		
+>>>>>>> 0af7f03f6ab651764480e3ff89a03fbfdea0d2e3
 	}
 
 	@Override
@@ -71,6 +77,13 @@ public class JetpackGame extends Game {
 			
 		case Credits:
 			currentScene = credits;
+			currentScene.draw(getGraphics2D()); 
+			currentScene.update();
+			break;
+		case GameOver:
+			currentScene = gameOver;
+			currentScene.draw(getGraphics2D()); 
+			currentScene.update();
 			break;
 		case Help:
 			// Help
