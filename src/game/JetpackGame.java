@@ -108,7 +108,7 @@ public class JetpackGame extends Game {
 	private class KeyInputHandler extends KeyAdapter {
 		@Override
 		public void keyPressed(KeyEvent e) {
-			currentScene.pressAction(e);
+			currentScene.keyPressed(e);
 			
 			if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 				System.exit(0);
@@ -117,7 +117,7 @@ public class JetpackGame extends Game {
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-			currentScene.releaseAction(e);
+			currentScene.keyReleased(e);
 		}
 	}
 

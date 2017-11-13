@@ -17,6 +17,7 @@ public abstract class Scene {
 
 	private List<GameObject> objsInScene = new ArrayList<GameObject>();
 
+	
 	public List<GameObject> getObjsInScene() {
 		return objsInScene;
 	}
@@ -24,6 +25,7 @@ public abstract class Scene {
 	public void setObjs(List<GameObject> objs) {
 		this.objsInScene = objs;
 	}
+	
 
 	public void draw(Graphics2D g) {
 
@@ -107,7 +109,8 @@ public abstract class Scene {
 		}
 	}
 
-	public void pressAction(KeyEvent key) {
+	public void keyPressed(KeyEvent key) {
+		
 		Iterator<GameObject> itr = objsInScene.listIterator();
 		while (itr.hasNext()) {
 			GameObject tempObj = itr.next();
@@ -120,7 +123,7 @@ public abstract class Scene {
 		}
 	}
 
-	public void releaseAction(KeyEvent key) {
+	public void keyReleased(KeyEvent key) {
 
 		Iterator<GameObject> itr = objsInScene.listIterator();
 		while (itr.hasNext()) {

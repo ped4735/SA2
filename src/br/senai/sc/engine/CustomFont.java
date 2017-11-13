@@ -7,7 +7,7 @@ import java.net.URL;
 public class CustomFont {
 
 	private Font customFont;
-
+	
 	public CustomFont(String path, float size, int style) {
 		try {
 			//URL uc = this.getClass().getResource(path);
