@@ -100,6 +100,7 @@ public class JetpackGame extends Game {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			currentScene.pressAction(e);
+			
 			if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 				System.exit(0);
 			}

@@ -17,7 +17,7 @@ public class Opening extends Scene{
 	public void update() {
 		super.update();
 		cont();
-		
+
 	}
 	
 	
@@ -30,5 +30,7 @@ public class Opening extends Scene{
 			JetpackGame.currentGameState = GameStates.MainMenu;
 		}
 	}
+	
+	
 	
 }
