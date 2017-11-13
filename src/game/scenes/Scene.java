@@ -15,19 +15,19 @@ import java.util.List;
 
 public abstract class Scene {
 
-	private List<GameObject> objs = new ArrayList<GameObject>();
+	private List<GameObject> objsInScene = new ArrayList<GameObject>();
 
-	public List<GameObject> getObjs() {
-		return objs;
+	public List<GameObject> getObjsInScene() {
+		return objsInScene;
 	}
 
 	public void setObjs(List<GameObject> objs) {
-		this.objs = objs;
+		this.objsInScene = objs;
 	}
 
 	public void draw(Graphics2D g) {
 
-		Iterator<GameObject> itr = objs.iterator();
+		Iterator<GameObject> itr = objsInScene.iterator();
 		while (itr.hasNext()) {
 			itr.next().draw(g);
 		}
@@ -36,7 +36,7 @@ public abstract class Scene {
 
 	public void update() {
 
-		Iterator<GameObject> itr = objs.listIterator();
+		Iterator<GameObject> itr = objsInScene.listIterator();
 		while (itr.hasNext()) {
 			GameObject tempObj = itr.next();
 
@@ -52,7 +52,7 @@ public abstract class Scene {
 
 	public void click(int posX, int posY) {
 
-		Iterator<GameObject> itr = objs.listIterator();
+		Iterator<GameObject> itr = objsInScene.listIterator();
 		while (itr.hasNext()) {
 			GameObject tempObj = itr.next();
 
@@ -66,14 +66,14 @@ public abstract class Scene {
 
 	public void collision() {
 
-		Iterator<GameObject> itr = objs.listIterator();
+		Iterator<GameObject> itr = objsInScene.listIterator();
 		while (itr.hasNext()) {
 			GameObject tempObj = itr.next();
 
 			if (Collidable.class.isInstance(tempObj)) {
 				Collidable collidable = (Collidable) tempObj;
 
-				Iterator<GameObject> itr2 = objs.listIterator();
+				Iterator<GameObject> itr2 = objsInScene.listIterator();
 				while (itr2.hasNext()) {
 					GameObject tempObj2 = itr2.next();
 					if (Interactable.class.isInstance(tempObj2)) {
@@ -95,7 +95,7 @@ public abstract class Scene {
 
 	public void isOverObject(int posX, int posY) {
 
-		Iterator<GameObject> itr = objs.listIterator();
+		Iterator<GameObject> itr = objsInScene.listIterator();
 		while (itr.hasNext()) {
 			GameObject tempObj = itr.next();
 
@@ -108,7 +108,7 @@ public abstract class Scene {
 	}
 
 	public void pressAction(KeyEvent key) {
-		Iterator<GameObject> itr = objs.listIterator();
+		Iterator<GameObject> itr = objsInScene.listIterator();
 		while (itr.hasNext()) {
 			GameObject tempObj = itr.next();
 
@@ -122,7 +122,7 @@ public abstract class Scene {
 
 	public void releaseAction(KeyEvent key) {
 
-		Iterator<GameObject> itr = objs.listIterator();
+		Iterator<GameObject> itr = objsInScene.listIterator();
 		while (itr.hasNext()) {
 			GameObject tempObj = itr.next();
 
