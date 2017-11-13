@@ -41,15 +41,11 @@ public class JetpackGame extends Game {
 		menu = new MainMenu();
 		credits = new Credits();
 		gameplay = new Gameplay();
-<<<<<<< HEAD
 		opening = new Opening();
-		// gameOver = new
+		gameOver = new GameOver();
 		currentGameState = GameStates.OpeningPreMenu;
 
-=======
-		gameOver = new GameOver();
 		
->>>>>>> 0af7f03f6ab651764480e3ff89a03fbfdea0d2e3
 	}
 
 	@Override
