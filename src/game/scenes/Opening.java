@@ -11,6 +11,9 @@ public class Opening extends Scene {
 	public Opening() {
 		getObjsInScene().add(new AnimatedObject("opening/openingBackground.png", 0, 0, 1, 1));
 		
+		getObjsInScene().add(new AnimatedObject("opening/Ship.png",0,0,1,1));
+				
+		
 	}
 
 	@Override
