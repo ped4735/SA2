@@ -100,6 +100,15 @@ public class Utils {
 		getGraphics2d().setColor(color);
 		getGraphics2d().fillOval(x, y, width, height);
 	}
-
+	
+	public boolean[][] makeBooleanMatrix(int sizeX, int sizeY, int[] numOfTrues) {
+		boolean[][] endMatrix = new boolean[sizeX][sizeY];
+		for (int i = 0; i < endMatrix.length; i++) {
+			for (int j = 0; j < numOfTrues[i]; j++) {
+				endMatrix[i][j] = true;
+			}
+		}
+		return endMatrix;
+	}
 
 }
