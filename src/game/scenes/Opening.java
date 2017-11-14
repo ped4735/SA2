@@ -8,19 +8,29 @@ import game.JetpackGame;
 
 public class Opening extends Scene {
 
+	private int delayTime;
+	private GameStates stateToGO;
+	
+	public Opening(int delayTime, GameStates stateToGO) {
+		this.delayTime = delayTime;
+		this.stateToGO = stateToGO;
+		initObjects();
+	}
+	
 	public Opening() {
-		getObjsInScene().add(new AnimatedObject("opening/openingBackground.png", 0, 0, 1, 1));
-		
-		//getObjsInScene().add(new AnimatedObject("opening/Ship.png",0,0,1,1));
-				
-		
+		this.delayTime = 80;
+		this.stateToGO = GameStates.MainMenu;
+		initObjects();
+	}	
+	
+	private void initObjects(){
+		getObjsInScene().add(new AnimatedObject("opening/openingBackground.png", 0, 0, 1, 1));	
 	}
 
 	@Override
 	public void update() {
 		super.update();
 		cont();
-
 	}
 
 	// contador temporario para controlar a animacao
@@ -28,16 +38,16 @@ public class Opening extends Scene {
 
 	private void cont() {
 		cont++;
-		System.out.println(cont);
-		if (cont == 80) {
-			JetpackGame.currentGameState = GameStates.MainMenu;
+		//System.out.println(cont);
+		if (cont == this.delayTime) {
+			JetpackGame.currentGameState = stateToGO;
 		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent key) {
-
-		JetpackGame.currentGameState = GameStates.MainMenu;
+		super.keyPressed(key);
+		JetpackGame.currentGameState = stateToGO;
 	}
 
 }

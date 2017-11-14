@@ -45,8 +45,8 @@ public class Hero extends GameObject implements Controllable, Updatable, Collida
 	private void init() {
 		this.life = 3;
 
-		velX = 5;
-		velY = 5;
+		velX = 8;
+		velY = 8;
 	}
 
 	// Get Set
@@ -128,7 +128,7 @@ public class Hero extends GameObject implements Controllable, Updatable, Collida
 		}
 
 		if (!isGrounded) {
-			this.setPosY(getPosY() + 2);
+			this.setPosY(getPosY() + 4);
 		}
 
 		setFrameX(getFrameX() + 1);
