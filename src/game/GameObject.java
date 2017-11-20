@@ -13,8 +13,8 @@ public abstract class GameObject{
 	private int frameY;
 	private int colFrames;
 	private int lineFrames;
-	private int posX;
-	private int posY;
+	private int posXLocal;
+	private int posYLocal;
 	private int width;
 	private int height;
 	private GameTags tag;
@@ -24,8 +24,8 @@ public abstract class GameObject{
 	//Constructors
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, GameTags tag) {
 		this.sprite = Utils.getInstance().loadImage("images/" + spriteFileName);
-		this.posX = posX;
-		this.posY = posY;
+		this.posXLocal = posX;
+		this.posYLocal = posY;
 		this.frameX = 0;
 		this.frameY = 0;
 		this.colFrames = colFrames;
@@ -36,8 +36,8 @@ public abstract class GameObject{
 	}
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
 		this.sprite = Utils.getInstance().loadImage("images/" + spriteFileName);
-		this.posX = posX;
-		this.posY = posY;
+		this.posXLocal = posX;
+		this.posYLocal = posY;
 		this.frameX = 0;
 		this.frameY = 0;
 		this.colFrames = colFrames;
@@ -98,16 +98,16 @@ public abstract class GameObject{
 		this.sprite = sprite;
 	}
 	public int getPosX() {
-		return posX;
+		return posXLocal;
 	}
 	public void setPosX(int posX) {
-		this.posX = posX;
+		this.posXLocal = posX;
 	}
 	public int getPosY() {
-		return posY;
+		return posYLocal;
 	}
 	public void setPosY(int posY) {
-		this.posY = posY;
+		this.posYLocal = posY;
 	}
 	
 	
@@ -121,7 +121,7 @@ public abstract class GameObject{
 	}
 	
 	public Rectangle getRectangle(){
-		return new Rectangle(posX, posY, width, height);
+		return new Rectangle(posXLocal, posYLocal, width, height);
 	}
 
 	

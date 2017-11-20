@@ -44,6 +44,12 @@ public class JetpackGame extends Game {
 		opening = new Opening();
 		gameOver = new GameOver();
 		currentGameState = GameStates.OpeningPreMenu;
+		
+		
+		
+		//TEMPORARIAMENTE:
+		//cansei de ficar passando pelo menu e a abertura para testar a mecânica
+		currentGameState = GameStates.Gameplay;
 
 		
 	}
@@ -80,6 +86,7 @@ public class JetpackGame extends Game {
 			currentScene = gameOver;
 			currentScene.draw(getGraphics2D()); 
 			currentScene.update();
+			
 			break;
 		case Help:
 			// Help

@@ -27,6 +27,8 @@ public class Spike extends GameObject implements Interactable{
 			hero.takeDamage();
 		}
 		
+		
+		
 	}
 
 

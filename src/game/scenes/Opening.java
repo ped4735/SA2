@@ -33,9 +33,9 @@ public class Opening extends Scene {
 		cont();
 	}
 
+	
 	// contador temporario para controlar a animacao
 	int cont = 0;
-
 	private void cont() {
 		cont++;
 		//System.out.println(cont);
