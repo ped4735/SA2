@@ -37,7 +37,7 @@ public class Hero extends GameObject implements Controllable, Updatable, Collida
 		super(spriteFileName, posX, posY, colFrames, lineFrames);
 		this.posXinit = posX;
 		this.posYinit = posY;
-
+		setTag(GameTags.Player);
 		this.init();
 	}
 
@@ -101,6 +101,7 @@ public class Hero extends GameObject implements Controllable, Updatable, Collida
 
 	public void takeDamage() {
 		setLife(getLife() - 1);
+		System.out.println(getLife());
 		if (getLife() <= 0) {
 			JetpackGame.currentGameState = GameStates.GameOver;
 		} else {
@@ -192,6 +193,14 @@ public class Hero extends GameObject implements Controllable, Updatable, Collida
 			}						
 	}
 
+	
+	@Override
+	public void collisionStay(GameObject objInCol) {
+		// TODO Auto-generated method stub
+		Interactable objectToInteract = (Interactable) objInCol;
+		objectToInteract.actionStay(this);
+	}
+	
 	@Override
 	public void collisionExit(GameObject objExtCol) {
 	
@@ -211,5 +220,7 @@ public class Hero extends GameObject implements Controllable, Updatable, Collida
 		}
 		
 	}
+
+	
 
 }

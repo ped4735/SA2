@@ -21,15 +21,21 @@ public class Stone extends GameObject implements Interactable {
 			
 				hero.setGrounded(true);
 			
-		}
-		
+		}		
 		
 		if(game.TrueHero.class.isInstance(gameobj)){
 			game.TrueHero hero = (game.TrueHero) gameobj;
 			hero.setGrounded(true);
-			//hero.halt();
+			hero.halt();
 			//System.out.println("colidiu!!");
 		}
+		
+	}
+	
+	
+	@Override
+	public void actionStay(GameObject gameobj) {
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -41,10 +47,11 @@ public class Stone extends GameObject implements Interactable {
 				hero.setGrounded(false);
 			
 		}
-		
-		
-
-		
+			
 	}
+
+
+
+	
 
 }

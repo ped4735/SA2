@@ -82,6 +82,7 @@ public abstract class Scene {
 						
 						if (tempObj.getRectangle().intersects(tempObj2.getRectangle()) && !tempObj.equals(tempObj2)) {
 							collidable.collisionEnter(tempObj2);
+							collidable.collisionStay(tempObj2);
 						}else{
 							collidable.collisionExit(tempObj2);
 						}

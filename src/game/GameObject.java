@@ -19,6 +19,7 @@ public abstract class GameObject{
 	private int height;
 	private GameTags tag;
 	private boolean destroyed;
+	private float scale;
 	
 	
 	//Constructors
@@ -33,6 +34,7 @@ public abstract class GameObject{
 		this.width = sprite.getWidth(null)/colFrames;
 		this.height = sprite.getHeight(null)/lineFrames;
 		this.tag = tag;
+		this.scale = 1;
 	}
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
 		this.sprite = Utils.getInstance().loadImage("images/" + spriteFileName);
@@ -45,6 +47,21 @@ public abstract class GameObject{
 		this.width = sprite.getWidth(null)/colFrames;
 		this.height = sprite.getHeight(null)/lineFrames;
 		this.tag = GameTags.Default;
+		this.scale = 1;
+	}
+	
+	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, float scale) {
+		this.sprite = Utils.getInstance().loadImage("images/" + spriteFileName);
+		this.posXLocal = posX;
+		this.posYLocal = posY;
+		this.frameX = 0;
+		this.frameY = 0;
+		this.colFrames = colFrames;
+		this.lineFrames = lineFrames;
+		this.width = sprite.getWidth(null)/colFrames;
+		this.height = sprite.getHeight(null)/lineFrames;
+		this.tag = GameTags.Default;
+		this.scale = scale;
 	}
 	
 	
@@ -109,20 +126,24 @@ public abstract class GameObject{
 	public void setPosY(int posY) {
 		this.posYLocal = posY;
 	}
-	
+	public float getScale() {
+		return scale;
+	}
+	public void setScale(float scale) {
+		this.scale = scale;
+	}
 	
 	//Methods
 	public void draw(Graphics2D g){
-		/*g.setColor(new Color(255, 255, 255));
-		g.fillRect(posX, posY, width, height);*/
-		
-		g.drawImage(getSprite(), getPosX(), getPosY(), getPosX()+getWidth(), getPosY()+getHeight(),
-				getFrameX()*getWidth(), getFrameY()*getHeight(), getFrameX()*getWidth()+getWidth(), getFrameY()*getHeight()+getHeight(), null);
+		g.drawImage(getSprite(), getPosX(), getPosY(), getPosX() + (int) (getWidth() * scale),
+				getPosY() + (int) (getHeight() * scale), getFrameX() * getWidth(), getFrameY() * getHeight(),
+				getFrameX() * getWidth() + getWidth(), getFrameY() * getHeight() + getHeight(), null);
 	}
 	
 	public Rectangle getRectangle(){
 		return new Rectangle(posXLocal, posYLocal, width, height);
 	}
+	
 
 	
 }

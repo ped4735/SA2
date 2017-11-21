@@ -26,6 +26,7 @@ public class Spike extends GameObject implements Interactable{
 		if(game.Hero.class.isInstance(gameobj)){
 			game.Hero hero = (game.Hero) gameobj;
 			hero.takeDamage();
+			//System.out.println("Collision ENTER");
 		}		
 		
 		if(game.TrueHero.class.isInstance(gameobj)){
@@ -34,16 +35,21 @@ public class Spike extends GameObject implements Interactable{
 			hero.halt();
 		}
 		
-		
+	}
+	
+	@Override
+	public void actionStay(GameObject gameobj) {
 		
 	}
 
 
 	@Override
 	public void actionExit(GameObject gameobj) {
-		// TODO Auto-generated method stub
 		
 	}
+
+
+	
 	
 	
 	

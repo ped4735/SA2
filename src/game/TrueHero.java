@@ -54,7 +54,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
 		super(spriteFileName, posX, posY, colFrames, lineFrames);
 		// TODO corrigir para o construtor da matriz!
-
+		setTag(GameTags.Player);
 		init();
 	}
 
@@ -71,7 +71,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	public void update() {
 
 		super.update();
-
+		System.out.println(theta);
 		aceX = 0.0f;
 		aceY = 0.0f;
 
@@ -145,22 +145,17 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	}
 
-	// draw
-	// float abc=0.0f;
-	public void draw(Graphics2D g) {
-		// float scale = (float)Math.sin(abc) + 1.5f;
-		// abc+=0.1;
-		float scale = 1f;
 
+	public void draw(Graphics2D g) {
+
+		setScale(0.5f);
 		drawDebug(g);
 
-		g.rotate(theta, posX + (sizeX * scale) / 2, posY + (sizeY * scale) / 2);
+		g.rotate(theta, posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
 
-		g.drawImage(getSprite(), getPosX(), getPosY(), getPosX() + (int) (getWidth() * scale),
-				getPosY() + (int) (getHeight() * scale), getFrameX() * getWidth(), getFrameY() * getHeight(),
-				getFrameX() * getWidth() + getWidth(), getFrameY() * getHeight() + getHeight(), null);
+		super.draw(g);
 
-		g.rotate((-1) * theta, posX + (sizeX * scale) / 2, posY + (sizeY * scale) / 2);
+		g.rotate((-1) * theta, posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
 
 	}
 
@@ -186,7 +181,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	}
 
-	// colisão
+	// colisões
 	@Override
 	public void collisionEnter(GameObject objInCol) {
 
@@ -196,6 +191,12 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 			Interactable objectToInteract = (Interactable) objInCol;
 			objectToInteract.actionEnter(this);
 		}
+	}
+	
+	@Override
+	public void collisionStay(GameObject objInCol) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -270,5 +271,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	public void setLife(int life) {
 		this.life = life;
 	}
+
+	
 
 }

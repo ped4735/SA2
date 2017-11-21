@@ -69,7 +69,7 @@ public class Gameplay extends Scene {
 						getObjsInScene().add(new Spike(c * 32, r * 32));
 						break;
 					case 3:
-						getObjsInScene().add(new TrueHero("coinssonic.png", c * 32, r * 32, 4, 4));
+						getObjsInScene().add(new TrueHero("rocket.png", c * 32, r * 32, 2, 1));
 						break;
 
 					default:
