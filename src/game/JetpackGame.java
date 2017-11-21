@@ -49,7 +49,7 @@ public class JetpackGame extends Game {
 		
 		//TEMPORARIAMENTE:
 		//cansei de ficar passando pelo menu e a abertura para testar a mecânica
-		currentGameState = GameStates.Gameplay;
+		currentGameState = GameStates.MainMenu;
 
 		
 	}
