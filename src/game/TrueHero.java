@@ -29,7 +29,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	// position
 	private float posX;
 	private float posY;
-	private float thetaInit = (float) Math.PI/2f;
+	private float thetaInit = (float) (Math.PI/-2);
 	private float theta;
 	private int posXinit;
 	private int posYinit;
@@ -41,7 +41,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	// aceleration
 	private float aceX;
 	private float aceY;
-	private float aceTotal = 20;
+	private float aceTotal = 40;
 	// controls
 	private boolean wPressed;
 	private boolean aPressed;
@@ -154,18 +154,17 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 		setScale(1f);
 		
+
 		drawDebug(g);
 
 		float a = (float) ((1f) * Math.PI/2f);
 		g.rotate(theta + a, posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
-
+		
 		super.draw(g);
 
 		g.rotate((-1) * (theta + a), posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
 		
-
-
-		
+	
 		
 		
 		//g.draw(getRectangle());
@@ -194,9 +193,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		
 		
 		
-		
 
-		
 	}
 	
 
@@ -241,7 +238,6 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	@Override
 	public void collisionStay(GameObject objInCol) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -255,7 +251,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 				objectToExitInteract.actionExit(this);
 
 				itr.remove();
-
+				
 			}
 
 		}
