@@ -51,31 +51,27 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	// TODO: tirar essas coisas do personagem
 	private float gravity = 5;
 
-	
-	
 	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
 		super(spriteFileName, posX, posY, colFrames, lineFrames);
 		// TODO corrigir para o construtor da matriz!
-		
+
 		init();
 	}
-	
-	private void init(){
+
+	private void init() {
 		this.posX = (float) super.getPosX();
 		this.posY = (float) super.getPosY();
-		this.posXinit = (int)this.posX;
-		this.posYinit = (int)this.posY;
-		this.life=3;
+		this.posXinit = (int) this.posX;
+		this.posYinit = (int) this.posY;
+		this.life = 3;
 		isGravityOn = true;
 	}
 
-	
-	
 	@Override
 	public void update() {
 
 		super.update();
-		
+
 		aceX = 0.0f;
 		aceY = 0.0f;
 
@@ -100,7 +96,6 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 		this.floatToInts();
 
-		
 	}
 
 	private void floatToInts() {
@@ -120,14 +115,13 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 			this.setPosY(posYinit);
 			posX = getPosX();
 			posY = getPosY();
-			theta=0;
+			theta = 0;
 		}
 	}
 
 	private void fall() {
 		aceY += gravity;
 	}
-	
 
 	private void turn() {
 		if (aPressed) {
@@ -141,61 +135,57 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		aceX += aceTotal * (float) Math.cos(-theta);
 		aceY += aceTotal * (-1) * (float) Math.sin(-theta);
 
-//		velX += aceX * deltaTime;
-//		velY += aceY * deltaTime;
+		// velX += aceX * deltaTime;
+		// velY += aceY * deltaTime;
 	}
-	
-	public void halt(){
+
+	public void halt() {
 		this.velX = 0;
 		this.velY = 0;
-		
-		
-	}
-	
-	
-	
-	//draw
-	//float abc=0.0f;
-	public void draw(Graphics2D g){
-		//float scale = (float)Math.sin(abc) + 1.5f;
-		//abc+=0.1;
-		float scale = 1f;
-		
-		drawDebug(g);
-		
-		
-		g.rotate(theta,posX+(sizeX*scale)/2,posY+(sizeY*scale)/2);
-		
-		
-		g.drawImage(getSprite(), getPosX(), getPosY(), getPosX()+(int)(getWidth()*scale), getPosY()+(int)(getHeight()*scale),
-				getFrameX()*getWidth(), getFrameY()*getHeight(), getFrameX()*getWidth()+getWidth(), getFrameY()*getHeight()+getHeight(), null);
-		
-		g.rotate((-1)*theta,posX+(sizeX*scale)/2,posY+(sizeY*scale)/2);
 
 	}
-	
-	
+
+	// draw
+	// float abc=0.0f;
+	public void draw(Graphics2D g) {
+		// float scale = (float)Math.sin(abc) + 1.5f;
+		// abc+=0.1;
+		float scale = 1f;
+
+		drawDebug(g);
+
+		g.rotate(theta, posX + (sizeX * scale) / 2, posY + (sizeY * scale) / 2);
+
+		g.drawImage(getSprite(), getPosX(), getPosY(), getPosX() + (int) (getWidth() * scale),
+				getPosY() + (int) (getHeight() * scale), getFrameX() * getWidth(), getFrameY() * getHeight(),
+				getFrameX() * getWidth() + getWidth(), getFrameY() * getHeight() + getHeight(), null);
+
+		g.rotate((-1) * theta, posX + (sizeX * scale) / 2, posY + (sizeY * scale) / 2);
+
+	}
+
 	private void drawDebug(Graphics2D g) {
 		g.setColor(Color.white);
-		g.drawString("PosX: " + posX, 20,120);
-		g.drawString("PosY: " + posY, 20,140);
+		g.drawString("PosX: " + posX, 20, 120);
+		g.drawString("PosY: " + posY, 20, 140);
 		g.drawString("velX:" + velX, 20, 20);
 		g.drawString("velY:" + velY, 20, 40);
 		g.drawString("Theta: " + theta, 20, 60);
-		g.drawString("AceX: "+ aceX, 20, 80);
-		g.drawString("AceY: "+ aceY, 20, 100);
+		g.drawString("AceX: " + aceX, 20, 80);
+		g.drawString("AceY: " + aceY, 20, 100);
 
-		
 		int offset = 30;
 		g.setColor(Color.red);
-		g.drawLine((int)posX - offset, (int)posY, (int)posX + (int) (velX * 0.5f) - offset, (int)posY + (int) (velY * 0.5f));
-		g.drawLine((int)posX - offset, (int)posY, (int)posX + (int) (velX * 0.5f) - offset, (int)posY + (int) (velY * 0.5f));
+		g.drawLine((int) posX - offset, (int) posY, (int) posX + (int) (velX * 0.5f) - offset,
+				(int) posY + (int) (velY * 0.5f));
+		g.drawLine((int) posX - offset, (int) posY, (int) posX + (int) (velX * 0.5f) - offset,
+				(int) posY + (int) (velY * 0.5f));
 		g.setColor(Color.green);
-		g.drawLine((int)posX - offset, (int)posY, (int)posX + (int) (aceX*1f) - offset, (int)posY + (int) (aceY*1f));
+		g.drawLine((int) posX - offset, (int) posY, (int) posX + (int) (aceX * 1f) - offset,
+				(int) posY + (int) (aceY * 1f));
 
 	}
-	
-	
+
 	// colisão
 	@Override
 	public void collisionEnter(GameObject objInCol) {
@@ -266,6 +256,11 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	public void setGrounded(boolean isGrounded) {
 		this.isGrounded = isGrounded;
+		if (isGrounded) {
+			isGravityOn = false;
+		} else {
+			isGravityOn = true;
+		}
 	}
 
 	public int getLife() {

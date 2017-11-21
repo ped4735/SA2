@@ -27,8 +27,8 @@ public class Stone extends GameObject implements Interactable {
 		if(game.TrueHero.class.isInstance(gameobj)){
 			game.TrueHero hero = (game.TrueHero) gameobj;
 			hero.setGrounded(true);
-			hero.halt();
-			System.out.println("colidiu!!");
+			//hero.halt();
+			//System.out.println("colidiu!!");
 		}
 		
 	}
