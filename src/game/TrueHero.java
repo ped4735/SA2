@@ -21,18 +21,18 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private int life;
 	// states
 	private boolean isGrounded;
-	private boolean isGravityOn = true;
+	private boolean isGravityOn;
 	// lists
 	private List<GameObject> objsInInteraction = new ArrayList<GameObject>();
 	// position
 	private float posX;
 	private float posY;
 	private float theta = 0.0f;
+	private int posXinit;
+	private int posYinit;
 	// speed
 	private float velX;
 	private float velY;
-	private float velXadded;
-	private float velYadded;
 	private float velTotal;
 	private float turnRate = (float) Math.PI / 64f;
 	// aceleration
@@ -63,6 +63,9 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private void init(){
 		this.posX = (float) super.getPosX();
 		this.posY = (float) super.getPosY();
+		this.posXinit = (int)this.posX;
+		this.posYinit = (int)this.posY;
+		this.life=3;
 		isGravityOn = true;
 	}
 
@@ -71,6 +74,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	@Override
 	public void update() {
 
+		super.update();
+		
 		aceX = 0.0f;
 		aceY = 0.0f;
 
@@ -95,15 +100,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 		this.floatToInts();
 
-		// temp 
-		setFrameX(getFrameX() + 1);
-		if (getFrameX() >= getColFrames()) {
-			setFrameX(0);
-			setFrameY(getFrameY() + 1);
-			if (getFrameY() >= getLineFrames()) {
-				setFrameY(0);
-			}
-		}
+		
 	}
 
 	private void floatToInts() {
@@ -118,15 +115,19 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		if (getLife() <= 0) {
 			JetpackGame.currentGameState = GameStates.GameOver;
 		} else {
-			// TODO reset position
-			// this.setPosX(posXinit);
-			// this.setPosY(posYinit);
+
+			this.setPosX(posXinit);
+			this.setPosY(posYinit);
+			posX = getPosX();
+			posY = getPosY();
+			theta=0;
 		}
 	}
 
 	private void fall() {
 		aceY += gravity;
 	}
+	
 
 	private void turn() {
 		if (aPressed) {
@@ -147,13 +148,17 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	public void halt(){
 		this.velX = 0;
 		this.velY = 0;
+		
+		
 	}
 	
 	
 	
 	//draw
+	//float abc=0.0f;
 	public void draw(Graphics2D g){
 		//float scale = (float)Math.sin(abc) + 1.5f;
+		//abc+=0.1;
 		float scale = 1f;
 		
 		drawDebug(g);

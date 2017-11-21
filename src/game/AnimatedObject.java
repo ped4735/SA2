@@ -19,6 +19,14 @@ public class AnimatedObject extends GameObject implements Updatable {
 
 	@Override
 	public void update() {
+		this.runSpriteSheet();
+		
+	}
+	
+	public void runSpriteSheet(){
+		//sem a necessidad de subreescrer o update em outros lugares, mesmo que ele seja diferente
+		//o truehero, por exemplo, sobreescrevia o update, daí ele acabava perdendo essa parte de percorrer o spritesheet
+
 		if (boolMatrix == null){
 			setFrameX(getFrameX()+1);
 			if(getFrameX() >= getColFrames()){
@@ -34,9 +42,6 @@ public class AnimatedObject extends GameObject implements Updatable {
 		} else if (boolMatrix[getFrameX() + 1][getFrameY()]) {
 			setFrameX(getFrameX() + 1);
 		}
-		
-		
-
 	}
 
 }
