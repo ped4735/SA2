@@ -16,12 +16,12 @@ import game.interfaces.Updatable;
 public class TrueHero extends AnimatedObject implements Controllable, Updatable, Collidable {
 
 	// propriedades
-	private float sizeX;
-	private float sizeY;
+	private float sizeX = super.getWidth();
+	private float sizeY = super.getHeight();
 	private int life;
 	// states
 	private boolean isGrounded;
-	private boolean isGravityOn;
+	private boolean isGravityOn = true;
 	// lists
 	private List<GameObject> objsInInteraction = new ArrayList<GameObject>();
 	// position
@@ -46,10 +46,10 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private boolean dPressed;
 
 	// TODO: deltatime?
-	private float deltaTime = 0.015f;
+	private float deltaTime = 0.05f;
 
 	// TODO: tirar essas coisas do personagem
-	private float gravity = 1;
+	private float gravity = 5;
 
 	
 	
@@ -63,6 +63,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private void init(){
 		this.posX = (float) super.getPosX();
 		this.posY = (float) super.getPosY();
+		isGravityOn = true;
 	}
 
 	
@@ -152,11 +153,20 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	
 	//draw
 	public void draw(Graphics2D g){
+		//float scale = (float)Math.sin(abc) + 1.5f;
+		float scale = 1f;
 		
 		drawDebug(g);
 		
-		g.drawImage(getSprite(), getPosX(), getPosY(), getPosX()+getWidth(), getPosY()+getHeight(),
+		
+		g.rotate(theta,posX+(sizeX*scale)/2,posY+(sizeY*scale)/2);
+		
+		
+		g.drawImage(getSprite(), getPosX(), getPosY(), getPosX()+(int)(getWidth()*scale), getPosY()+(int)(getHeight()*scale),
 				getFrameX()*getWidth(), getFrameY()*getHeight(), getFrameX()*getWidth()+getWidth(), getFrameY()*getHeight()+getHeight(), null);
+		
+		g.rotate((-1)*theta,posX+(sizeX*scale)/2,posY+(sizeY*scale)/2);
+
 	}
 	
 	
@@ -179,6 +189,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		g.drawLine((int)posX - offset, (int)posY, (int)posX + (int) (aceX*1f) - offset, (int)posY + (int) (aceY*1f));
 
 	}
+	
+	
 	// colisão
 	@Override
 	public void collisionEnter(GameObject objInCol) {

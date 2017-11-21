@@ -2,6 +2,7 @@ package game.tiles;
 
 import game.GameObject;
 import game.GameTags;
+import game.TrueHero;
 import game.interfaces.Collidable;
 import game.interfaces.Interactable;
 
@@ -25,6 +26,12 @@ public class Spike extends GameObject implements Interactable{
 		if(game.Hero.class.isInstance(gameobj)){
 			game.Hero hero = (game.Hero) gameobj;
 			hero.takeDamage();
+		}		
+		
+		if(game.TrueHero.class.isInstance(gameobj)){
+			game.TrueHero hero = (game.TrueHero) gameobj;
+			hero.takeDamage();
+			hero.halt();
 		}
 		
 		
