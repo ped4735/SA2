@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 
 import br.senai.sc.engine.Utils;
 
@@ -159,12 +161,12 @@ public abstract class GameObject {
 		g.drawImage(getSprite(), getPosX(), getPosY(), getPosX() + (int) (getWidth() * scale),
 				getPosY() + (int) (getHeight() * scale), getFrameX() * getWidth(), getFrameY() * getHeight(),
 				getFrameX() * getWidth() + getWidth(), getFrameY() * getHeight() + getHeight(), null);
-
-		g.draw(getRectangle());
+		
 	}
 
 	public Rectangle getRectangle() {
-		return new Rectangle(posXLocal, posYLocal, width, height);
+		return new Rectangle(posXLocal, posYLocal, (int)(width * scale), (int)(height * scale));
+		//return new Ellipse2D.Float(posXLocal + width/2, posYLocal + height/2, 10, 10);
 	}
 
 }
