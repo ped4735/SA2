@@ -160,7 +160,7 @@ public abstract class GameObject {
 				getPosY() + (int) (getHeight() * scale), getFrameX() * getWidth(), getFrameY() * getHeight(),
 				getFrameX() * getWidth() + getWidth(), getFrameY() * getHeight() + getHeight(), null);
 
-		g.draw(getRectangle());
+		//g.draw(getRectangle());
 	}
 
 	public Rectangle getRectangle() {

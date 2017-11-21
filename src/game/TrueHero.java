@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -152,6 +153,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	public void draw(Graphics2D g) {
 
 		setScale(1f);
+		
 		drawDebug(g);
 
 		float a = (float) ((1f) * Math.PI/2f);
@@ -161,10 +163,44 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 		g.rotate((-1) * (theta + a), posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
 		
-		g.draw(getRectangle());
-		Rectangle retanguloNovo = new Rectangle(getRectangle());
-		//getRectangle().
+
+
+		
+		
+		
+		//g.draw(getRectangle());
+		float xLinha = sizeX*(float)Math.cos(theta + a) -sizeY*(float)Math.sin(theta + a);
+		float yLinha = sizeX*(float)Math.sin(theta + a) +sizeY*(float)Math.cos(theta + a);
+		yLinha *= -1f;
+		//System.out.println("xlinha: " + xLinha);
+		
+		Rectangle retanguloNovo = new Rectangle((int)(posX - xLinha),(int)(posY + yLinha),(int)(sizeX * (1d+Math.cos(theta + a))) ,(int)(sizeY* (1d+Math.sin(theta + a))));
+		//g.draw(retanguloNovo);
+//
+//		//getRectangle().
+//		retanguloNovo = new Rectangle(getRectangle());
+//		retanguloNovo.grow((int)xLinha, (int)yLinha);
+//		g.draw(retanguloNovo);
+		
+//		Rectangle r = new Rectangle();
+//		r.add(10, 100);
+//		r.add(200, 200);
+//		r.add(500, 300);
+//		g.draw(r);
+		
+		Ellipse2D.Float asd = new Ellipse2D.Float(posX, posY, sizeX*2, sizeY);
+		g.draw(asd);
+		g.draw(asd.getBounds2D());
+		
+		
+		
+		
+
+		
 	}
+	
+
+	
 
 	private void drawDebug(Graphics2D g) {
 		g.setColor(Color.white);

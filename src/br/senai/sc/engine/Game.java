@@ -186,6 +186,8 @@ public abstract class Game extends Canvas {
 	 */
 	public void startGame() {
 		while (gameRunning) {
+			
+			
 			// Obtemos o Graphics2D a partir do strategy. O Graphics2D � o
 			// objeto que utilizo para desenhar na tela.
 			graphics2D = (Graphics2D) strategy.getDrawGraphics();
