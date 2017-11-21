@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,7 +28,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	// position
 	private float posX;
 	private float posY;
-	private float theta = 0.0f;
+	private float thetaInit = (float) Math.PI/2f;
+	private float theta;
 	private int posXinit;
 	private int posYinit;
 	// speed
@@ -65,13 +67,13 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		this.posYinit = (int) this.posY;
 		this.life = 3;
 		isGravityOn = true;
+		theta = thetaInit;
 	}
 
 	@Override
 	public void update() {
 
 		super.update();
-		System.out.println(theta);
 		aceX = 0.0f;
 		aceY = 0.0f;
 
@@ -132,6 +134,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	}
 
 	private void forward() {
+		float a = (float) (Math.PI/2f) - theta; 
 		aceX += aceTotal * (float) Math.cos(-theta);
 		aceY += aceTotal * (-1) * (float) Math.sin(-theta);
 
@@ -148,15 +151,19 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	public void draw(Graphics2D g) {
 
-		setScale(0.5f);
+		setScale(1f);
 		drawDebug(g);
 
-		g.rotate(theta, posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
+		float a = (float) ((1f) * Math.PI/2f);
+		g.rotate(theta + a, posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
 
 		super.draw(g);
 
-		g.rotate((-1) * theta, posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
-
+		g.rotate((-1) * (theta + a), posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
+		
+		g.draw(getRectangle());
+		Rectangle retanguloNovo = new Rectangle(getRectangle());
+		//getRectangle().
 	}
 
 	private void drawDebug(Graphics2D g) {
@@ -181,6 +188,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	}
 
+	
+	
 	// colisões
 	@Override
 	public void collisionEnter(GameObject objInCol) {
