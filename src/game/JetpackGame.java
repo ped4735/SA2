@@ -6,6 +6,7 @@ import game.scenes.Gameplay;
 import game.scenes.MainMenu;
 import game.scenes.Opening;
 import game.scenes.Scene;
+import game.scenes.levelManager;
 
 import java.awt.Color;
 import java.awt.Event;
@@ -22,8 +23,9 @@ import br.senai.sc.engine.Utils;
 public class JetpackGame extends Game {
 
 	public static GameStates currentGameState;
-	private Scene opening, menu, credits, help, gameplay, currentScene, gameOver;
-
+	private Scene opening, menu, credits, help, currentScene, gameOver;
+	private levelManager levels;
+	
 	public JetpackGame() {
 		super("JetPack", 1280, 720);
 		addMouseListener(new MouseInputHandler());
@@ -40,7 +42,7 @@ public class JetpackGame extends Game {
 	public void init() {
 		menu = new MainMenu();
 		credits = new Credits();
-		gameplay = new Gameplay();
+		levels = new levelManager("level_3,level_1,level_2");
 		opening = new Opening();
 		gameOver = new GameOver();
 		currentGameState = GameStates.OpeningPreMenu;
@@ -49,7 +51,7 @@ public class JetpackGame extends Game {
 		
 		//TEMPORARIAMENTE:
 		//cansei de ficar passando pelo menu e a abertura para testar a mecânica
-		currentGameState = GameStates.Gameplay;
+		currentGameState = GameStates.MainMenu;
 
 		
 	}
@@ -71,7 +73,7 @@ public class JetpackGame extends Game {
 			break;
 			
 		case Gameplay:
-			currentScene = gameplay;
+			currentScene = levels.getCurrentLevel();
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			currentScene.collision();

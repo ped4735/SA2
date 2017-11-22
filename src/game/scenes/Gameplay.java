@@ -16,8 +16,9 @@ public class Gameplay extends Scene {
 	private int COLS = 40;
 	private int ROWS = 22;
 	private int[][] tileMapMatrix;
+	private String tmxFile;
 
-	public Gameplay() {
+	public Gameplay(String tmxFile) {
 
 		/*
 		 * getObjsInScene().add(new Hero("coinssonic.png", 100, 0, 4, 4));
@@ -30,7 +31,7 @@ public class Gameplay extends Scene {
 		 * 
 		 * getObjsInScene().add(new Spike(500, 400));
 		 */
-
+		this.tmxFile = tmxFile;
 		tileMapMatrix = new int[ROWS][COLS];
 		lerArquivo();
 
@@ -38,7 +39,7 @@ public class Gameplay extends Scene {
 
 	private void lerArquivo() {
 		try { // try ler arquivo tmx
-			File file = new File("tileset.tmx");
+			File file = new File(tmxFile + ".tmx");
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			String linha = br.readLine();

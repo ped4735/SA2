@@ -167,13 +167,13 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	
 		
 		
-		//g.draw(getRectangle());
-		float xLinha = sizeX*(float)Math.cos(theta + a) -sizeY*(float)Math.sin(theta + a);
+		g.draw(getRectangle());
+		/*float xLinha = sizeX*(float)Math.cos(theta + a) -sizeY*(float)Math.sin(theta + a);
 		float yLinha = sizeX*(float)Math.sin(theta + a) +sizeY*(float)Math.cos(theta + a);
-		yLinha *= -1f;
+		yLinha *= -1f;*/
 		//System.out.println("xlinha: " + xLinha);
 		
-		Rectangle retanguloNovo = new Rectangle((int)(posX - xLinha),(int)(posY + yLinha),(int)(sizeX * (1d+Math.cos(theta + a))) ,(int)(sizeY* (1d+Math.sin(theta + a))));
+		//Rectangle retanguloNovo = new Rectangle((int)(posX - xLinha),(int)(posY + yLinha),(int)(sizeX * (1d+Math.cos(theta + a))) ,(int)(sizeY* (1d+Math.sin(theta + a))));
 		//g.draw(retanguloNovo);
 //
 //		//getRectangle().
@@ -187,9 +187,9 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 //		r.add(500, 300);
 //		g.draw(r);
 		
-		Ellipse2D.Float asd = new Ellipse2D.Float(posX, posY, sizeX*2, sizeY);
+		/*Ellipse2D.Float asd = new Ellipse2D.Float(posX, posY, sizeX*2, sizeY);
 		g.draw(asd);
-		g.draw(asd.getBounds2D());
+		g.draw(asd.getBounds2D());*/
 		
 		
 		
