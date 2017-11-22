@@ -162,26 +162,28 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		super.draw(g);
 
 		g.rotate((-1) * (theta + a), posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
+		
+		
 
-		// g.draw(getRectangle());
-		float centroX = (float) getRectangle().getCenterX();
-		float centroY = (float) getRectangle().getCenterY();
-
-		centroX -= posX;
-		centroY -= posY;
-
-		float xLinha = centroX * (float) Math.cos(theta + a) - centroY * (float) Math.sin(theta + a);
-		float yLinha = centroY * (float) Math.sin(theta + a) + centroY * (float) Math.cos(theta + a);
-		yLinha *= -1f;
+		g.draw(getRectangle());
+//		float centroX = (float) getRectangle().getCenterX();
+//		float centroY = (float) getRectangle().getCenterY();
+//
+//		centroX -= posX;
+//		centroY -= posY;
+//
+//		float xLinha = centroX * (float) Math.cos(theta + a) - centroY * (float) Math.sin(theta + a);
+//		float yLinha = centroY * (float) Math.sin(theta + a) + centroY * (float) Math.cos(theta + a);
+//		yLinha *= -1f;
 		// System.out.println("xlinha: " + xLinha);
 
 		// Rectangle retanguloNovo = new Rectangle((int)(posX -
 		// xLinha),(int)(posY + yLinha),(int)(sizeX * (1d+Math.cos(theta + a)))
 		// ,(int)(sizeY* (1d+Math.sin(theta + a))));
-		Rectangle retanguloNovo = new Rectangle((int) (posX - xLinha), (int) (posY + yLinha), (int) (centroX),
-				(int) (centroX));
-
-		g.draw(retanguloNovo);
+//		Rectangle retanguloNovo = new Rectangle((int) (posX - xLinha), (int) (posY + yLinha), (int) (centroX),
+//				(int) (centroX));
+//
+//		g.draw(retanguloNovo);
 		//
 		// //getRectangle().
 		// retanguloNovo = new Rectangle(getRectangle());
@@ -199,6 +201,9 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		// g.draw(asd);
 		// g.draw(asd.getBounds2D());
 
+		
+	
+	
 	}
 
 	private void drawDebug(Graphics2D g) {
