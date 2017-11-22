@@ -26,8 +26,8 @@ public class Stone extends GameObject implements Interactable {
 		if(game.TrueHero.class.isInstance(gameobj)){
 			game.TrueHero hero = (game.TrueHero) gameobj;
 			hero.setGrounded(true);
-			hero.halt();
-			//System.out.println("colidiu!!");
+			//hero.halt();
+			hero.setVelX((-2f)*hero.getVelX()/hero.getVelX());
 		}
 		
 	}
@@ -35,7 +35,21 @@ public class Stone extends GameObject implements Interactable {
 	
 	@Override
 	public void actionStay(GameObject gameobj) {
-		// TODO Auto-generated method stub
+		
+		if(game.TrueHero.class.isInstance(gameobj)){
+			game.TrueHero hero = (game.TrueHero) gameobj;
+			System.out.println("oi");
+//			int dirX = (int)hero.getPosX() - this.getPosX();
+//			
+//			if (dirX<(int)hero.getVelX() || dirX>(int)hero.getVelX()){
+//				System.out.println("naaao");
+//				hero.setVelX(0);
+//			}
+			
+			
+
+		}
+		
 		
 	}
 
@@ -46,6 +60,11 @@ public class Stone extends GameObject implements Interactable {
 			
 				hero.setGrounded(false);
 			
+		}
+		if(game.TrueHero.class.isInstance(gameobj)){
+			game.TrueHero hero = (game.TrueHero) gameobj;
+			hero.setGrounded(false);
+
 		}
 			
 	}

@@ -29,7 +29,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	// position
 	private float posX;
 	private float posY;
-	private float thetaInit = (float) (Math.PI/-2);
+	private float thetaInit = (float) (Math.PI / -2);
 	private float theta;
 	private int posXinit;
 	private int posYinit;
@@ -135,7 +135,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	}
 
 	private void forward() {
-		float a = (float) (Math.PI/2f) - theta; 
+		float a = (float) (Math.PI / 2f) - theta;
 		aceX += aceTotal * (float) Math.cos(-theta);
 		aceY += aceTotal * (-1) * (float) Math.sin(-theta);
 
@@ -149,55 +149,57 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	}
 
-
 	public void draw(Graphics2D g) {
 
 		setScale(1f);
-		
 
 		drawDebug(g);
 
-		float a = (float) ((1f) * Math.PI/2f);
+		float a = (float) ((1f) * Math.PI / 2f);
+
 		g.rotate(theta + a, posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
-		
+
 		super.draw(g);
 
 		g.rotate((-1) * (theta + a), posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
-		
-	
-		
-		
-		//g.draw(getRectangle());
-		float xLinha = sizeX*(float)Math.cos(theta + a) -sizeY*(float)Math.sin(theta + a);
-		float yLinha = sizeX*(float)Math.sin(theta + a) +sizeY*(float)Math.cos(theta + a);
+
+		// g.draw(getRectangle());
+		float centroX = (float) getRectangle().getCenterX();
+		float centroY = (float) getRectangle().getCenterY();
+
+		centroX -= posX;
+		centroY -= posY;
+
+		float xLinha = centroX * (float) Math.cos(theta + a) - centroY * (float) Math.sin(theta + a);
+		float yLinha = centroY * (float) Math.sin(theta + a) + centroY * (float) Math.cos(theta + a);
 		yLinha *= -1f;
-		//System.out.println("xlinha: " + xLinha);
-		
-		Rectangle retanguloNovo = new Rectangle((int)(posX - xLinha),(int)(posY + yLinha),(int)(sizeX * (1d+Math.cos(theta + a))) ,(int)(sizeY* (1d+Math.sin(theta + a))));
-		//g.draw(retanguloNovo);
-//
-//		//getRectangle().
-//		retanguloNovo = new Rectangle(getRectangle());
-//		retanguloNovo.grow((int)xLinha, (int)yLinha);
-//		g.draw(retanguloNovo);
-		
-//		Rectangle r = new Rectangle();
-//		r.add(10, 100);
-//		r.add(200, 200);
-//		r.add(500, 300);
-//		g.draw(r);
-		
-		Ellipse2D.Float asd = new Ellipse2D.Float(posX, posY, sizeX*2, sizeY);
-		g.draw(asd);
-		g.draw(asd.getBounds2D());
-		
-		
-		
+		// System.out.println("xlinha: " + xLinha);
+
+		// Rectangle retanguloNovo = new Rectangle((int)(posX -
+		// xLinha),(int)(posY + yLinha),(int)(sizeX * (1d+Math.cos(theta + a)))
+		// ,(int)(sizeY* (1d+Math.sin(theta + a))));
+		Rectangle retanguloNovo = new Rectangle((int) (posX - xLinha), (int) (posY + yLinha), (int) (centroX),
+				(int) (centroX));
+
+		g.draw(retanguloNovo);
+		//
+		// //getRectangle().
+		// retanguloNovo = new Rectangle(getRectangle());
+		// retanguloNovo.grow((int)xLinha, (int)yLinha);
+		// g.draw(retanguloNovo);
+
+		// Rectangle r = new Rectangle();
+		// r.add(10, 100);
+		// r.add(200, 200);
+		// r.add(500, 300);
+		// g.draw(r);
+		//
+		// Ellipse2D.Float asd = new Ellipse2D.Float(posX, posY, sizeX*2,
+		// sizeY);
+		// g.draw(asd);
+		// g.draw(asd.getBounds2D());
 
 	}
-	
-
-	
 
 	private void drawDebug(Graphics2D g) {
 		g.setColor(Color.white);
@@ -221,8 +223,6 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	}
 
-	
-	
 	// colisões
 	@Override
 	public void collisionEnter(GameObject objInCol) {
@@ -234,11 +234,14 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 			objectToInteract.actionEnter(this);
 		}
 	}
-	
+
 	@Override
 	public void collisionStay(GameObject objInCol) {
-		// TODO Auto-generated method stub
+		
+		Interactable objectToInteract = (Interactable) objInCol;
+		objectToInteract.actionStay(this);
 	}
+	
 
 	@Override
 	public void collisionExit(GameObject objExtCol) {
@@ -251,7 +254,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 				objectToExitInteract.actionExit(this);
 
 				itr.remove();
-				
+
 			}
 
 		}
@@ -313,6 +316,38 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		this.life = life;
 	}
 
+	public float getVelX() {
+		return velX;
+	}
+
+	public void setVelX(float velX) {
+		this.velX = velX;
+	}
+
+	public float getVelY() {
+		return velY;
+	}
+
+	public void setVelY(float velY) {
+		this.velY = velY;
+	}
+
+	public float getAceX() {
+		return aceX;
+	}
+
+	public void setAceX(float aceX) {
+		this.aceX = aceX;
+	}
+
+	public float getAceY() {
+		return aceY;
+	}
+
+	public void setAceY(float aceY) {
+		this.aceY = aceY;
+	}
+	
 	
 
 }

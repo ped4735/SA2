@@ -162,7 +162,8 @@ public abstract class GameObject {
 				getPosY() + (int) (getHeight() * scale), getFrameX() * getWidth(), getFrameY() * getHeight(),
 				getFrameX() * getWidth() + getWidth(), getFrameY() * getHeight() + getHeight(), null);
 
-		//g.draw(getRectangle());
+//		g.setColor(Color.GREEN);
+//		g.draw(getRectangle());
 
 	}
 

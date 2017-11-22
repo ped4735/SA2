@@ -38,7 +38,7 @@ public class Gameplay extends Scene {
 
 	private void lerArquivo() {
 		try { // try ler arquivo tmx
-			File file = new File("tileset.tmx");
+			File file = new File("level_3.tmx");
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			String linha = br.readLine();
