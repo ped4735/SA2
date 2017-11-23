@@ -17,6 +17,9 @@ public class Utils {
 	private int height;
 	private String nomeJogo;
 	private Graphics2D graphics2d;
+	
+	private float gravidade = 10;
+	
 
 	public static Utils getInstance() {
 		if (instance == null) {
@@ -33,19 +36,12 @@ public class Utils {
 	 * @return Retorna a imagem carregada.
 	 */
 	public Image loadImage(String fileName) {
-		// O getClassLoader inicia a busca do recurso a partir da raiz do
-		// classpath, enquanto o getResourse busca, a partir do caminho
-		// informado por par�metro, um objeto contendo a URL do recurso (imagem)
-		// solicitado.
 		URL imgUrl = getClass().getClassLoader().getResource(fileName);
-		// Caso a URL for null, n�o encontrou nada no caminho informado.
 		if (imgUrl == null) {
 			System.out.println("Erro ao carregar a imagem!");
 		} else {
 			try {
-				// Utiliza o m�todo static read da classe ImageIO para obter o
-				// objeto Image da imagem a partir da URL informada,
-				// retornando essa informa��o.
+
 				String[] split = fileName.split("\\.");
 				if (split[split.length-1].equalsIgnoreCase("gif")) {
 					return new ImageIcon(imgUrl).getImage();
@@ -86,10 +82,23 @@ public class Utils {
 	public Graphics2D getGraphics2d() {
 		return graphics2d;
 	}
+	
+
+	public float getGravidade() {
+		return gravidade;
+	}
+
+	public void setGravidade(float gravidade) {
+		this.gravidade = gravidade;
+	}
 
 	public void setGraphics2d(Graphics2D graphics2d) {
 		this.graphics2d = graphics2d;
 	}
+	
+	
+	
+	
 	
 	public void desenharRetangulo(int x, int y, int width, int height, Color color) {
 		getGraphics2d().setColor(color);
