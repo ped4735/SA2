@@ -52,7 +52,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float deltaTime = 0.05f;
 
 	// TODO: tirar essas coisas do personagem
-	private float gravity = 5;
+	private float gravity = 20;
 
 	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
 		super(spriteFileName, posX, posY, colFrames, lineFrames);
@@ -105,7 +105,6 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		super.setPosX((int) posX);
 		super.setPosY((int) posY);
 
-		// posYint = (int) posY;
 	}
 
 	public void takeDamage() {
@@ -311,6 +310,9 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		} else {
 			isGravityOn = true;
 		}
+		
+		
+		//System.out.println(isGravityOn);
 	}
 
 	public int getLife() {
