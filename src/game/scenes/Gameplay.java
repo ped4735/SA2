@@ -39,7 +39,8 @@ public class Gameplay extends Scene {
 
 	private void lerArquivo() {
 		try { // try ler arquivo tmx
-			File file = new File(tmxFile + ".tmx");
+			File file = new File("src/levels/" + tmxFile + ".tmx");
+			System.out.println("src/levels/" + tmxFile + ".tmx 100%" );
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			String linha = br.readLine();
