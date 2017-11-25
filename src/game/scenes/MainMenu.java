@@ -13,7 +13,7 @@ public class MainMenu extends Scene {
 		getObjsInScene().add(new Button("helpButton.png", 400, 200, 1, 2, GameStates.Help));
 		getObjsInScene().add(new Button("exitButton.png", 400, 500, 1, 2, GameStates.Exit));
 		//getObjsInScene().add(new AnimatedObject("coinssonic.png", 500, 100, 4, 4, new int[] {4,4,4,4}));
-		//getObjsInScene().add(new AnimatedObject("blackhole.png", 300, 400, 8, 1));
+		getObjsInScene().add(new AnimatedObject("blackhole.png", 300, 400, 8, 1));
 		//getObjsInScene().add(new AnimatedObject("rocket.png", 300, 600, 2, 1));
 	}
 }

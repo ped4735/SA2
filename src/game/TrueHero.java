@@ -69,6 +69,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		this.life = 3;
 		isGravityOn = true;
 		theta = thetaInit;
+		setScale(1f);
 	}
 
 	@Override
@@ -118,6 +119,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 			posX = getPosX();
 			posY = getPosY();
 			theta = 0;
+			setVelX(0);
+			setVelY(0);
 		}
 	}
 
@@ -134,7 +137,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	}
 
 	private void forward() {
-		float a = (float) (Math.PI / 2f) - theta;
+		//float a = (float) (Math.PI / 2f) - theta;
 		aceX += aceTotal * (float) Math.cos(-theta);
 		aceY += aceTotal * (-1) * (float) Math.sin(-theta);
 
@@ -150,7 +153,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	public void draw(Graphics2D g) {
 
-		setScale(1f);
+		//setScale(1f);
 
 		drawDebug(g);
 
@@ -204,6 +207,27 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	
 	
 	}
+	
+	public void scaleDown(){
+		setScale(getScale() - 0.05f);
+		if (getScale() <= 0.1f){
+			this.takeDamage();
+			setScale(1f);
+		}
+	}
+	
+	public void scaleUp(){
+		setScale(getScale() + 0.005f);
+		if (getScale() >= 0.1f){
+			setScale(1f);
+		}
+	}
+	
+	public void scaleUpTillNormal(){
+
+	}
+	
+	
 
 	private void drawDebug(Graphics2D g) {
 		g.setColor(Color.white);

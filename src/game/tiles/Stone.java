@@ -38,7 +38,6 @@ public class Stone extends GameObject implements Interactable {
 		
 		if(game.TrueHero.class.isInstance(gameobj)){
 			game.TrueHero hero = (game.TrueHero) gameobj;
-			//System.out.println("oi");
 //			int dirX = (int)hero.getPosX() - this.getPosX();
 //			
 //			if (dirX<(int)hero.getVelX() || dirX>(int)hero.getVelX()){

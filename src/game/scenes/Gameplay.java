@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import game.Hero;
 import game.TrueHero;
+import game.tiles.BlackHole;
 import game.tiles.Spike;
 import game.tiles.Stone;
 
@@ -31,10 +32,12 @@ public class Gameplay extends Scene {
 		 * 
 		 * getObjsInScene().add(new Spike(500, 400));
 		 */
+		getObjsInScene().add(new BlackHole(300, 300));
+
 		this.tmxFile = tmxFile;
 		tileMapMatrix = new int[ROWS][COLS];
 		lerArquivo();
-
+		
 	}
 
 	private void lerArquivo() {
