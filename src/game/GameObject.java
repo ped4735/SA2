@@ -27,20 +27,6 @@ public abstract class GameObject {
 	private float scale;
 
 	// Constructors
-	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, GameTags tag) {
-		this.sprite = Utils.getInstance().loadImage("images/" + spriteFileName);
-		this.posXLocal = posX;
-		this.posYLocal = posY;
-		this.frameX = 0;
-		this.frameY = 0;
-		this.colFrames = colFrames;
-		this.lineFrames = lineFrames;
-		this.width = sprite.getWidth(null) / colFrames;
-		this.height = sprite.getHeight(null) / lineFrames;
-		this.tag = tag;
-		this.scale = 1;
-	}
-
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
 		this.sprite = Utils.getInstance().loadImage("images/" + spriteFileName);
 		this.posXLocal = posX;
@@ -52,21 +38,18 @@ public abstract class GameObject {
 		this.width = sprite.getWidth(null) / colFrames;
 		this.height = sprite.getHeight(null) / lineFrames;
 		this.tag = GameTags.Default;
-		this.scale = 1;
-
+		this.scale = 1f;
+		
 	}
 
+	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, GameTags tag) {
+		this(spriteFileName, posX, posY, colFrames, lineFrames);
+		this.tag = tag;
+	}
+
+
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, float scale) {
-		this.sprite = Utils.getInstance().loadImage("images/" + spriteFileName);
-		this.posXLocal = posX;
-		this.posYLocal = posY;
-		this.frameX = 0;
-		this.frameY = 0;
-		this.colFrames = colFrames;
-		this.lineFrames = lineFrames;
-		this.width = sprite.getWidth(null) / colFrames;
-		this.height = sprite.getHeight(null) / lineFrames;
-		this.tag = GameTags.Default;
+		this(spriteFileName, posX, posY, colFrames, lineFrames);
 		this.scale = scale;
 
 	}
@@ -162,9 +145,31 @@ public abstract class GameObject {
 
 	// Methods
 	public void draw(Graphics2D g) {
-		g.drawImage(getSprite(), getPosX(), getPosY(), getPosX() + (int) (getWidth() * scale),
-				getPosY() + (int) (getHeight() * scale), getFrameX() * getWidth(), getFrameY() * getHeight(),
-				getFrameX() * getWidth() + getWidth(), getFrameY() * getHeight() + getHeight(), null);
+		/* correto
+		g.drawImage(getSprite(), 
+		getPosX(),
+		getPosY(),
+		getPosX() + (int) (getWidth() * scale),				
+		getPosY() + (int) (getHeight() * scale),
+		getFrameX() * getWidth(), getFrameY() * getHeight(),
+		getFrameX() * getWidth() + getWidth(),
+		getFrameY() * getHeight() + getHeight(),
+		null);
+		*/
+		
+		
+		float globalScale = Utils.getInstance().getGlobalScale();
+		g.drawImage(getSprite(),
+				(int) (globalScale*getPosX()), 
+				(int) (globalScale*getPosY()),
+				(int) (globalScale*(getPosX() + (getWidth() * scale))),
+				(int) (globalScale *(getPosY() + (getHeight() * scale))),
+				getFrameX() * getWidth(),
+				getFrameY() * getHeight(),
+				getFrameX() * getWidth() + getWidth(),
+				getFrameY() * getHeight() + getHeight(), 
+				null);
+
 
 		
 		if (Utils.getInstance().isDebug() && !this.getClass().equals(TrueHero.class)) {

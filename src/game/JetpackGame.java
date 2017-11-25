@@ -40,6 +40,8 @@ public class JetpackGame extends Game {
 
 	@Override
 	public void init() {
+		Utils.getInstance().setGlobalScale(1f);
+
 		menu = new MainMenu();
 		credits = new Credits();
 		//levels = new levelManager("level_3,level_1,level_2");
@@ -51,8 +53,13 @@ public class JetpackGame extends Game {
 		
 		//TEMPORARIAMENTE:
 		//cansei de ficar passando pelo menu e a abertura para testar a mecânica
+		// e de esperar carregar 3 mapas sendo que só usamos 1!
 		currentGameState = GameStates.Gameplay;
 		levels = new levelManager("level_3");
+		
+		
+		
+
 
 
 		

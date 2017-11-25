@@ -117,7 +117,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 			this.setPosY(posYinit);
 			posX = getPosX();
 			posY = getPosY();
-			theta = 0;
+			theta = thetaInit;
 			setVelX(0);
 			setVelY(0);
 		}

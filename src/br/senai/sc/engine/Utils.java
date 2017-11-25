@@ -23,6 +23,7 @@ public class Utils {
 	private float gravidade = 20;
 	private float globalScale = 1f;
 	private boolean debug = false;
+	
 
 	public static Utils getInstance() {
 		if (instance == null) {
@@ -106,6 +107,15 @@ public class Utils {
 	public void setGraphics2d(Graphics2D graphics2d) {
 		this.graphics2d = graphics2d;
 	}
+	
+
+	public float getGlobalScale() {
+		return globalScale;
+	}
+
+	public void setGlobalScale(float globalScale) {
+		this.globalScale = globalScale;
+	}
 
 	public void desenharRetangulo(int x, int y, int width, int height, Color color) {
 		getGraphics2d().setColor(color);
@@ -149,7 +159,7 @@ public class Utils {
 
 	public Rectangle reshapeRectangleByAngle(Rectangle r, float theta, float thetaInitialShift) {
 
-		// roda os pontos
+		// rotaciona os pontos
 		float[] a = rotate(r.getMaxX(), r.getMaxY(), theta, r.getCenterX(), r.getCenterY(), thetaInitialShift);
 		float[] b = rotate(r.getMaxX(), r.getMinY(), theta, r.getCenterX(), r.getCenterY(), thetaInitialShift);
 		float[] c = rotate(r.getMinX(), r.getMaxY(), theta, r.getCenterX(), r.getCenterY(), thetaInitialShift);

@@ -141,7 +141,10 @@ public abstract class Game extends Canvas {
 		// Compacta o JFrame para o seu tamanho necess�rio.
 		container.pack();
 		// Impede que o usu�rio altere o tamanho da Janela.
+		
 		container.setResizable(false);
+		//container.setResizable(true);
+		
 
 		// Adiciona o evento para fechar a janela quando clicamos no X.
 		container.addWindowListener(new WindowAdapter() {
