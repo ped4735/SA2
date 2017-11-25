@@ -42,7 +42,7 @@ public class JetpackGame extends Game {
 	public void init() {
 		menu = new MainMenu();
 		credits = new Credits();
-		levels = new levelManager("level_3,level_1,level_2");
+		//levels = new levelManager("level_3,level_1,level_2");
 		opening = new Opening();
 		gameOver = new GameOver();
 		currentGameState = GameStates.OpeningPreMenu;
@@ -51,7 +51,9 @@ public class JetpackGame extends Game {
 		
 		//TEMPORARIAMENTE:
 		//cansei de ficar passando pelo menu e a abertura para testar a mecânica
-		currentGameState = GameStates.MainMenu;
+		currentGameState = GameStates.Gameplay;
+		levels = new levelManager("level_3");
+
 
 		
 	}

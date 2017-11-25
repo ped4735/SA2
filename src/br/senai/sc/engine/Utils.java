@@ -3,6 +3,8 @@ package br.senai.sc.engine;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.io.IOException;
 import java.net.URL;
 
@@ -17,9 +19,8 @@ public class Utils {
 	private int height;
 	private String nomeJogo;
 	private Graphics2D graphics2d;
-	
+
 	private float gravidade = 10;
-	
 
 	public static Utils getInstance() {
 		if (instance == null) {
@@ -27,7 +28,7 @@ public class Utils {
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * M�todo respons�vel por carregar uma imagem dispon�vel em packages.
 	 * 
@@ -43,7 +44,7 @@ public class Utils {
 			try {
 
 				String[] split = fileName.split("\\.");
-				if (split[split.length-1].equalsIgnoreCase("gif")) {
+				if (split[split.length - 1].equalsIgnoreCase("gif")) {
 					return new ImageIcon(imgUrl).getImage();
 				} else {
 					return ImageIO.read(imgUrl);
@@ -82,7 +83,6 @@ public class Utils {
 	public Graphics2D getGraphics2d() {
 		return graphics2d;
 	}
-	
 
 	public float getGravidade() {
 		return gravidade;
@@ -95,21 +95,17 @@ public class Utils {
 	public void setGraphics2d(Graphics2D graphics2d) {
 		this.graphics2d = graphics2d;
 	}
-	
-	
-	
-	
-	
+
 	public void desenharRetangulo(int x, int y, int width, int height, Color color) {
 		getGraphics2d().setColor(color);
 		getGraphics2d().fillRect(x, y, width, height);
 	}
-	
+
 	public void desenharCirculo(int x, int y, int width, int height, Color color) {
 		getGraphics2d().setColor(color);
 		getGraphics2d().fillOval(x, y, width, height);
 	}
-	
+
 	public boolean[][] makeBooleanMatrix(int sizeX, int sizeY, int[] numOfTrues) {
 		boolean[][] endMatrix = new boolean[sizeX][sizeY];
 		for (int i = 0; i < endMatrix.length; i++) {
@@ -118,6 +114,66 @@ public class Utils {
 			}
 		}
 		return endMatrix;
+	}
+
+	private float[] rotate(int pontoX, int pontoY, float theta, int posCentralX, int posCentralY,
+			float thetaInitialShift) {
+		// roda o ponto (pontoX, pontoY), theta radianos em volta do ponto
+		// (posCentralX, posCentralY)
+		float xLinha = (pontoX - posCentralX) * (float) Math.cos(theta + thetaInitialShift)
+				- (pontoY - posCentralY) * (float) Math.sin(theta + thetaInitialShift);
+		float yLinha = (pontoX - posCentralX) * (float) Math.sin(theta + thetaInitialShift)
+				+ (pontoY - posCentralY) * (float) Math.cos(theta + thetaInitialShift);
+
+		xLinha += (float) posCentralX;
+		yLinha += (float) posCentralY;
+
+		return new float[] { xLinha, yLinha };
+	}
+
+	// private float[] rotate(int pontoX, int pontoY, float theta, int
+	// posCentralX, int posCentralY) {
+	// //roda o ponto (pontoX, pontoY), theta radianos em volta do ponto
+	// (posCentralX, posCentralY)
+	// float xLinha = (pontoX - posCentralX) * (float) Math.cos(theta)
+	// - (pontoY - posCentralY) * (float) Math.sin(theta);
+	// float yLinha = (pontoX - posCentralX) * (float) Math.sin(theta)
+	// + (pontoY - posCentralY) * (float) Math.cos(theta);
+	//
+	// xLinha += (float) posCentralX;
+	// yLinha += (float) posCentralY;
+	//
+	// return new float[] { xLinha, yLinha };
+	// }
+
+	private float[] rotate(double pontoX, double pontoY, float theta, double posCentralX, double posCentralY,
+			float thetaInitialShift) {
+		return rotate((int) pontoX, (int) pontoY, theta, (int) posCentralX, (int) posCentralY, thetaInitialShift);
+	}
+
+	public Rectangle reshapeRectangleByAngle(Rectangle r, float theta, float thetaInitialShift) {
+
+		// roda os pontos
+		float[] a = rotate(r.getMaxX(), r.getMaxY(), theta, r.getCenterX(), r.getCenterY(), thetaInitialShift);
+		float[] b = rotate(r.getMaxX(), r.getMinY(), theta, r.getCenterX(), r.getCenterY(), thetaInitialShift);
+		float[] c = rotate(r.getMinX(), r.getMaxY(), theta, r.getCenterX(), r.getCenterY(), thetaInitialShift);
+		float[] d = rotate(r.getMinX(), r.getMinY(), theta, r.getCenterX(), r.getCenterY(), thetaInitialShift);
+
+		// ordena os pontos para construir o retangulo. PosX (extremidade
+		// esquerda) tem que ser sempre menor que o posX+width (extremidade
+		// direita), por exemplo
+		float xMin = Math.min(Math.min(a[0], b[0]), Math.min(c[0], d[0]));
+		float yMin = Math.min(Math.min(a[1], b[1]), Math.min(c[1], d[1]));
+
+		// desenha um em volta com as cordenadas
+		r.setFrameFromCenter(new Point((int) r.getCenterX(), (int) r.getCenterY()), new Point((int) xMin, (int) yMin));
+
+		return r;
+	}
+
+	public Rectangle reshapeRectangleByAngle(Rectangle r, float theta) {
+		return reshapeRectangleByAngle(r, theta, 0);
+
 	}
 
 }

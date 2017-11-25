@@ -29,14 +29,13 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	// position
 	private float posX;
 	private float posY;
-	private float thetaInit = (float) (Math.PI / -2);
-	private float theta;
+	private final float thetaInit = (float) ((-1f) * Math.PI / 2f);
+	private float theta;// = (float) ((1f) * Math.PI / 2f);
 	private int posXinit;
 	private int posYinit;
 	// speed
 	private float velX;
 	private float velY;
-	private float velTotal;
 	private float turnRate = (float) Math.PI / 64f;
 	// aceleration
 	private float aceX;
@@ -55,8 +54,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float gravity = 20;
 
 	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
-		super(spriteFileName, posX, posY, colFrames, lineFrames);
-		// TODO corrigir para o construtor da matriz!
+		//super(spriteFileName, posX, posY, colFrames, lineFrames);
+		super(spriteFileName, posX, posY, colFrames, lineFrames, new int[] {1,1});
 		setTag(GameTags.Player);
 		init();
 	}
@@ -78,14 +77,14 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		super.update();
 		aceX = 0.0f;
 		aceY = 0.0f;
-
+		
 		if (wPressed) {
 			this.forward();
 		}
 
 		if (aPressed || dPressed) {
 			this.turn();
-		}
+					}
 
 		if (isGravityOn) {
 			this.fall();
@@ -151,6 +150,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	}
 
+	@Override
 	public void draw(Graphics2D g) {
 
 		//setScale(1f);
@@ -158,55 +158,20 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		drawDebug(g);
 
 		float a = (float) ((1f) * Math.PI / 2f);
-
 		g.rotate(theta + a, posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
-
 		super.draw(g);
-
 		g.rotate((-1) * (theta + a), posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
-		
-		
 
 		g.draw(getRectangle());
-//		float centroX = (float) getRectangle().getCenterX();
-//		float centroY = (float) getRectangle().getCenterY();
-//
-//		centroX -= posX;
-//		centroY -= posY;
-//
-//		float xLinha = centroX * (float) Math.cos(theta + a) - centroY * (float) Math.sin(theta + a);
-//		float yLinha = centroY * (float) Math.sin(theta + a) + centroY * (float) Math.cos(theta + a);
-//		yLinha *= -1f;
-		// System.out.println("xlinha: " + xLinha);
-
-		// Rectangle retanguloNovo = new Rectangle((int)(posX -
-		// xLinha),(int)(posY + yLinha),(int)(sizeX * (1d+Math.cos(theta + a)))
-		// ,(int)(sizeY* (1d+Math.sin(theta + a))));
-//		Rectangle retanguloNovo = new Rectangle((int) (posX - xLinha), (int) (posY + yLinha), (int) (centroX),
-//				(int) (centroX));
-//
-//		g.draw(retanguloNovo);
-		//
-		// //getRectangle().
-		// retanguloNovo = new Rectangle(getRectangle());
-		// retanguloNovo.grow((int)xLinha, (int)yLinha);
-		// g.draw(retanguloNovo);
-
-		// Rectangle r = new Rectangle();
-		// r.add(10, 100);
-		// r.add(200, 200);
-		// r.add(500, 300);
-		// g.draw(r);
-		//
-		// Ellipse2D.Float asd = new Ellipse2D.Float(posX, posY, sizeX*2,
-		// sizeY);
-		// g.draw(asd);
-		// g.draw(asd.getBounds2D());
-
-		
-	
 	
 	}
+	
+	@Override
+	public Rectangle getRectangle(){
+		return Utils.getInstance().reshapeRectangleByAngle(super.getRectangle(), theta,thetaInit);
+		
+	}
+	
 	
 	public void scaleDown(){
 		setScale(getScale() - 0.05f);
@@ -251,6 +216,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	}
 
+	
+	
 	// colisões
 	@Override
 	public void collisionEnter(GameObject objInCol) {

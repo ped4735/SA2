@@ -23,6 +23,7 @@ public abstract class GameObject {
 	private GameTags tag;
 	private boolean destroyed;
 	private float scale;
+	private Rectangle hitBox;
 
 	// Constructors
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, GameTags tag) {
@@ -37,6 +38,7 @@ public abstract class GameObject {
 		this.height = sprite.getHeight(null) / lineFrames;
 		this.tag = tag;
 		this.scale = 1;
+		this.hitBox = new Rectangle(posXLocal, posYLocal, (int)(width * scale), (int)(height * scale));
 	}
 
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
@@ -51,6 +53,8 @@ public abstract class GameObject {
 		this.height = sprite.getHeight(null) / lineFrames;
 		this.tag = GameTags.Default;
 		this.scale = 1;
+		this.hitBox = new Rectangle(posXLocal, posYLocal, (int)(width * scale), (int)(height * scale));
+
 	}
 
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, float scale) {
@@ -65,6 +69,8 @@ public abstract class GameObject {
 		this.height = sprite.getHeight(null) / lineFrames;
 		this.tag = GameTags.Default;
 		this.scale = scale;
+		this.hitBox = new Rectangle(posXLocal, posYLocal, (int)(width * scale), (int)(height * scale));
+
 	}
 
 	// Getters and Setters
@@ -167,9 +173,15 @@ public abstract class GameObject {
 
 	}
 
+	
 	public Rectangle getRectangle() {
+		//return hitBox;
 		return new Rectangle(posXLocal, posYLocal, (int)(width * scale), (int)(height * scale));
-		//return new Ellipse2D.Float(posXLocal + width/2, posYLocal + height/2, 10, 10);
+
+		
+	}
+	public void setRectangle(Rectangle r){
+		hitBox = r;
 	}
 
 }
