@@ -20,7 +20,9 @@ public class Utils {
 	private String nomeJogo;
 	private Graphics2D graphics2d;
 
-	private float gravidade = 10;
+	private float gravidade = 20;
+	private float globalScale = 1f;
+	private boolean debug = false;
 
 	public static Utils getInstance() {
 		if (instance == null) {
@@ -92,6 +94,15 @@ public class Utils {
 		this.gravidade = gravidade;
 	}
 
+	
+	public boolean isDebug() {
+		return debug;
+	}
+
+	public void setDebug(boolean debug) {
+		this.debug = debug;
+	}
+
 	public void setGraphics2d(Graphics2D graphics2d) {
 		this.graphics2d = graphics2d;
 	}
@@ -101,9 +112,9 @@ public class Utils {
 		getGraphics2d().fillRect(x, y, width, height);
 	}
 
-	public void desenharCirculo(int x, int y, int width, int height, Color color) {
+	public void desenharCirculo(int x, int y, int width, Color color) {
 		getGraphics2d().setColor(color);
-		getGraphics2d().fillOval(x, y, width, height);
+		getGraphics2d().fillOval(x, y, width, width);
 	}
 
 	public boolean[][] makeBooleanMatrix(int sizeX, int sizeY, int[] numOfTrues) {
@@ -130,21 +141,6 @@ public class Utils {
 
 		return new float[] { xLinha, yLinha };
 	}
-
-	// private float[] rotate(int pontoX, int pontoY, float theta, int
-	// posCentralX, int posCentralY) {
-	// //roda o ponto (pontoX, pontoY), theta radianos em volta do ponto
-	// (posCentralX, posCentralY)
-	// float xLinha = (pontoX - posCentralX) * (float) Math.cos(theta)
-	// - (pontoY - posCentralY) * (float) Math.sin(theta);
-	// float yLinha = (pontoX - posCentralX) * (float) Math.sin(theta)
-	// + (pontoY - posCentralY) * (float) Math.cos(theta);
-	//
-	// xLinha += (float) posCentralX;
-	// yLinha += (float) posCentralY;
-	//
-	// return new float[] { xLinha, yLinha };
-	// }
 
 	private float[] rotate(double pontoX, double pontoY, float theta, double posCentralX, double posCentralY,
 			float thetaInitialShift) {

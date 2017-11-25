@@ -54,8 +54,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float gravity = 20;
 
 	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
-		//super(spriteFileName, posX, posY, colFrames, lineFrames);
-		super(spriteFileName, posX, posY, colFrames, lineFrames, new int[] {1,1});
+		// super(spriteFileName, posX, posY, colFrames, lineFrames);
+		super(spriteFileName, posX, posY, colFrames, lineFrames, new int[] { 1, 1 });
 		setTag(GameTags.Player);
 		init();
 	}
@@ -77,14 +77,14 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		super.update();
 		aceX = 0.0f;
 		aceY = 0.0f;
-		
+
 		if (wPressed) {
 			this.forward();
 		}
 
 		if (aPressed || dPressed) {
 			this.turn();
-					}
+		}
 
 		if (isGravityOn) {
 			this.fall();
@@ -136,7 +136,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	}
 
 	private void forward() {
-		//float a = (float) (Math.PI / 2f) - theta;
+		// float a = (float) (Math.PI / 2f) - theta;
 		aceX += aceTotal * (float) Math.cos(-theta);
 		aceY += aceTotal * (-1) * (float) Math.sin(-theta);
 
@@ -153,9 +153,11 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	@Override
 	public void draw(Graphics2D g) {
 
-		//setScale(1f);
+		// setScale(1f);
 
-		drawDebug(g);
+		if (Utils.getInstance().isDebug()) {
+			drawDebug(g);
+		}
 
 		float a = (float) ((1f) * Math.PI / 2f);
 		g.rotate(theta + a, posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
@@ -163,36 +165,33 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		g.rotate((-1) * (theta + a), posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
 
 		g.draw(getRectangle());
-	
+
 	}
-	
+
 	@Override
-	public Rectangle getRectangle(){
-		return Utils.getInstance().reshapeRectangleByAngle(super.getRectangle(), theta,thetaInit);
-		
+	public Rectangle getRectangle() {
+		return Utils.getInstance().reshapeRectangleByAngle(super.getRectangle(), theta, thetaInit);
+
 	}
-	
-	
-	public void scaleDown(){
+
+	public void scaleDown() {
 		setScale(getScale() - 0.05f);
-		if (getScale() <= 0.1f){
+		if (getScale() <= 0.1f) {
 			this.takeDamage();
 			setScale(1f);
 		}
 	}
-	
-	public void scaleUp(){
+
+	public void scaleUp() {
 		setScale(getScale() + 0.005f);
-		if (getScale() >= 0.1f){
+		if (getScale() >= 0.1f) {
 			setScale(1f);
 		}
 	}
-	
-	public void scaleUpTillNormal(){
+
+	public void scaleUpTillNormal() {
 
 	}
-	
-	
 
 	private void drawDebug(Graphics2D g) {
 		g.setColor(Color.white);
@@ -216,8 +215,6 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	}
 
-	
-	
 	// colisões
 	@Override
 	public void collisionEnter(GameObject objInCol) {
@@ -232,11 +229,10 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	@Override
 	public void collisionStay(GameObject objInCol) {
-		
+
 		Interactable objectToInteract = (Interactable) objInCol;
 		objectToInteract.actionStay(this);
 	}
-	
 
 	@Override
 	public void collisionExit(GameObject objExtCol) {
@@ -301,9 +297,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		} else {
 			isGravityOn = true;
 		}
-		
-		
-		//System.out.println(isGravityOn);
+
+		// System.out.println(isGravityOn);
 	}
 
 	public int getLife() {
@@ -345,7 +340,5 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	public void setAceY(float aceY) {
 		this.aceY = aceY;
 	}
-	
-	
 
 }

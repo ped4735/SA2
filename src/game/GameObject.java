@@ -7,6 +7,8 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
+import javax.rmi.CORBA.Util;
+
 import br.senai.sc.engine.Utils;
 
 public abstract class GameObject {
@@ -23,7 +25,6 @@ public abstract class GameObject {
 	private GameTags tag;
 	private boolean destroyed;
 	private float scale;
-	private Rectangle hitBox;
 
 	// Constructors
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, GameTags tag) {
@@ -38,7 +39,6 @@ public abstract class GameObject {
 		this.height = sprite.getHeight(null) / lineFrames;
 		this.tag = tag;
 		this.scale = 1;
-		this.hitBox = new Rectangle(posXLocal, posYLocal, (int)(width * scale), (int)(height * scale));
 	}
 
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
@@ -53,7 +53,6 @@ public abstract class GameObject {
 		this.height = sprite.getHeight(null) / lineFrames;
 		this.tag = GameTags.Default;
 		this.scale = 1;
-		this.hitBox = new Rectangle(posXLocal, posYLocal, (int)(width * scale), (int)(height * scale));
 
 	}
 
@@ -69,7 +68,6 @@ public abstract class GameObject {
 		this.height = sprite.getHeight(null) / lineFrames;
 		this.tag = GameTags.Default;
 		this.scale = scale;
-		this.hitBox = new Rectangle(posXLocal, posYLocal, (int)(width * scale), (int)(height * scale));
 
 	}
 
@@ -168,20 +166,18 @@ public abstract class GameObject {
 				getPosY() + (int) (getHeight() * scale), getFrameX() * getWidth(), getFrameY() * getHeight(),
 				getFrameX() * getWidth() + getWidth(), getFrameY() * getHeight() + getHeight(), null);
 
-//		g.setColor(Color.GREEN);
-//		g.draw(getRectangle());
-
-	}
-
-	
-	public Rectangle getRectangle() {
-		//return hitBox;
-		return new Rectangle(posXLocal, posYLocal, (int)(width * scale), (int)(height * scale));
-
 		
+		if (Utils.getInstance().isDebug() && !this.getClass().equals(TrueHero.class)) {
+			g.setColor(Color.GREEN);
+			g.draw(getRectangle());
+		}
+
 	}
-	public void setRectangle(Rectangle r){
-		hitBox = r;
+
+	public Rectangle getRectangle() {
+		// return hitBox;
+		return new Rectangle(posXLocal, posYLocal, (int) (width * scale), (int) (height * scale));
+
 	}
 
 }
