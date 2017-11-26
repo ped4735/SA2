@@ -13,6 +13,9 @@ import javax.swing.ImageIcon;
 
 public class Utils {
 
+	
+	
+	
 	private static Utils instance;
 
 	private int width;
@@ -181,5 +184,64 @@ public class Utils {
 		return reshapeRectangleByAngle(r, theta, 0);
 
 	}
+	
+	public game.CollisionFace collisionEnterIn(Rectangle obj1, Rectangle obj2){
+		
+		//System.out.println("Entrou!");
+		//obj1 top_bot obj2
+		
+		if(getRectangleFace(obj1, game.CollisionFace.bot).intersects(getRectangleFace(obj2, game.CollisionFace.top))){
+			return game.CollisionFace.bot_top;
+		}if(getRectangleFace(obj1, game.CollisionFace.top).intersects(getRectangleFace(obj2, game.CollisionFace.bot))){
+			return game.CollisionFace.top_bot;
+		}if(getRectangleFace(obj1, game.CollisionFace.left).intersects(getRectangleFace(obj2, game.CollisionFace.right))){
+			return game.CollisionFace.left_right;
+		}if(getRectangleFace(obj1, game.CollisionFace.right).intersects(getRectangleFace(obj2, game.CollisionFace.left))){
+			return game.CollisionFace.right_left;
+		}
+			
+		
+		return game.CollisionFace.none;
+		
+		
+	}
+	
+	
+	public Rectangle getRectangleFace(Rectangle rect, game.CollisionFace colFace){
+		int offset = 4;
+		int scale = 4;
+		
+		switch (colFace) {
+		case top:
+			return new Rectangle(rect.x + offset,
+					rect.y,
+					(int)rect.getWidth() - offset*2,
+					(int)rect.getHeight()/scale);
+			
+		case bot:
+			return new Rectangle(rect.x + offset,
+					rect.y + (int)rect.getHeight() - ((int)rect.getHeight()/scale),
+					(int)rect.getWidth() - offset*2,
+					(int)rect.getHeight()/scale);
+		case right:
+			return new Rectangle(rect.x + (int)rect.getWidth() - (int)rect.getWidth()/scale,
+					rect.y + offset,
+					(int)rect.getWidth()/scale,
+					(int)rect.getHeight() - offset*2);
+		case left:
+			return new Rectangle(rect.x,
+					rect.y + offset,
+					(int)rect.getWidth()/scale,
+					(int)rect.getHeight() - offset*2);
+			
+		default:
+			break;
+		}
+		
+		return null;
+	}
+	
+	
+	
 
 }

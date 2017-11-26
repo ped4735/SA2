@@ -51,7 +51,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float deltaTime = 0.05f;
 
 	// TODO: tirar essas coisas do personagem
-	private float gravity = 20;
+	private float gravity = 0;
 
 	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
 		// super(spriteFileName, posX, posY, colFrames, lineFrames);
@@ -164,14 +164,25 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		super.draw(g);
 		g.rotate((-1) * (theta + a), posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
 
-		g.draw(getRectangle());
-
+		
+		
+		
+		if(Utils.getInstance().isDebug()){
+			g.draw(getRectangle());
+			g.setColor(Color.BLUE);
+			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.bot));
+			g.setColor(Color.GREEN);
+			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.top));
+			g.setColor(Color.CYAN);
+			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.left));
+			g.setColor(Color.RED);
+			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.right));
+		}
 	}
 
 	@Override
 	public Rectangle getRectangle() {
 		return Utils.getInstance().reshapeRectangleByAngle(super.getRectangle(), theta, thetaInit);
-
 	}
 
 	public void scaleDown() {
@@ -213,6 +224,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		g.drawLine((int) posX - offset, (int) posY, (int) posX + (int) (aceX * 1f) - offset,
 				(int) posY + (int) (aceY * 1f));
 
+		
+		
 	}
 
 	// colisões

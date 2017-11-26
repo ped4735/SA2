@@ -68,13 +68,13 @@ public class Gameplay extends Scene {
 
 					switch (code) {
 					case 1:
-						getObjsInScene().add(new Stone(c * 32, r * 32));
+						getObjsInScene().add(new Stone(c * TILE_SIZE, r * TILE_SIZE));
 						break;
 					case 4:
-						getObjsInScene().add(new Spike(c * 32, r * 32));
+						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE));
 						break;
 					case 3:
-						getObjsInScene().add(new TrueHero("rocket.png", c * 32, r * 32, 2, 1));
+						getObjsInScene().add(new TrueHero("rocket.png", c * TILE_SIZE, r * TILE_SIZE, 2, 1));
 						break;
 
 					default:

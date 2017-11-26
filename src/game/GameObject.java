@@ -145,7 +145,7 @@ public abstract class GameObject {
 
 	// Methods
 	public void draw(Graphics2D g) {
-		/* correto
+		 
 		g.drawImage(getSprite(), 
 		getPosX(),
 		getPosY(),
@@ -155,10 +155,10 @@ public abstract class GameObject {
 		getFrameX() * getWidth() + getWidth(),
 		getFrameY() * getHeight() + getHeight(),
 		null);
-		*/
 		
 		
-		float globalScale = Utils.getInstance().getGlobalScale();
+		
+		/*float globalScale = Utils.getInstance().getGlobalScale();
 		g.drawImage(getSprite(),
 				(int) (globalScale*getPosX()), 
 				(int) (globalScale*getPosY()),
@@ -168,14 +168,14 @@ public abstract class GameObject {
 				getFrameY() * getHeight(),
 				getFrameX() * getWidth() + getWidth(),
 				getFrameY() * getHeight() + getHeight(), 
-				null);
+				null);*/
 
 
 		
-		if (Utils.getInstance().isDebug() && !this.getClass().equals(TrueHero.class)) {
+		/*if (Utils.getInstance().isDebug() && !this.getClass().equals(TrueHero.class)) {
 			g.setColor(Color.GREEN);
 			g.draw(getRectangle());
-		}
+		}*/
 
 	}
 
