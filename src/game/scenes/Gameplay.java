@@ -32,7 +32,7 @@ public class Gameplay extends Scene {
 		 * 
 		 * getObjsInScene().add(new Spike(500, 400));
 		 */
-		getObjsInScene().add(new BlackHole(300, 300));
+		getObjsInScene().add(new BlackHole(300, 100));
 
 		this.tmxFile = tmxFile;
 		tileMapMatrix = new int[ROWS][COLS];
@@ -74,8 +74,16 @@ public class Gameplay extends Scene {
 						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE));
 						break;
 					case 3:
-						getObjsInScene().add(new TrueHero("rocket.png", c * TILE_SIZE, r * TILE_SIZE, 2, 1));
+						//game.JetpackGame.hero = new TrueHero("rocket.png", c * TILE_SIZE, r * TILE_SIZE, 2, 1);
+						game.JetpackGame.hero.start(c * TILE_SIZE, r * TILE_SIZE);
+						getObjsInScene().add(game.JetpackGame.hero);
+
 						break;
+					//temporario. provavelmente vai dar problema depois
+					case 5:
+						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI));
+
+						
 
 					default:
 						break;

@@ -219,9 +219,10 @@ public abstract class Game extends Canvas {
 		//}
 		System.exit(0);
 		
-
 	}
 
+
+	
 	public void desenharGif(Image image, int x, int y) {
 		graphics2D.drawImage(image, x, y, container);
 	}

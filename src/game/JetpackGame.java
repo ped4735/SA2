@@ -25,6 +25,7 @@ public class JetpackGame extends Game {
 	public static GameStates currentGameState;
 	private Scene opening, menu, credits, help, currentScene, gameOver;
 	private levelManager levels;
+	public static TrueHero hero;
 	
 	public JetpackGame() {
 		super("JetPack", 1280, 720);
@@ -42,9 +43,12 @@ public class JetpackGame extends Game {
 	public void init() {
 		Utils.getInstance().setGlobalScale(1f);
 
+		hero = new TrueHero("rocket.png", 100,100, 2, 1);
+		
+		
 		menu = new MainMenu();
 		credits = new Credits();
-		//levels = new levelManager("level_3,level_1,level_2");
+		levels = new levelManager("level_3,level_1,level_2_old");
 		opening = new Opening();
 		gameOver = new GameOver();
 		currentGameState = GameStates.OpeningPreMenu;
@@ -55,7 +59,7 @@ public class JetpackGame extends Game {
 		//cansei de ficar passando pelo menu e a abertura para testar a mecânica
 		// e de esperar carregar 3 mapas sendo que só usamos 1!
 		currentGameState = GameStates.Gameplay;
-		levels = new levelManager("level_3");
+		//levels = new levelManager("level_1");
 		
 		
 		
@@ -128,11 +132,16 @@ public class JetpackGame extends Game {
 		public void keyPressed(KeyEvent e) {
 			currentScene.keyPressed(e);
 			
+			
+			
 			if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 				System.exit(0);
 			}
 			if (e.getKeyCode() == KeyEvent.VK_F9) {
 				Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
+			} 
+			if (e.getKeyCode() == KeyEvent.VK_P) {
+				levels.nextLevel();
 			} 
 		}
 

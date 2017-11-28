@@ -25,6 +25,7 @@ public abstract class GameObject {
 	private GameTags tag;
 	private boolean destroyed;
 	private float scale;
+	private float thetaLocal;
 
 	// Constructors
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
@@ -39,6 +40,7 @@ public abstract class GameObject {
 		this.height = sprite.getHeight(null) / lineFrames;
 		this.tag = GameTags.Default;
 		this.scale = 1f;
+		thetaLocal = 0;
 		
 	}
 
@@ -142,10 +144,31 @@ public abstract class GameObject {
 	public void setScale(float scale) {
 		this.scale = scale;
 	}
+	
+
+	public float getTheta() {
+		return thetaLocal;
+	}
+
+	public void setTheta(float thetaLocal) {
+		
+		this.thetaLocal = thetaLocal;
+	}
 
 	// Methods
 	public void draw(Graphics2D g) {
-		 
+		 /*correto
+		g.drawImage(getSprite(), 
+		getPosX(),
+		getPosY(),
+		getPosX() + (int) (getWidth() * scale),				
+		getPosY() + (int) (getHeight() * scale),
+		getFrameX() * getWidth(), getFrameY() * getHeight(),
+		getFrameX() * getWidth() + getWidth(),
+		getFrameY() * getHeight() + getHeight(),
+		null);
+		*/
+		g.rotate(getTheta(),getPosX()+getWidth()/2,getPosY()+getHeight()/2);
 		g.drawImage(getSprite(), 
 		getPosX(),
 		getPosY(),
@@ -156,9 +179,13 @@ public abstract class GameObject {
 		getFrameY() * getHeight() + getHeight(),
 		null);
 		
+		g.rotate((-1)*getTheta(),getPosX()+getWidth()/2,getPosY()+getHeight()/2);
+
 		
 		
-		/*float globalScale = Utils.getInstance().getGlobalScale();
+		
+/*		
+		float globalScale = Utils.getInstance().getGlobalScale();
 		g.drawImage(getSprite(),
 				(int) (globalScale*getPosX()), 
 				(int) (globalScale*getPosY()),
@@ -168,14 +195,14 @@ public abstract class GameObject {
 				getFrameY() * getHeight(),
 				getFrameX() * getWidth() + getWidth(),
 				getFrameY() * getHeight() + getHeight(), 
-				null);*/
-
+				null);
+*/
 
 		
-		/*if (Utils.getInstance().isDebug() && !this.getClass().equals(TrueHero.class)) {
+		if (Utils.getInstance().isDebug() && !this.getClass().equals(TrueHero.class)) {
 			g.setColor(Color.GREEN);
 			g.draw(getRectangle());
-		}*/
+		}
 
 	}
 

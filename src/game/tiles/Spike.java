@@ -8,16 +8,29 @@ import game.interfaces.Interactable;
 
 import java.awt.Rectangle;
 
+import br.senai.sc.engine.Utils;
+
 public class Spike extends GameObject implements Interactable{
 
+	
 	public Spike(int posX, int posY) {
 		super("spike.png", posX, posY, 1, 1);
+//		super.setTheta((float) Math.PI);
+
+	}
+	
+	public Spike(int posX, int posY,float theta){
+		this(posX, posY);
+		super.setTheta(theta);
+		
 	}
 
 
 	@Override
 	public Rectangle getRectangle() {
-		return new Rectangle(getPosX(), getPosY()+getHeight()/2, getWidth(), getHeight()/2);
+		Rectangle r = new Rectangle(getPosX(), getPosY()+getHeight()/2, getWidth(), getHeight()/2);
+		
+		return Utils.getInstance().rotateRectangleByAngle(r, super.getTheta(), getPosY()+getHeight()/2, getHeight()/2);
 	}
 
 

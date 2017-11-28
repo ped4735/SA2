@@ -70,6 +70,26 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		theta = thetaInit;
 		setScale(1f);
 	}
+	
+	public void start(int posX, int posY){
+		System.out.println("START!");
+		super.setPosX(posX);
+		super.setPosY(posY);
+		this.posX = (float) super.getPosX();
+		this.posY = (float) super.getPosY();
+
+		this.posXinit = (int) getPosX();;
+		this.posYinit = (int) getPosY();
+		
+		this.velX = 0;
+		this.velY = 0;
+		this.aceX=0;
+		this.aceY=0;
+		
+		isGravityOn = true;
+		theta = thetaInit;
+		setScale(1f);
+	}
 
 	@Override
 	public void update() {
@@ -206,13 +226,15 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	private void drawDebug(Graphics2D g) {
 		g.setColor(Color.white);
-		g.drawString("PosX: " + posX, 20, 120);
-		g.drawString("PosY: " + posY, 20, 140);
 		g.drawString("velX:" + velX, 20, 20);
 		g.drawString("velY:" + velY, 20, 40);
 		g.drawString("Theta: " + theta, 20, 60);
 		g.drawString("AceX: " + aceX, 20, 80);
 		g.drawString("AceY: " + aceY, 20, 100);
+		g.drawString("PosX: " + posX, 20, 120);
+		g.drawString("PosY: " + posY, 20, 140);
+		g.drawString("Life:" + this.getLife(), 20, 160);
+
 
 		int offset = 30;
 		g.setColor(Color.red);
