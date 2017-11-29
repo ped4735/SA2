@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.senai.sc.engine.Utils;
+import game.GameStates;
+import game.JetpackGame;
 
-public class levelManager {
+public class LevelManager {
 	
 	private List<Gameplay> levels = new ArrayList<Gameplay>();
 	private int currentLevel;
@@ -14,7 +16,7 @@ public class levelManager {
 	String[] fileNames;
 	
 	
-	public levelManager(String levels) {
+	public LevelManager(String levels) {
 		currentLevel = 0;
 		//String[] fileNames = levels.split(",");
 		fileNames = levels.split(",");
@@ -31,8 +33,13 @@ public class levelManager {
 	}
 	
 	public void nextLevel(){
-		this.levels.add(new Gameplay(fileNames[currentLevel+1]));
-		currentLevel++;
+		if (currentLevel+1 < fileNames.length){
+			this.levels.add(new Gameplay(fileNames[currentLevel+1]));
+			currentLevel++;		
+		}else{
+			JetpackGame.currentGameState = GameStates.GameOver;	
+
+		}
 	}
 	
 }

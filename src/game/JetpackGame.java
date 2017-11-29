@@ -5,8 +5,9 @@ import game.scenes.GameOver;
 import game.scenes.Gameplay;
 import game.scenes.MainMenu;
 import game.scenes.Opening;
+import game.scenes.Ranking;
 import game.scenes.Scene;
-import game.scenes.levelManager;
+import game.scenes.LevelManager;
 
 import java.awt.Color;
 import java.awt.Event;
@@ -23,8 +24,8 @@ import br.senai.sc.engine.Utils;
 public class JetpackGame extends Game {
 
 	public static GameStates currentGameState;
-	private Scene opening, menu, credits, help, currentScene, gameOver;
-	private levelManager levels;
+	private Scene opening, menu, credits, help, currentScene, gameOver,ranking;
+	private LevelManager levels;
 	public static TrueHero hero;
 	
 	public JetpackGame() {
@@ -48,9 +49,10 @@ public class JetpackGame extends Game {
 		
 		menu = new MainMenu();
 		credits = new Credits();
-		levels = new levelManager("level_3,level_1,level_2_old");
+		levels = new LevelManager("level_3,level_1,level_2_old");
 		opening = new Opening();
 		gameOver = new GameOver();
+		ranking = new Ranking();
 		currentGameState = GameStates.OpeningPreMenu;
 		
 		
@@ -103,8 +105,14 @@ public class JetpackGame extends Game {
 			currentScene.update();
 			
 			break;
+		case Ranking:
+			currentScene = ranking;
+			currentScene.draw(getGraphics2D()); 
+			currentScene.update();
 		case Help:
-			// Help
+			currentScene = ranking;
+			currentScene.draw(getGraphics2D()); 
+//			currentScene.update();
 			break;
 		case Exit:
 			System.exit(0);

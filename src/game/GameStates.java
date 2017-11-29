@@ -8,7 +8,7 @@ public enum GameStates {
 	Gameplay,
 	Credits,
 	Help,
-	Score,
+	Ranking,
 	GameOver,
 	Exit
 

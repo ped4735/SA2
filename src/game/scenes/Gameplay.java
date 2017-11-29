@@ -1,5 +1,6 @@
 package game.scenes;
 
+import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,24 +20,20 @@ public class Gameplay extends Scene {
 	private int[][] tileMapMatrix;
 	private String tmxFile;
 
+	Ui ui;
+	
 	public Gameplay(String tmxFile) {
 
-		/*
-		 * getObjsInScene().add(new Hero("coinssonic.png", 100, 0, 4, 4));
-		 * getObjsInScene().add(new Hero("coinssonic.png", 200, 0, 4, 4));
-		 * getObjsInScene().add(new Hero("coinssonic.png", 300, 0, 4, 4));
-		 * getObjsInScene().add(new Hero("coinssonic.png", 400, 0, 4, 4));
-		 * 
-		 * getObjsInScene().add(new Stone(100, 200)); getObjsInScene().add(new
-		 * Stone(300, 200)); getObjsInScene().add(new Stone(500, 200));
-		 * 
-		 * getObjsInScene().add(new Spike(500, 400));
-		 */
 		getObjsInScene().add(new BlackHole(300, 100));
 
 		this.tmxFile = tmxFile;
 		tileMapMatrix = new int[ROWS][COLS];
 		lerArquivo();
+
+		ui = new Ui();
+		
+		
+
 		
 	}
 
@@ -97,4 +94,11 @@ public class Gameplay extends Scene {
 
 	}
 
+	@Override
+	public void draw(Graphics2D g) {
+		super.draw(g);
+		ui.draw(g);
+		
+	}
 }
+

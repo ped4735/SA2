@@ -7,11 +7,14 @@ import game.interfaces.Controllable;
 import game.interfaces.Interactable;
 import game.interfaces.Updatable;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import br.senai.sc.engine.Utils;
 
 public abstract class Scene {
 
@@ -28,7 +31,10 @@ public abstract class Scene {
 	
 
 	public void draw(Graphics2D g) {
-
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, Utils.getInstance().getWidth(), Utils.getInstance().getHeight());
+		
+		
 		Iterator<GameObject> itr = objsInScene.iterator();
 		while (itr.hasNext()) {
 			itr.next().draw(g);

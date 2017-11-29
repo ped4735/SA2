@@ -21,6 +21,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float sizeX = super.getWidth();
 	private float sizeY = super.getHeight();
 	private int life;
+	private int score;
 	// states
 	private boolean isGrounded;
 	private boolean isGravityOn;
@@ -69,6 +70,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		isGravityOn = true;
 		theta = thetaInit;
 		setScale(1f);
+		this.score = 0;
 	}
 	
 	public void start(int posX, int posY){
@@ -375,5 +377,15 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	public void setAceY(float aceY) {
 		this.aceY = aceY;
 	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
+	
 
 }
