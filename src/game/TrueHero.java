@@ -52,7 +52,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float deltaTime = 0.05f;
 
 	// TODO: tirar essas coisas do personagem
-	private float gravity = 0;
+	private float gravityInit = Utils.getInstance().getGravidade();
+	private float gravity;
 
 	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
 		// super(spriteFileName, posX, posY, colFrames, lineFrames);
@@ -385,6 +386,16 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	public void setScore(int score) {
 		this.score = score;
 	}
+
+	public float getGravity() {
+		return gravity;
+	}
+
+	public void setGravity(float gravity) {
+		this.gravity = gravity;
+	}
+	
+	
 	
 	
 
