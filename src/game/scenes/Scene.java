@@ -76,6 +76,7 @@ public abstract class Scene {
 
 		Iterator<GameObject> itr = objsInScene.listIterator();
 		while (itr.hasNext()) {
+			
 			GameObject tempObj = itr.next();
 
 			if (Collidable.class.isInstance(tempObj)) {
@@ -145,4 +146,5 @@ public abstract class Scene {
 
 	}
 
+	
 }

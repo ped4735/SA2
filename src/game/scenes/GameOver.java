@@ -21,24 +21,30 @@ public class GameOver extends Scene {
 
 	public GameOver() {
 
-		// getObjsInScene().add(new AnimatedObject("bgImage.png", 0,0,1,1));
+		getObjsInScene().add(new AnimatedObject("backgroundAlpha.png", 0, 0, 1, 1));
 
 	}
 
 	private String enterName() {
-		Object gameOver;
+		Object gameOver;// = new String("Player");
 		if (game.JetpackGame.hero.getLife() <= 0) {
 			gameOver = JOptionPane.showInputDialog(null, "Enter Your Name!", "Game Over", 1, null, null, "Player");
+
 		} else {
 			gameOver = JOptionPane.showInputDialog(null, "Enter Your Name!", "Victory!", 1, null, null, "Player");
 		}
-		playerName = gameOver.toString().toUpperCase();
 
-		int limitSize = 10;
-		if (playerName.length() > limitSize) {
-			playerName = playerName.substring(0, 10);
+		if (gameOver == null) {
+			gameOver = new String("PLAYER");
+		} else {
+
+			playerName = gameOver.toString().toUpperCase();
+
+			int limitSize = 10;
+			if (playerName.length() > limitSize) {
+				playerName = playerName.substring(0, 10);
+			}
 		}
-
 		return playerName;
 
 	}
@@ -72,14 +78,6 @@ public class GameOver extends Scene {
 	public void update() {
 		super.update();
 		this.getNameToWriteInScoreFile();
-
-	}
-
-	@Override
-	public void draw(Graphics2D g) {
-		// g.setColor(new Color(0, 0, 0, 250));
-		// g.drawRect(0, 0, Utils.getInstance().getWidth(),
-		// Utils.getInstance().getHeight());
 
 	}
 

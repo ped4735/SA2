@@ -22,6 +22,9 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float sizeY = super.getHeight();
 	private int life;
 	private int score;
+	private float heating;
+	private float maxHeating = 100f;
+
 	// states
 	private boolean isGrounded;
 	private boolean isGravityOn;
@@ -53,7 +56,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	// TODO: tirar essas coisas do personagem
 	private float gravityInit = Utils.getInstance().getGravidade();
-	private float gravity;
+	private float gravity = 10;
 
 	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
 		// super(spriteFileName, posX, posY, colFrames, lineFrames);
@@ -62,7 +65,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		init();
 	}
 
-	private void init() {
+	public void init() {
 		this.posX = (float) super.getPosX();
 		this.posY = (float) super.getPosY();
 		this.posXinit = (int) this.posX;
@@ -72,6 +75,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		theta = thetaInit;
 		setScale(1f);
 		this.score = 0;
+		this.heating = 0;
 	}
 	
 	public void start(int posX, int posY){
@@ -92,6 +96,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		isGravityOn = true;
 		theta = thetaInit;
 		setScale(1f);
+		heating = 0;
 	}
 
 	@Override
@@ -103,6 +108,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 		if (wPressed) {
 			this.forward();
+			this.heatingUp();
 		}
 
 		if (aPressed || dPressed) {
@@ -120,8 +126,25 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		posX += velX * deltaTime;
 		posY += velY * deltaTime;
 
+		
+		this.heatingDown();
+		
 		this.floatToInts();
+		
 
+	}
+	
+	public void heatingUp(){
+		this.heating += 1f;
+		if (this.heating >= this.maxHeating){
+			this.takeDamage();
+		}
+	}
+	public void heatingDown(){
+		this.heating -= 0.2f;
+		if (this.heating <= 0.0f){
+			this.heating = 0;
+		}
 	}
 
 	private void floatToInts() {
@@ -131,23 +154,33 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	}
 
 	public void takeDamage() {
+		this.setPosX(posXinit);
+		this.setPosY(posYinit);
+		posX = getPosX();
+		posY = getPosY();
+		theta = thetaInit;
+		setVelX(0);
+		setVelY(0);
+		this.heating = 0.0f;
+
 		setLife(getLife() - 1);
 		if (getLife() <= 0) {
 			JetpackGame.currentGameState = GameStates.GameOver;
-		} else {
-
-			this.setPosX(posXinit);
-			this.setPosY(posYinit);
-			posX = getPosX();
-			posY = getPosY();
-			theta = thetaInit;
-			setVelX(0);
-			setVelY(0);
 		}
 	}
+	public void fall(){
+		aceY+=gravity;
+	}
+	
+	public void goDown() {
+		aceY += Utils.getInstance().getGravidade();
+		velY+=aceY*deltaTime;
+		
+	}
+	public void goUp(){
+		aceY -= gravity;
+		velY+=aceY*deltaTime;
 
-	private void fall() {
-		aceY += gravity;
 	}
 
 	private void turn() {
@@ -237,7 +270,9 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		g.drawString("PosX: " + posX, 20, 120);
 		g.drawString("PosY: " + posY, 20, 140);
 		g.drawString("Life:" + this.getLife(), 20, 160);
+		g.drawString("Heating: " + heating, 20, 180);
 
+		
 
 		int offset = 30;
 		g.setColor(Color.red);

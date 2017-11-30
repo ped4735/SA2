@@ -38,8 +38,12 @@ public class LevelManager {
 			currentLevel++;		
 		}else{
 			JetpackGame.currentGameState = GameStates.GameOver;	
+			currentLevel=0;
+			levels.clear();
+
 
 		}
+		
 	}
 	
 }

@@ -9,6 +9,7 @@ import java.io.IOException;
 import game.Hero;
 import game.TrueHero;
 import game.tiles.BlackHole;
+import game.tiles.GravityUp;
 import game.tiles.Spike;
 import game.tiles.Stone;
 
@@ -79,6 +80,10 @@ public class Gameplay extends Scene {
 					//temporario. provavelmente vai dar problema depois
 					case 5:
 						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI));
+						break;
+					case 7:
+						getObjsInScene().add(new GravityUp(c * TILE_SIZE, r * TILE_SIZE));
+						break;
 
 						
 

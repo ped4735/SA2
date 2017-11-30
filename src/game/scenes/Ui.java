@@ -8,6 +8,8 @@ import game.GameObject;
 
 public class Ui{
 
+	//futura interface com as informacoes do jogo
+	
 	public int heightBar = 80;
 	
 

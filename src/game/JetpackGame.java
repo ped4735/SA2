@@ -32,7 +32,7 @@ public class JetpackGame extends Game {
 		super("JetPack", 1280, 720);
 		addMouseListener(new MouseInputHandler());
 		addKeyListener(new KeyInputHandler());
-		addMouseMotionListener(new MouseInputHandler());
+		addMouseMotionListener(new MouseInputHandler());	
 	}
 
 	public static void main(String[] args) {
@@ -90,8 +90,8 @@ public class JetpackGame extends Game {
 		case Gameplay:
 			currentScene = levels.getCurrentLevel();
 			currentScene.draw(getGraphics2D());
-			currentScene.update();
 			currentScene.collision();
+			currentScene.update();
 			break;
 			
 		case Credits:
