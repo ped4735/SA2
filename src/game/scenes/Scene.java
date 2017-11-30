@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import br.senai.sc.engine.Utils;
@@ -93,9 +94,15 @@ public abstract class Scene {
 							collidable.collisionExit(tempObj2);
 						}
 						
-						
+												
 					}
+					
+					
 				}
+			}
+			
+			if(tempObj.isDestroyed()){
+				itr.remove();
 			}
 
 		}

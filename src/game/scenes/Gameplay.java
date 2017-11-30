@@ -9,6 +9,7 @@ import java.io.IOException;
 import game.Hero;
 import game.TrueHero;
 import game.tiles.BlackHole;
+import game.tiles.Coletable;
 import game.tiles.Spike;
 import game.tiles.Stone;
 
@@ -19,7 +20,7 @@ public class Gameplay extends Scene {
 	private int ROWS = 22;
 	private int[][] tileMapMatrix;
 	private String tmxFile;
-
+	private int collectors;
 	Ui ui;
 	
 	public Gameplay(String tmxFile) {
@@ -79,7 +80,10 @@ public class Gameplay extends Scene {
 					//temporario. provavelmente vai dar problema depois
 					case 5:
 						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI));
-
+						break;
+					case 6:
+						getObjsInScene().add(new Coletable(c * TILE_SIZE, r * TILE_SIZE));
+						break;
 						
 
 					default:
@@ -94,6 +98,7 @@ public class Gameplay extends Scene {
 
 	}
 
+	
 	@Override
 	public void draw(Graphics2D g) {
 		super.draw(g);

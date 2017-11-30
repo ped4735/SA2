@@ -154,6 +154,14 @@ public abstract class GameObject {
 		
 		this.thetaLocal = thetaLocal;
 	}
+	
+	public boolean isDestroyed() {
+		return destroyed;
+	}
+
+	public void setDestroyed(boolean destroyed) {
+		this.destroyed = destroyed;
+	}
 
 	// Methods
 	public void draw(Graphics2D g) {
@@ -211,5 +219,6 @@ public abstract class GameObject {
 		return new Rectangle(posXLocal, posYLocal, (int) (width * scale), (int) (height * scale));
 
 	}
+
 
 }
