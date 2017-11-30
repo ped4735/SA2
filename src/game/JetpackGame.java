@@ -63,12 +63,7 @@ public class JetpackGame extends Game {
 		currentGameState = GameStates.Gameplay;
 		//levels = new levelManager("level_1");
 		
-		
-		
-
-
-
-		
+				
 	}
 
 	@Override

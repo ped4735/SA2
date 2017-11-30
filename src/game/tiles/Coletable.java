@@ -3,6 +3,7 @@ package game.tiles;
 
 
 import game.AnimatedObject;
+import game.GameMannager;
 import game.GameObject;
 import game.interfaces.Interactable;
 
@@ -17,7 +18,8 @@ public class Coletable extends AnimatedObject implements Interactable{
 	public void actionEnter(GameObject gameobj) {
 		if(game.TrueHero.class.isInstance(gameobj)){
 			game.TrueHero hero = (game.TrueHero) gameobj;
-			hero.setScore(hero.getScore()+10);
+			GameMannager.getInstance().addScore(10);
+			System.out.println(GameMannager.getInstance().getScore());
 			setDestroyed(true);
 		}
 	}
