@@ -37,13 +37,12 @@ public class LevelManager {
 			this.levels.add(new Gameplay(fileNames[currentLevel+1]));
 			currentLevel++;
 		}else{
+
 			JetpackGame.currentGameState = GameStates.GameOver;
 			currentLevel = 0;
 			levels.clear();
 			this.levels.add(new Gameplay(fileNames[currentLevel]));
 		}
-		
-		System.out.println(levels.size());
 	}
 	
 }

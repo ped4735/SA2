@@ -10,6 +10,7 @@ import game.Hero;
 import game.TrueHero;
 import game.tiles.BlackHole;
 import game.tiles.Coletable;
+import game.tiles.GravityUp;
 import game.tiles.Spike;
 import game.tiles.Stone;
 
@@ -84,6 +85,11 @@ public class Gameplay extends Scene {
 					case 6:
 						getObjsInScene().add(new Coletable(c * TILE_SIZE, r * TILE_SIZE));
 						break;
+
+					case 7:
+						getObjsInScene().add(new GravityUp(c * TILE_SIZE, r * TILE_SIZE));
+						break;
+
 						
 
 					default:
