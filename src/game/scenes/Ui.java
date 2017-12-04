@@ -16,10 +16,10 @@ public class Ui {
 	public int heightBar = 80;
 	game.TrueHero hero = game.JetpackGame.hero;
 
-	private int centerDialVelX = Utils.getInstance().getWidth()/2 - 50;
+	private int centerDialVelX = Utils.getInstance().getWidth() / 2 - 50;
 	private int centerDialVelY = Utils.getInstance().getHeight() - heightBar + 40;
 
-	private int centerDialAceX = Utils.getInstance().getWidth()/2 + 50;
+	private int centerDialAceX = Utils.getInstance().getWidth() / 2 + 50;
 	private int centerDialAceY = Utils.getInstance().getHeight() - heightBar + 40;
 
 	private int lineSize = 38;
@@ -29,6 +29,14 @@ public class Ui {
 
 	private int textInfoPosX = Utils.getInstance().getWidth() - 80;
 	private int textInfoPosY = (Utils.getInstance().getHeight() - heightBar) + 15;
+
+	Image dial;
+	
+	public Ui() {
+
+		Image dial = Utils.getInstance().loadImage("images/" + "fundoDial.png");
+
+	}
 
 	public void draw(Graphics2D g) {
 		g.setColor(Color.white);
@@ -42,7 +50,13 @@ public class Ui {
 
 		// drawTemp. será substituido pelo png da interface
 		g.setColor(Color.WHITE);
-		g.drawOval(centerDialVelX - lineSize, centerDialVelY - lineSize, 2 * lineSize, 2 * lineSize);
+		g.drawImage(dial, centerDialVelX - lineSize, 
+				centerDialVelY - lineSize, 
+				dial.getWidth(null),
+				dial.getHeight(null),
+				0, 0, dial.getWidth(null), dial.getHeight(null), null);
+		
+		//g.drawOval(centerDialVelX - lineSize, centerDialVelY - lineSize, 2 * lineSize, 2 * lineSize);
 		g.drawOval(centerDialAceX - lineSize, centerDialAceY - lineSize, 2 * lineSize, 2 * lineSize);
 
 	}
@@ -66,10 +80,11 @@ public class Ui {
 	}
 
 	float oldCurrentHeating;
+
 	private void drawHeatingBar(Graphics2D g) {
 		float currentHeating = hero.getHeating();
 		float maxHeating = hero.getMaxHeating();
-		
+
 		Image image = Utils.getInstance().loadImage("images/" + "heatingScale.jpg");
 		int imageSizeX = image.getWidth(null);
 		int imageSizeY = image.getHeight(null) / 3;
@@ -92,25 +107,25 @@ public class Ui {
 			g.setColor(Color.RED);
 			g.fillOval(heatingBarPosX + imageSizeX + 10, heatingBarPosY + 10, 10, 10);
 			g.setColor(Color.WHITE);
-			g.drawString("Overheating!", heatingBarPosX + imageSizeX + 20,  heatingBarPosY + 15);
+			g.drawString("Overheating!", heatingBarPosX + imageSizeX + 20, heatingBarPosY + 15);
 		}
-		
-		if (oldCurrentHeating > currentHeating){
+
+		if (oldCurrentHeating > currentHeating) {
 			g.setColor(Color.BLUE);
 			g.fillOval(heatingBarPosX + imageSizeX + 10, heatingBarPosY + 30, 10, 10);
 			g.setColor(Color.WHITE);
-			g.drawString("Cooling!", heatingBarPosX + imageSizeX + 20,  heatingBarPosY + 35);
+			g.drawString("Cooling!", heatingBarPosX + imageSizeX + 20, heatingBarPosY + 35);
 		}
-		
-		//text info
+
+		// text info
 		g.setColor(Color.white);
 
 		DecimalFormat df = new DecimalFormat("#.##");
-		g.drawString("Heating level:" + df.format((double)hero.getHeating()) + "%", heatingBarPosX + 20,  heatingBarPosY + imageSizeY + 15 );
+		g.drawString("Heating level:" + df.format((double) hero.getHeating()) + "%", heatingBarPosX + 20,
+				heatingBarPosY + imageSizeY + 15);
 
-		
 		oldCurrentHeating = currentHeating;
-		
+
 	}
 
 	private void drawTextInfo(Graphics2D g) {
