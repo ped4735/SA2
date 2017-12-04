@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import game.GameStates;
-import game.Hero;
 import game.JetpackGame;
 import game.TrueHero;
 import game.tiles.BlackHole;
@@ -114,7 +113,6 @@ public class Gameplay extends Scene {
 	public void draw(Graphics2D g) {
 		super.draw(g);
 		ui.draw(g);
-		
 	}
 }
 

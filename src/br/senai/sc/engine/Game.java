@@ -199,7 +199,7 @@ public abstract class Game extends Canvas {
 
 			//graphics2D.setColor(new Color(0, 0, 0, 5));
 			graphics2D.setColor(new Color(0, 0, 0));
-			graphics2D.fillRect(0, 0, Utils.getInstance().getWidth(), Utils.getInstance().getHeight());
+			//graphics2D.fillRect(0, 0, Utils.getInstance().getWidth(), Utils.getInstance().getHeight());
 
 			gameLoop();
 

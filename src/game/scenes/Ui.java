@@ -7,7 +7,6 @@ import java.text.DecimalFormat;
 
 import br.senai.sc.engine.Utils;
 import game.GameObject;
-import game.Hero;
 import game.JetpackGame;
 
 public class Ui {
