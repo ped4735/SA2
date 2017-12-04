@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 import br.senai.sc.engine.Utils;
 import game.AnimatedObject;
-import game.GameMannager;
+import game.GameManager;
 import game.GameStates;
 import game.JetpackGame;
 
@@ -64,7 +64,7 @@ public class GameOver extends Scene {
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter pw = new PrintWriter(bw);
 
-			pw.println(this.enterName() + "," + GameMannager.getInstance().getScore());
+			pw.println(this.enterName() + "," + GameManager.getInstance().getScore());
 			pw.close();
 
 		} catch (IOException ioe) {

@@ -20,7 +20,7 @@ public class Utils {
 	private String nomeJogo;
 	private Graphics2D graphics2d;
 
-	private float gravidade = 20;
+	private float gravidade = 10;
 	private float globalScale = 1f;
 	private boolean debug = false;
 
@@ -183,12 +183,17 @@ public class Utils {
 		
 		if (theta == 0){
 			return r;
-		}else if (theta == (float)Math.PI){
-			return new Rectangle((int)r.getX(),(int)(r.getY() - r.getHeight()),(int)r.getWidth(),(int)r.getHeight());
 		}else if (theta == (float)Math.PI/2){
 			return null;
-		}
+			//return new Rectangle()
 		
+		}else if (theta == (float)Math.PI){
+			return new Rectangle((int)r.getX(),(int)(r.getY() - r.getHeight()),(int)r.getWidth(),(int)r.getHeight());
+		}else if (theta == (float)Math.PI*3f/2f){
+			return null;
+			//return new Rectangle()
+
+		}
 		
 		return null;
 	}
