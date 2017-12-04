@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import game.GameStates;
 import game.Hero;
+import game.JetpackGame;
 import game.TrueHero;
 import game.tiles.BlackHole;
 import game.tiles.Coletable;
@@ -21,22 +23,19 @@ public class Gameplay extends Scene {
 	private int ROWS = 22;
 	private int[][] tileMapMatrix;
 	private String tmxFile;
-	private int collectors;
+	private int colletableInScene;
 	Ui ui;
 	
 	public Gameplay(String tmxFile) {
 
-		getObjsInScene().add(new BlackHole(300, 100));
+		//getObjsInScene().add(new BlackHole(300, 100));
 
 		this.tmxFile = tmxFile;
 		tileMapMatrix = new int[ROWS][COLS];
 		lerArquivo();
 
 		ui = new Ui();
-		
-		
-
-		
+			
 	}
 
 	private void lerArquivo() {
@@ -67,41 +66,47 @@ public class Gameplay extends Scene {
 
 					switch (code) {
 					case 1:
-						getObjsInScene().add(new Stone(c * TILE_SIZE, r * TILE_SIZE));
-						break;
-					case 4:
 						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE));
 						break;
-					case 3:
-						//game.JetpackGame.hero = new TrueHero("rocket.png", c * TILE_SIZE, r * TILE_SIZE, 2, 1);
-						game.JetpackGame.hero.start(c * TILE_SIZE, r * TILE_SIZE);
-						getObjsInScene().add(game.JetpackGame.hero);
-
-						break;
-					//temporario. provavelmente vai dar problema depois
-					case 5:
+					case 2:
 						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI));
 						break;
-					case 6:
+					case 3:
+						getObjsInScene().add(new TrueHero("player.png", c * TILE_SIZE, r * TILE_SIZE, 3, 1, this));
+						break;
+					case 4:
+						getObjsInScene().add(new BlackHole(c * TILE_SIZE, r * TILE_SIZE));
+						break;
+					case 5:
 						getObjsInScene().add(new Coletable(c * TILE_SIZE, r * TILE_SIZE));
 						break;
 
+					case 6:
+						getObjsInScene().add(new Stone(c * TILE_SIZE, r * TILE_SIZE));
+						break;
+						
 					case 7:
 						getObjsInScene().add(new GravityUp(c * TILE_SIZE, r * TILE_SIZE));
 						break;
-
 						
 
 					default:
 						break;
 					}
 				}
-				// System.out.print("\n");
 			}
+			
+			
+			
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
-
+		
+		if(JetpackGame.currentGameState == GameStates.Loading){
+			JetpackGame.currentGameState = GameStates.Gameplay;
+			System.out.println("Carregou novo level!");
+		}
+		
 	}
 
 	

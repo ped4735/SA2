@@ -14,6 +14,8 @@ import game.interfaces.Collidable;
 import game.interfaces.Controllable;
 import game.interfaces.Interactable;
 import game.interfaces.Updatable;
+import game.scenes.Gameplay;
+import game.scenes.Scene;
 
 public class TrueHero extends AnimatedObject implements Controllable, Updatable, Collidable {
 
@@ -25,6 +27,9 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float heating;
 	private float maxHeating = 100f;
 
+	//SceneRef
+	private Gameplay onScene;
+	
 	// states
 	private boolean isGrounded;
 	private boolean isGravityOn;
@@ -58,9 +63,12 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float gravityInit = Utils.getInstance().getGravidade();
 	private float gravity = 10;
 
-	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
-		// super(spriteFileName, posX, posY, colFrames, lineFrames);
-		super(spriteFileName, posX, posY, colFrames, lineFrames, new int[] { 1, 1 });
+	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, Scene onScene) {
+		super(spriteFileName, posX, posY, colFrames, lineFrames);
+		//super(spriteFileName, posX, posY, colFrames, lineFrames, new int[] { 1, 1 });
+		if(Gameplay.class.isInstance(onScene)){
+			this.onScene = (Gameplay)onScene;
+		}
 		setTag(GameTags.Player);
 		init();
 	}
@@ -210,7 +218,6 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	@Override
 	public void draw(Graphics2D g) {
 
-		// setScale(1f);
 
 		if (Utils.getInstance().isDebug()) {
 			drawDebug(g);
