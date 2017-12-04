@@ -33,8 +33,6 @@ public class Gameplay extends Scene {
 		this.tmxFile = tmxFile;
 		tileMapMatrix = new int[ROWS][COLS];
 		lerArquivo();
-
-		ui = new Ui();
 			
 	}
 
@@ -72,7 +70,9 @@ public class Gameplay extends Scene {
 						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI));
 						break;
 					case 3:
-						getObjsInScene().add(new TrueHero("player.png", c * TILE_SIZE, r * TILE_SIZE, 3, 1, this));
+						TrueHero tempHero = new TrueHero("player.png", c * TILE_SIZE, r * TILE_SIZE, 3, 1, this);
+						getObjsInScene().add(tempHero);
+						ui = new Ui(tempHero);
 						break;
 					case 4:
 						getObjsInScene().add(new BlackHole(c * TILE_SIZE, r * TILE_SIZE));

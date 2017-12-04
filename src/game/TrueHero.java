@@ -26,6 +26,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private int score;
 	private float heating;
 	private float maxHeating = 100f;
+	private float heatingUpRate = 1.0f;
+	private float heatingDownRate = 0.3f;
 
 	//SceneRef
 	private Gameplay onScene;
@@ -61,7 +63,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	// TODO: tirar essas coisas do personagem
 	private float gravityInit = Utils.getInstance().getGravidade();
-	private float gravity = 10;
+	private float gravity = gravityInit;
+
 
 	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, Scene onScene) {
 		super(spriteFileName, posX, posY, colFrames, lineFrames);
@@ -69,6 +72,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		if(Gameplay.class.isInstance(onScene)){
 			this.onScene = (Gameplay)onScene;
 		}
+
 		setTag(GameTags.Player);
 		init();
 	}
@@ -82,7 +86,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		isGravityOn = true;
 		theta = thetaInit;
 		setScale(1f);
-		this.score = 0;
+		GameManager.getInstance().setScore(0);
 		this.heating = 0;
 	}
 	
@@ -143,13 +147,13 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	}
 	
 	public void heatingUp(){
-		this.heating += 0.5f;
+		this.heating += heatingUpRate;
 		if (this.heating >= this.maxHeating){
 			this.takeDamage();
 		}
 	}
 	public void heatingDown(){
-		this.heating -= 0.3f;
+		this.heating -= heatingDownRate;
 		if (this.heating <= 0.0f){
 			this.heating = 0;
 		}
@@ -230,18 +234,6 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 		
 		
-		
-		if(Utils.getInstance().isDebug()){
-			g.draw(getRectangle());
-			g.setColor(Color.BLUE);
-			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.bot));
-			g.setColor(Color.GREEN);
-			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.top));
-			g.setColor(Color.CYAN);
-			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.left));
-			g.setColor(Color.RED);
-			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.right));
-		}
 	}
 
 	@Override
@@ -293,8 +285,20 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 				(int) posY + (int) (aceY * 1f));
 
 		
-		
+		if(Utils.getInstance().isDebug()){
+			g.draw(getRectangle());
+			g.setColor(Color.BLUE);
+			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.bot));
+			g.setColor(Color.GREEN);
+			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.top));
+			g.setColor(Color.CYAN);
+			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.left));
+			g.setColor(Color.RED);
+			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.right));
+		}
 	}
+		
+	
 
 	// colisões
 	@Override
@@ -437,6 +441,22 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	public void setGravity(float gravity) {
 		this.gravity = gravity;
 	}
+
+	public float getMaxHeating() {
+		return maxHeating;
+	}
+
+	public float getHeating() {
+		return heating;
+	}
+
+	public void setHeating(float heating) {
+		this.heating = heating;
+	}
+	
+
+
+	
 	
 	
 	

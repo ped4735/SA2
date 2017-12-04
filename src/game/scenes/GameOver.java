@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 import br.senai.sc.engine.Utils;
 import game.AnimatedObject;
-import game.GameMannager;
+import game.GameManager;
 import game.GameStates;
 import game.JetpackGame;
 
