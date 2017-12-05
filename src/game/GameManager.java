@@ -62,7 +62,7 @@ public class GameManager {
 
 			int limitSize = 10;
 			if (playerName.length() > limitSize) {
-				playerName = playerName.substring(0, 10);
+				playerName = playerName.substring(0, limitSize);
 			}
 		}
 		return playerName;
@@ -80,6 +80,7 @@ public class GameManager {
 			PrintWriter pw = new PrintWriter(bw);
 
 			pw.println(this.enterName() + "," + GameManager.getInstance().getScore());
+			
 			pw.close();
 
 		} catch (IOException ioe) {
@@ -90,6 +91,7 @@ public class GameManager {
 		}
 	}
 	
-	
-	
+
 }
+
+
