@@ -40,7 +40,7 @@ public class Ui {
 
 	public Ui(game.TrueHero hero) {
 		this.hero = hero;
-		dial = Utils.getInstance().loadImage("images/fundoDial.png");
+		dial = Utils.getInstance().loadImage("images/bgDial.png");
 		image = Utils.getInstance().loadImage("images/heatingScale.png");
 
 		centerDialVelX = Utils.getInstance().getWidth() / 2 - 50;

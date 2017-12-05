@@ -184,8 +184,13 @@ public class Utils {
 		if (theta == 0){
 			return r;
 		}else if (theta == (float)Math.PI/2){
-			return null;
-			//return new Rectangle()
+			
+			return new Rectangle(
+					(int)(r.getX()),
+					(int)(r.getY()-r.getHeight()),
+					(int)r.getHeight(),
+					(int)r.getWidth()
+					);
 		
 		}else if (theta == (float)Math.PI){
 			return new Rectangle((int)r.getX(),(int)(r.getY() - r.getHeight()),(int)r.getWidth(),(int)r.getHeight());
