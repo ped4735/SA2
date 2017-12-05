@@ -1,6 +1,7 @@
 package game;
 
 import game.interfaces.Clickable;
+import game.scenes.LevelManager;
 
 import java.awt.Rectangle;
 
@@ -13,11 +14,17 @@ public class Button extends GameObject implements Clickable{
 		this.changeToState = gameStateToChange;
 	}
 
+	@Override
 	public void click(int posX, int posY) {
 
 		if (getRectangle().intersects(new Rectangle(posX, posY, 1, 1))) {
 			//setFrameY(0);
-			JetpackGame.currentGameState = changeToState;	
+			if(changeToState == GameStates.Gameplay){
+				LevelManager.getInstance().nextLevel();
+			}else{
+				JetpackGame.currentGameState = changeToState;	
+			}			
+			
 		}
 	}
 

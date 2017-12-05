@@ -5,44 +5,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.senai.sc.engine.Utils;
+import game.GameMannager;
 import game.GameStates;
 import game.JetpackGame;
 
 public class LevelManager {
+
+	private static LevelManager instance;
 	
-	private List<Gameplay> levels = new ArrayList<Gameplay>();
+	private Gameplay level;
 	private int currentLevel;
-	
 	String[] fileNames;
 	
 	
-	public LevelManager(String levels) {
-		currentLevel = 0;
-		//String[] fileNames = levels.split(",");
+	public static  LevelManager getInstance() {
+		
+		if(instance == null){
+			instance = new LevelManager();
+		}
+		return instance;
+	}
+
+	public void setLevelFiles(String levels){
 		fileNames = levels.split(",");
-		
-//		for (int i = 0; i < fileNames.length; i++) {
-			this.levels.add(new Gameplay(fileNames[currentLevel]));
-//		}
-		
 	}
 
-	
-	public Gameplay getCurrentLevel(){
-		return levels.get(currentLevel);
+	public Gameplay getLevel() {
+		return level;
 	}
-	
-	public void nextLevel(){
-		if (currentLevel+1 < fileNames.length){
-			this.levels.add(new Gameplay(fileNames[currentLevel+1]));
+
+	public void nextLevel() {
+		if (currentLevel < fileNames.length) {
+			JetpackGame.currentGameState = GameStates.Loading;
+			level = new Gameplay(fileNames[currentLevel]);
 			currentLevel++;
-		}else{
-
-			JetpackGame.currentGameState = GameStates.GameOver;
+		} else { // acabou as fases
 			currentLevel = 0;
-			levels.clear();
-			this.levels.add(new Gameplay(fileNames[currentLevel]));
+			level = new Gameplay(fileNames[currentLevel]);
+			currentLevel = 1;
+			GameMannager.getInstance().resetGame();
 		}
 	}
-	
+
 }

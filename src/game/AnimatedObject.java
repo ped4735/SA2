@@ -16,7 +16,6 @@ public class AnimatedObject extends GameObject implements Updatable {
 	public AnimatedObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, int[] bolMatrix) {
 		this(spriteFileName, posX, posY, colFrames, lineFrames);
 		this.boolMatrix = Utils.getInstance().makeBooleanMatrix(colFrames, lineFrames, bolMatrix);
-
 	}
 
 	@Override
