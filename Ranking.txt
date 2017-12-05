@@ -33,3 +33,6 @@ null,10
 null,50
 null,0
 PEDRO,0
+PEDRO,30
+PEDRO,0
+PEDRO,0
