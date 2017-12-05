@@ -33,6 +33,10 @@ public class LevelManager {
 	public Gameplay getLevel() {
 		return level;
 	}
+	
+	public void setCurrentLevel(int lvl){
+		this.currentLevel = lvl;
+	}
 
 	public void nextLevel() {
 		
