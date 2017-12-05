@@ -23,3 +23,13 @@ PEDRO,90
 null,0
 null,0
 PEDRO,0
+null,0
+null,90
+PLAYER,90
+null,0
+null,0
+null,0
+null,10
+null,50
+null,0
+PEDRO,0
