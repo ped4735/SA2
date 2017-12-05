@@ -28,6 +28,10 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float maxHeating = 100f;
 	private float heatingUpRate = 1.0f;
 	private float heatingDownRate = 0.3f;
+	//para os sons e ui
+	private boolean warningOverheating;
+	private boolean cooling;
+
 
 	//SceneRef
 	private Gameplay onScene;
@@ -148,14 +152,23 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	
 	public void heatingUp(){
 		this.heating += heatingUpRate;
+		cooling = false;
+		if (this.heating >= this.maxHeating){
+			warningOverheating = true;
+		}
+
 		if (this.heating >= this.maxHeating){
 			this.takeDamage();
+			warningOverheating = false;
 		}
 	}
 	public void heatingDown(){
+		cooling = true;
 		this.heating -= heatingDownRate;
 		if (this.heating <= 0.0f){
 			this.heating = 0;
+			cooling = false;
+
 		}
 	}
 

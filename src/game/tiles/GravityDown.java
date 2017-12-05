@@ -1,12 +1,13 @@
 package game.tiles;
 
+import game.AnimatedObject;
 import game.GameObject;
 import game.interfaces.Interactable;
 
-public class GravityDown extends GameObject implements Interactable {
+public class GravityDown extends AnimatedObject implements Interactable {
 
 	public GravityDown(int posX, int posY) {
-		super("gravityDown.png", posX, posY, 1, 1);
+		super("gravityDownSprite.png", posX, posY, 5, 1);
 
 	}
 

@@ -12,6 +12,8 @@ import game.TrueHero;
 import game.tiles.BlackHole;
 import game.tiles.Coletable;
 import game.tiles.CompleteLevel;
+import game.tiles.EndLevel;
+import game.tiles.GravityDown;
 import game.tiles.GravityUp;
 import game.tiles.Spike;
 import game.tiles.Stone;
@@ -40,9 +42,11 @@ public class Gameplay extends Scene {
 		try { // try ler arquivo tmx
 			File file = new File("src/levels/" + tmxFile + ".tmx");
 			System.out.println("src/levels/" + tmxFile + ".tmx 100%" );
+			
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			String linha = br.readLine();
+			
 			int rowCount = 0;
 			while (linha != null && !linha.isEmpty()) {
 				String[] split = linha.split(",");
@@ -88,14 +92,25 @@ public class Gameplay extends Scene {
 					case 7:
 						getObjsInScene().add(new GravityUp(c * TILE_SIZE, r * TILE_SIZE));
 						break;
-						
 					case 8:
-						//TODO GravityDOWN
+						getObjsInScene().add(new GravityDown(c * TILE_SIZE, r * TILE_SIZE));
 						break;
+
 					case 9:
 						getObjsInScene().add(new CompleteLevel(c * TILE_SIZE, r * TILE_SIZE));
 						break;
-						
+					
+					case 10:
+						break;
+					case 11:
+						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI/2));
+						break;
+					case 12:
+						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI*3/2));
+						break;
+					case 13:
+						getObjsInScene().add(new EndLevel(c * TILE_SIZE, r * TILE_SIZE));
+						break;						
 
 					default:
 						break;
@@ -110,6 +125,7 @@ public class Gameplay extends Scene {
 		}
 		
 		if(JetpackGame.currentGameState == GameStates.Loading){
+			
 			JetpackGame.currentGameState = GameStates.Gameplay;
 			System.out.println("Carregou novo level!");
 		}
