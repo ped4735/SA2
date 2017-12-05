@@ -35,8 +35,19 @@ public class LevelManager {
 	}
 
 	public void nextLevel() {
+		
+		
 		if (currentLevel < fileNames.length) {
 			JetpackGame.currentGameState = GameStates.Loading;
+			
+			try {
+				Thread.sleep(1000);
+
+			} catch (InterruptedException ex) {
+				System.err.println("teste");
+				System.exit(-1);
+			}
+			
 			level = new Gameplay(fileNames[currentLevel]);
 			currentLevel++;
 		} else { // acabou as fases

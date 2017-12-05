@@ -15,7 +15,6 @@ public class Spike extends GameObject implements Interactable{
 	
 	public Spike(int posX, int posY) {
 		super("spike.png", posX, posY, 1, 1);
-//		super.setTheta((float) Math.PI);
 
 	}
 	

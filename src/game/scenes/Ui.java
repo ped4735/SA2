@@ -56,12 +56,16 @@ public class Ui {
 
 		textInfoPosX = Utils.getInstance().getWidth() - 80;
 		textInfoPosY = (Utils.getInstance().getHeight() - heightBar) + 15;
+		
+		
 
 	}
 
 	public void draw(Graphics2D g) {
 		g.setColor(Color.white);
 		g.drawRect(0, Utils.getInstance().getHeight() - heightBar, Utils.getInstance().getWidth(), heightBar);
+		
+		
 
 		// drawDial
 		g.drawImage(dial, centerDialVelX - lineSize, centerDialVelY - lineSize,

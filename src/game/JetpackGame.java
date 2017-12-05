@@ -12,6 +12,7 @@ import game.scenes.Loading;
 
 import java.awt.Color;
 import java.awt.Event;
+import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -25,15 +26,15 @@ import br.senai.sc.engine.Utils;
 public class JetpackGame extends Game {
 
 	public static GameStates currentGameState;
-	private Scene opening, menu, credits, help, currentScene, gameOver,ranking, loading;
-	//private LevelManager levels;
-	//public static TrueHero hero;
-	
+	private Scene opening, menu, credits, help, currentScene, gameOver, ranking, loading;
+	// private LevelManager levels;
+	// public static TrueHero hero;
+
 	public JetpackGame() {
 		super("JetPack", 1280, 720);
 		addMouseListener(new MouseInputHandler());
 		addKeyListener(new KeyInputHandler());
-		addMouseMotionListener(new MouseInputHandler());	
+		addMouseMotionListener(new MouseInputHandler());
 	}
 
 	public static void main(String[] args) {
@@ -45,19 +46,26 @@ public class JetpackGame extends Game {
 	public void init() {
 		Utils.getInstance().setGlobalScale(1f);
 
+		addNewFont("Space", "game/fonts/spaceAge.otf", 25, Font.PLAIN);
+		addNewFont("Andromeda", "game/fonts/Andromeda.ttf", 25, Font.PLAIN);
+
+		
+
 		menu = new MainMenu();
 		credits = new Credits();
-		//levels = new LevelManager("level_1,level_2,level_3");
+		// levels = new LevelManager("level_1,level_2,level_3");
 		LevelManager.getInstance().setLevelFiles("level0,level1,level_1,level_2,level_3");
 		opening = new Opening();
 		gameOver = new GameOver();
 		ranking = new Ranking();
 		loading = new Loading();
-		currentGameState = GameStates.MainMenu;			
+		currentGameState = GameStates.MainMenu;
 	}
 
 	@Override
 	public void gameLoop() {
+//		setFont("Space");
+		setFont("Andromeda");
 
 		switch (currentGameState) {
 		case OpeningPreMenu:
@@ -71,37 +79,37 @@ public class JetpackGame extends Game {
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
-			
+
 		case Gameplay:
 			currentScene = LevelManager.getInstance().getLevel();
 			currentScene.draw(getGraphics2D());
 			currentScene.collision();
 			currentScene.update();
 			break;
-			
+
 		case Credits:
 			currentScene = credits;
-			currentScene.draw(getGraphics2D()); 
+			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
 		case GameOver:
 			currentScene = gameOver;
-			currentScene.draw(getGraphics2D()); 
+			currentScene.draw(getGraphics2D());
 			currentScene.update();
-			
+
 			break;
 		case Ranking:
 			currentScene = ranking;
-			currentScene.draw(getGraphics2D()); 
+			currentScene.draw(getGraphics2D());
 			currentScene.update();
 		case Help:
 			currentScene = ranking;
-			currentScene.draw(getGraphics2D()); 
+			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
 		case Loading:
 			currentScene = loading;
-			currentScene.draw(getGraphics2D()); 
+			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
 		case Exit:
@@ -109,7 +117,9 @@ public class JetpackGame extends Game {
 			break;
 		default:
 			break;
+
 		}
+
 
 	}
 
@@ -129,18 +139,16 @@ public class JetpackGame extends Game {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			currentScene.keyPressed(e);
-			
-			
-			
+
 			if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 				System.exit(0);
 			}
 			if (e.getKeyCode() == KeyEvent.VK_F9) {
 				Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
-			} 
+			}
 			if (e.getKeyCode() == KeyEvent.VK_P) {
 				LevelManager.getInstance().nextLevel();
-			} 
+			}
 		}
 
 		@Override
