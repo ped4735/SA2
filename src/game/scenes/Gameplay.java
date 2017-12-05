@@ -11,6 +11,7 @@ import game.JetpackGame;
 import game.TrueHero;
 import game.tiles.BlackHole;
 import game.tiles.Coletable;
+import game.tiles.CompleteLevel;
 import game.tiles.EndLevel;
 import game.tiles.GravityDown;
 import game.tiles.GravityUp;
@@ -73,7 +74,7 @@ public class Gameplay extends Scene {
 						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI));
 						break;
 					case 3:
-						TrueHero tempHero = new TrueHero("player.png", c * TILE_SIZE, r * TILE_SIZE, 3, 1, this);
+						TrueHero tempHero = new TrueHero("joe.png", c * TILE_SIZE, r * TILE_SIZE, 3, 1, this);
 						getObjsInScene().add(tempHero);
 						ui = new Ui(tempHero);
 						break;
@@ -96,6 +97,7 @@ public class Gameplay extends Scene {
 						break;
 
 					case 9:
+						getObjsInScene().add(new CompleteLevel(c * TILE_SIZE, r * TILE_SIZE));
 						break;
 					
 					case 10:
@@ -108,9 +110,7 @@ public class Gameplay extends Scene {
 						break;
 					case 13:
 						getObjsInScene().add(new EndLevel(c * TILE_SIZE, r * TILE_SIZE));
-						break;
-
-						
+						break;						
 
 					default:
 						break;

@@ -53,7 +53,6 @@ public class JetpackGame extends Game {
 
 		menu = new MainMenu();
 		credits = new Credits();
-		// levels = new LevelManager("level_1,level_2,level_3");
 		LevelManager.getInstance().setLevelFiles("level0,level1,level_1,level_2,level_3");
 		opening = new Opening();
 		gameOver = new GameOver();
@@ -92,29 +91,36 @@ public class JetpackGame extends Game {
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
+			
 		case GameOver:
 			currentScene = gameOver;
-			currentScene.draw(getGraphics2D());
-			currentScene.update();
+			currentScene.draw(getGraphics2D()); 
+			currentScene.update();			
 
 			break;
+			
 		case Ranking:
 			currentScene = ranking;
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
+			break;
+			
 		case Help:
 			currentScene = ranking;
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
+			
 		case Loading:
 			currentScene = loading;
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
+			
 		case Exit:
 			System.exit(0);
 			break;
+			
 		default:
 			break;
 
