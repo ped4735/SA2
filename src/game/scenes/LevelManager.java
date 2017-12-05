@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.senai.sc.engine.Utils;
-import game.GameMannager;
+import game.GameManager;
 import game.GameStates;
 import game.JetpackGame;
 
@@ -43,7 +43,7 @@ public class LevelManager {
 			currentLevel = 0;
 			level = new Gameplay(fileNames[currentLevel]);
 			currentLevel = 1;
-			GameMannager.getInstance().resetGame();
+			GameManager.getInstance().resetGame(GameStates.Victory);
 		}
 	}
 

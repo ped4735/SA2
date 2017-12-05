@@ -36,12 +36,6 @@ public class Stone extends GameObject implements Interactable {
 
 	@Override
 	public void actionEnter(GameObject gameobj) {
-		if (game.Hero.class.isInstance(gameobj)) {
-			game.Hero hero = (game.Hero) gameobj;
-			
-				hero.setGrounded(true);
-			
-		}		
 		
 		if(game.TrueHero.class.isInstance(gameobj)){
 			game.TrueHero hero = (game.TrueHero) gameobj;
@@ -134,10 +128,6 @@ public class Stone extends GameObject implements Interactable {
 
 	@Override
 	public void actionExit(GameObject gameobj) {
-		if (game.Hero.class.isInstance(gameobj)) {
-			game.Hero hero = (game.Hero) gameobj;
-				hero.setGrounded(false);
-		}
 		if(game.TrueHero.class.isInstance(gameobj)){
 			game.TrueHero hero = (game.TrueHero) gameobj;
 			hero.setGrounded(false);

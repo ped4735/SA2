@@ -34,13 +34,6 @@ public class Coletable extends AnimatedObject implements Interactable{
 	public void actionExit(GameObject gameobj) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	
-
-	
-	
-	
-	
+	}	
 	
 }

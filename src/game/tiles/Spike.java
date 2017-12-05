@@ -35,12 +35,7 @@ public class Spike extends GameObject implements Interactable{
 
 
 	@Override
-	public void actionEnter(GameObject gameobj) {
-		if(game.Hero.class.isInstance(gameobj)){
-			game.Hero hero = (game.Hero) gameobj;
-			hero.takeDamage();
-			//System.out.println("Collision ENTER");
-		}		
+	public void actionEnter(GameObject gameobj) {		
 		
 		if(game.TrueHero.class.isInstance(gameobj)){
 			game.TrueHero hero = (game.TrueHero) gameobj;

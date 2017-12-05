@@ -10,6 +10,7 @@ public enum GameStates {
 	Help,
 	Ranking,
 	GameOver,
+	Victory,
 	Loading,
 	Exit
 

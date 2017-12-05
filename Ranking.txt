@@ -1,10 +1,6 @@
 PEDRO,0
 PEDRO,20
 PEDRO,0
-<<<<<<< HEAD
-null,0
-PLAYER,20
-=======
 PEDRO,380
 PEDRO,380
 null,0
@@ -24,5 +20,7 @@ JOSE,130
 PEDRO,0
 PEDRO,50
 PEDRO,90
->>>>>>> 35f2eae56bbece940f39d4190113f7b252ea4b56
-DEDE,0
+null,0
+null,0
+PEDRO,0
+
