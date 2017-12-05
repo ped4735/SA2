@@ -11,6 +11,7 @@ import game.JetpackGame;
 import game.TrueHero;
 import game.tiles.BlackHole;
 import game.tiles.Coletable;
+import game.tiles.GravityDown;
 import game.tiles.GravityUp;
 import game.tiles.Spike;
 import game.tiles.Stone;
@@ -87,6 +88,22 @@ public class Gameplay extends Scene {
 					case 7:
 						getObjsInScene().add(new GravityUp(c * TILE_SIZE, r * TILE_SIZE));
 						break;
+					case 8:
+						getObjsInScene().add(new GravityDown(c * TILE_SIZE, r * TILE_SIZE));
+						break;
+
+					case 9:
+						break;
+					
+					case 10:
+						break;
+					case 11:
+						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI/2));
+						break;
+					case 12:
+						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI*3/2));
+						break;
+
 						
 
 					default:

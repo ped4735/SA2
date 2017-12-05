@@ -71,6 +71,11 @@ public class Ui {
 		g.drawImage(dial, centerDialAceX - lineSize, centerDialAceY - lineSize,
 				centerDialAceX - lineSize + dial.getWidth(null), centerDialAceY - lineSize + dial.getHeight(null), 0, 0,
 				dial.getWidth(null), dial.getHeight(null), null);
+		
+
+
+
+		
 
 		// desenha as coisas da interface
 		drawSpeedDial(g);
@@ -89,6 +94,17 @@ public class Ui {
 		g.setColor(Color.red);
 		g.drawLine(centerDialVelX, centerDialVelY, centerDialVelX + (int) (lineSize * hero.getVelX() / module),
 				centerDialVelY + (int) (lineSize * hero.getVelY() / module));
+		
+		
+		g.fillArc(centerDialVelX- lineSize,
+				centerDialVelY- lineSize, 
+				lineSize*2, 
+				lineSize*2, 
+				(int)Math.toDegrees(Math.acos(lineSize *hero.getVelX()/module)) - 5, 
+				(int)Math.toDegrees(Math.asin(lineSize *hero.getVelY()/module)) + 5
+				);
+		
+
 
 	}
 

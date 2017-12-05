@@ -1,12 +1,14 @@
 package game.tiles;
 
+import game.AnimatedObject;
 import game.GameObject;
 import game.interfaces.Interactable;
 
-public class GravityUp extends GameObject implements Interactable {
+public class GravityUp extends AnimatedObject implements Interactable {
 
 	public GravityUp(int posX, int posY) {
-		super("gravityUp.png", posX, posY, 1, 1);
+		super("gravityUpSprite.png", posX, posY, 5, 1);
+		
 
 	}
 
