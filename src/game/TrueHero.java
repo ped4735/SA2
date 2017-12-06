@@ -190,7 +190,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 		setLife(getLife() - 1);
 		if (getLife() <= 0) {
-			GameManager.getInstance().resetGame(GameStates.GameOver);;
+			GameManager.getInstance().resetGame(GameStates.GameOver);
 		}
 	}
 	public void fall(){

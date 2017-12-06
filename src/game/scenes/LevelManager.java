@@ -33,20 +33,24 @@ public class LevelManager {
 	public Gameplay getLevel() {
 		return level;
 	}
+	
+	public void setCurrentLevel(int lvl){
+		this.currentLevel = lvl;
+	}
 
 	public void nextLevel() {
 		
 		
 		if (currentLevel < fileNames.length) {
-			JetpackGame.currentGameState = GameStates.Loading;
+			//JetpackGame.currentGameState = GameStates.Loading;
 			
-			try {
+			/*try {
 				Thread.sleep(1000);
 
 			} catch (InterruptedException ex) {
 				System.err.println("teste");
 				System.exit(-1);
-			}
+			}*/
 			
 			level = new Gameplay(fileNames[currentLevel]);
 			currentLevel++;

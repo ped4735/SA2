@@ -1,5 +1,7 @@
 package game;
 
+import game.scenes.LevelManager;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -39,6 +41,7 @@ public class GameManager {
 	
 	public void resetGame(GameStates gameStateToOver){
 		JetpackGame.currentGameState = gameStateToOver;
+		LevelManager.getInstance().setCurrentLevel(0);
 		GameManager.getInstance().getNameToWriteInScoreFile();
 		this.gameScore = 0;	
 	}

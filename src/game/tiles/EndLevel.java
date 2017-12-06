@@ -21,10 +21,7 @@ public class EndLevel extends GameObject implements Interactable {
 	@Override
 	public void actionEnter(GameObject gameobj) {
 		if (game.TrueHero.class.isInstance(gameobj)) {
-			game.TrueHero hero = (game.TrueHero) gameobj;
-			if (JetpackGame.currentGameState != GameStates.Loading) {
-				LevelManager.getInstance().nextLevel();
-			}
+			JetpackGame.currentGameState = GameStates.Loading;
 		}
 	}
 

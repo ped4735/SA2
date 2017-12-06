@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 null,0
 MARIANA,0
 MARIANA,0
@@ -8,3 +9,12 @@ null,0
 null,10
 null,0
 null,0
+=======
+AHHHHHHHHH,140
+PEDRO,0
+PEDRO,0
+PEDRO,280
+PEDRO,30
+PLAYER,0
+PEDRO,0
+>>>>>>> 9f7b86ab189e3e35352b084e6e257321b0fb3941
