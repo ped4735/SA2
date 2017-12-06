@@ -19,11 +19,12 @@ public class Button extends GameObject implements Clickable{
 
 		if (getRectangle().intersects(new Rectangle(posX, posY, 1, 1))) {
 			//setFrameY(0);
-			if(changeToState == GameStates.Gameplay){
+			/*if(changeToState == GameStates.Gameplay){
 				LevelManager.getInstance().nextLevel();
 			}else{
 				JetpackGame.currentGameState = changeToState;	
-			}			
+			}*/			
+			JetpackGame.currentGameState = changeToState;
 			
 		}
 	}

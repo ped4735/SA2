@@ -84,6 +84,8 @@ public class JetpackGame extends Game {
 			currentScene.draw(getGraphics2D());
 			currentScene.collision();
 			currentScene.update();
+			
+			
 			break;
 
 		case Credits:
