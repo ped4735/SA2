@@ -110,7 +110,7 @@ public class JetpackGame extends Game {
 			break;
 			
 		case Help:
-			currentScene = ranking;
+			currentScene = help;
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
