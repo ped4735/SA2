@@ -1,2 +1,1 @@
-null,0
-PEDRO MORE,0
+PEDRO,0

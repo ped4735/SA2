@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import game.GameStates;
 import game.JetpackGame;
+import game.Missile;
 import game.TrueHero;
 import game.tiles.BlackHole;
 import game.tiles.Coletable;
@@ -110,7 +111,13 @@ public class Gameplay extends Scene {
 						break;
 					case 13:
 						getObjsInScene().add(new EndLevel(c * TILE_SIZE, r * TILE_SIZE));
-						break;						
+						break;		
+					case 15:
+						getObjsInScene().add(new Missile(c * TILE_SIZE, r * TILE_SIZE,0,5,Math.PI));
+						break;	
+					case 16:
+						getObjsInScene().add(new Missile(c * TILE_SIZE, r * TILE_SIZE,5,0,0));
+						break;	
 
 					default:
 						break;
