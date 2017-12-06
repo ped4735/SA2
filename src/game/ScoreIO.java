@@ -25,7 +25,8 @@ public class ScoreIO implements Serializable{
 		
 	}
 	
+	public void printList(){
+		System.out.println(scores.toString());
+	}
 	
-	
-
 }

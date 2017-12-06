@@ -72,7 +72,7 @@ public class GameManager {
 	}
 
 	public void getNameToWriteInScoreFile() {
-		try {
+		/*try {
 			File file = new File("Ranking.txt");
 			if (!file.exists()) {
 				file.createNewFile();
@@ -91,7 +91,9 @@ public class GameManager {
 		} finally {
 			JetpackGame.currentGameState = GameStates.Ranking;
 		}
-	}
+	}*/
+	
+	
 	
 
 }
