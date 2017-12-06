@@ -39,9 +39,11 @@ public class JetpackGame extends Game {
 	}
 
 	public static void main(String[] args) {
+
 		JetpackGame jogo = new JetpackGame();
 		jogo.startGame();
 	}
+
 
 	@Override
 	public void init() {
@@ -165,6 +167,13 @@ public class JetpackGame extends Game {
 					currentGameState = GameStates.Loading;
 				}
 			}
+			if (e.getKeyCode() == KeyEvent.VK_NUMPAD1){
+			alterarFramesPorSegundos(5);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_NUMPAD2){
+			alterarFramesPorSegundos(30);
+			}
+
 		}
 
 		@Override

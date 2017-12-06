@@ -116,7 +116,7 @@ public class Gameplay extends Scene {
 						getObjsInScene().add(new Missile(c * TILE_SIZE, r * TILE_SIZE,0,5,Math.PI));
 						break;	
 					case 16:
-						getObjsInScene().add(new Missile(c * TILE_SIZE, r * TILE_SIZE,5,0,0));
+						getObjsInScene().add(new Missile(c * TILE_SIZE, r * TILE_SIZE,5,0,Math.PI/2));
 						break;	
 
 					default:
