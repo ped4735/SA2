@@ -7,6 +7,7 @@ import game.scenes.MainMenu;
 import game.scenes.Opening;
 import game.scenes.Ranking;
 import game.scenes.Scene;
+import game.scenes.Victory;
 import game.scenes.LevelManager;
 import game.scenes.Loading;
 
@@ -26,7 +27,7 @@ import br.senai.sc.engine.Utils;
 public class JetpackGame extends Game {
 
 	public static GameStates currentGameState;
-	private Scene opening, menu, credits, help, currentScene, gameOver, ranking, loading;
+	private Scene opening, menu, credits, help, currentScene, gameOver, ranking, loading, victory;
 	// private LevelManager levels;
 	// public static TrueHero hero;
 
@@ -58,6 +59,7 @@ public class JetpackGame extends Game {
 		gameOver = new GameOver();
 		ranking = new Ranking();
 		loading = new Loading();
+		victory = new Victory();
 		currentGameState = GameStates.MainMenu;
 	}
 
@@ -84,8 +86,6 @@ public class JetpackGame extends Game {
 			currentScene.draw(getGraphics2D());
 			currentScene.collision();
 			currentScene.update();
-			
-			
 			break;
 
 		case Credits:
@@ -115,6 +115,12 @@ public class JetpackGame extends Game {
 			
 		case Loading:
 			currentScene = loading;
+			currentScene.draw(getGraphics2D());
+			currentScene.update();
+			break;
+			
+		case Victory:
+			currentScene = victory;
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
@@ -155,7 +161,9 @@ public class JetpackGame extends Game {
 				Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
 			}
 			if (e.getKeyCode() == KeyEvent.VK_P) {
-				LevelManager.getInstance().nextLevel();
+				if(currentGameState == GameStates.Gameplay){
+					currentGameState = GameStates.Loading;
+				}
 			}
 		}
 

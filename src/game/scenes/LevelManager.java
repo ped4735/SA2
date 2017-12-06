@@ -58,7 +58,7 @@ public class LevelManager {
 			currentLevel = 0;
 			level = new Gameplay(fileNames[currentLevel]);
 			currentLevel = 1;
-			GameManager.getInstance().resetGame(GameStates.Victory);
+			JetpackGame.currentGameState = GameStates.Victory;
 		}
 	}
 

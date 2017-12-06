@@ -39,8 +39,7 @@ public class GameManager {
 	}
 	
 	
-	public void resetGame(GameStates gameStateToOver){
-		JetpackGame.currentGameState = gameStateToOver;
+	public void resetGame(){
 		LevelManager.getInstance().setCurrentLevel(0);
 		GameManager.getInstance().getNameToWriteInScoreFile();
 		this.gameScore = 0;	
