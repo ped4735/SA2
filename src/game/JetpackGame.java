@@ -143,6 +143,7 @@ public class JetpackGame extends Game {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			currentScene.click(e.getX(), e.getY());
+			System.out.println("X: " + e.getX() + " Y: " +  e.getY());
 		}
 
 		@Override

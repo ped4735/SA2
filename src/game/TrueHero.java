@@ -125,6 +125,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		if (wPressed) {
 			this.forward();
 			this.heatingUp();
+			this.cooling=false;
 		}
 
 		if (aPressed || dPressed) {
@@ -151,8 +152,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	}
 	
 	public void heatingUp(){
-		this.heating += heatingUpRate;
 		cooling = false;
+		this.heating += heatingUpRate;
 		if (this.heating >= this.maxHeating){
 			warningOverheating = true;
 		}
@@ -163,13 +164,14 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		}
 	}
 	public void heatingDown(){
-		cooling = true;
+		warningOverheating = false;
 		this.heating -= heatingDownRate;
 		if (this.heating <= 0.0f){
 			this.heating = 0;
 			cooling = false;
-
+			return;
 		}
+		cooling = true;
 	}
 
 	private void floatToInts() {
@@ -465,6 +467,23 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	public void setHeating(float heating) {
 		this.heating = heating;
 	}
+
+	public boolean isWarningOverheating() {
+		return warningOverheating;
+	}
+
+	public void setWarningOverheating(boolean warningOverheating) {
+		this.warningOverheating = warningOverheating;
+	}
+
+	public boolean isCooling() {
+		return cooling;
+	}
+
+	public void setCooling(boolean cooling) {
+		this.cooling = cooling;
+	}
+	
 		
 	
 

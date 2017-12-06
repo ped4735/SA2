@@ -41,11 +41,10 @@ public class Ui {
 
 	public Ui(game.TrueHero hero) {
 		this.hero = hero;
-		
+
 		dial = Utils.getInstance().loadImage("images/bgDial.png");
 		heatingScale = Utils.getInstance().loadImage("images/heatingScale.png");
 		baseUI = Utils.getInstance().loadImage("images/baseUI.png");
-
 
 		centerDialVelX = Utils.getInstance().getWidth() / 2 - 50;
 		centerDialVelY = Utils.getInstance().getHeight() - heightBar + 40;
@@ -60,27 +59,18 @@ public class Ui {
 
 		textInfoPosX = Utils.getInstance().getWidth() - 80;
 		textInfoPosY = (Utils.getInstance().getHeight() - heightBar) + 15;
-		
-		
 
 	}
 
 	public void draw(Graphics2D g) {
-		g.setColor(Color.white);
-		g.drawRect(0, Utils.getInstance().getHeight() - heightBar, Utils.getInstance().getWidth(), heightBar);
-		g.drawImage(baseUI,
-				0,
-				0,
-				baseUI.getWidth(null),
-				baseUI.getHeight(null),
-				0,
-				0,
-				baseUI.getWidth(null),
-				baseUI.getHeight(null),
-				null);
 
-		
-		
+		g.setColor(Color.white);
+
+		drawHeatingBar(g);
+
+		g.drawRect(0, Utils.getInstance().getHeight() - heightBar, Utils.getInstance().getWidth(), heightBar);
+		g.drawImage(baseUI, 0, 0, baseUI.getWidth(null), baseUI.getHeight(null), 0, 0, baseUI.getWidth(null),
+				baseUI.getHeight(null), null);
 
 		// drawDial
 		g.drawImage(dial, centerDialVelX - lineSize, centerDialVelY - lineSize,
@@ -90,16 +80,10 @@ public class Ui {
 		g.drawImage(dial, centerDialAceX - lineSize, centerDialAceY - lineSize,
 				centerDialAceX - lineSize + dial.getWidth(null), centerDialAceY - lineSize + dial.getHeight(null), 0, 0,
 				dial.getWidth(null), dial.getHeight(null), null);
-		
-
-
-
-		
 
 		// desenha as coisas da interface
 		drawSpeedDial(g);
 		drawAceDial(g);
-		drawHeatingBar(g);
 		drawTextInfo(g);
 
 		// g.setColor(Color.pink);
@@ -113,17 +97,10 @@ public class Ui {
 		g.setColor(Color.red);
 		g.drawLine(centerDialVelX, centerDialVelY, centerDialVelX + (int) (lineSize * hero.getVelX() / module),
 				centerDialVelY + (int) (lineSize * hero.getVelY() / module));
-		
-		
-		g.fillArc(centerDialVelX- lineSize,
-				centerDialVelY- lineSize, 
-				lineSize*2, 
-				lineSize*2, 
-				(int)Math.toDegrees(Math.acos(lineSize *hero.getVelX()/module)) - 5, 
-				(int)Math.toDegrees(Math.asin(lineSize *hero.getVelY()/module)) + 5
-				);
-		
 
+		g.fillArc(centerDialVelX - lineSize, centerDialVelY - lineSize, lineSize * 2, lineSize * 2,
+				(int) Math.toDegrees(Math.acos(lineSize * hero.getVelX() / module)) - 5,
+				(int) Math.toDegrees(Math.asin(lineSize * hero.getVelY() / module)) + 5);
 
 	}
 
@@ -146,17 +123,11 @@ public class Ui {
 		int imageSizeY = (int) (heatingScale.getHeight(null) / 5f);
 
 		// desenha a barra
-		g.drawImage(heatingScale, heatingBarPosX, heatingBarPosY, heatingBarPosX + imageSizeX, heatingBarPosY + imageSizeY, 0,
-				0, heatingScale.getWidth(null), heatingScale.getHeight(null), null);
+		g.drawImage(heatingScale, heatingBarPosX, heatingBarPosY, heatingBarPosX + imageSizeX,
+				heatingBarPosY + imageSizeY, 0, 0, heatingScale.getWidth(null), heatingScale.getHeight(null), null);
 
 		// desenha o bloqueio
 		g.setColor(Color.BLACK);
-		// g.fillRect(heatingBarPosX + (int) (imageSizeX * (currentHeating /
-		// maxHeating)),
-		// heatingBarPosY,
-		// (int) (imageSizeX * (1f - (currentHeating / maxHeating))),
-		// imageSizeY);
-		//
 		g.fillRect(heatingBarPosX + (int) (imageSizeX * (currentHeating / maxHeating)), heatingBarPosY,
 				(int) (imageSizeX - (int) (imageSizeX * (currentHeating / maxHeating))), imageSizeY);
 
@@ -164,28 +135,30 @@ public class Ui {
 		g.setColor(Color.WHITE);
 		g.drawRect(heatingBarPosX, heatingBarPosY, imageSizeX, imageSizeY);
 
-		// alerta
-		if (currentHeating > 0.85 * maxHeating) {
+		// alertas
+		if (hero.isWarningOverheating() || currentHeating > 0.85 * maxHeating) {
 			g.setColor(Color.RED);
-			g.fillOval(heatingBarPosX + imageSizeX + 10, heatingBarPosY + 10, 10, 10);
-			g.setColor(Color.WHITE);
-			g.drawString("Overheating!", heatingBarPosX + imageSizeX + 20, heatingBarPosY + 15);
+			g.fillRect(319, 679, 449 - 316, 701 - 676);
 
+			g.setColor(Color.WHITE);
+			g.drawString("Overheating!", 319 + 20, 679 + 15);
 		}
 
-		if (oldCurrentHeating > currentHeating) {
+		if (hero.isCooling() && oldCurrentHeating > currentHeating) {
 			g.setColor(Color.BLUE);
-			g.fillOval(heatingBarPosX + imageSizeX + 10, heatingBarPosY + 30, 10, 10);
+			g.fillOval(heatingBarPosX + 180, heatingBarPosY + imageSizeY + 20, 10, 10);
+			g.fillRect(170, 675, 135, 30);
+
 			g.setColor(Color.WHITE);
-			g.drawString("Cooling!", heatingBarPosX + imageSizeX + 20, heatingBarPosY + 35);
+			g.drawString("Cooling!", heatingBarPosX + 180, heatingBarPosY + imageSizeY + 23);
 		}
 
 		// text info
 		g.setColor(Color.white);
 
 		DecimalFormat df = new DecimalFormat("#.##");
-		g.drawString("Heating level:" + df.format((double) hero.getHeating()) + "%", heatingBarPosX + 20,
-				heatingBarPosY + imageSizeY + 15);
+		g.drawString("Heating level:" + df.format((double) hero.getHeating()) + "%", heatingBarPosX + 25,
+				heatingBarPosY + imageSizeY + 23);
 
 		oldCurrentHeating = currentHeating;
 
@@ -198,6 +171,5 @@ public class Ui {
 		g.drawString("Score:" + game.GameManager.getInstance().getScore(), textInfoPosX, textInfoPosY + 1 * lineSize);
 
 	}
-
 
 }
