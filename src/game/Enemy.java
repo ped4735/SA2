@@ -1,9 +1,11 @@
 package game;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import br.senai.sc.engine.Utils;
 import game.interfaces.Collidable;
 import game.interfaces.Interactable;
 import game.interfaces.Updatable;
@@ -58,6 +60,8 @@ public abstract class Enemy extends AnimatedObject implements Updatable, Collida
 		}
 
 	}
+	
+	
 
 	public List<GameObject> getObjsInInteraction() {
 		return objsInInteraction;
