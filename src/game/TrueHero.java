@@ -26,8 +26,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private int score;
 	private float heating;
 	private float maxHeating = 100f;
-	private float heatingUpRate = 1.0f;
-	private float heatingDownRate = 0.3f;
+	private float heatingUpRate = 0.5f;
+	private float heatingDownRate = 0.2f;
 	//para os sons e ui
 	private boolean warningOverheating;
 	private boolean cooling;

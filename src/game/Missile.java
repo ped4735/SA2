@@ -1,7 +1,9 @@
 package game;
 
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
+import br.senai.sc.engine.Utils;
 import game.interfaces.Collidable;
 import game.interfaces.Controllable;
 import game.interfaces.Interactable;
@@ -36,10 +38,13 @@ public class Missile extends Enemy implements Interactable {
 			super.setVelX(super.getVelX() * (-1));
 			super.setVelY(super.getVelY() * (-1));
 			super.setTheta(super.getTheta() + (float) Math.PI);
+			System.out.println("Inverteu" + getTheta());
 
 
 		}
 	}
+	
+	
 
 	@Override
 	public void actionEnter(GameObject gameobj) {

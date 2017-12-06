@@ -60,6 +60,8 @@ public abstract class Enemy extends AnimatedObject implements Updatable, Collida
 		}
 
 	}
+	
+	
 
 	public List<GameObject> getObjsInInteraction() {
 		return objsInInteraction;
