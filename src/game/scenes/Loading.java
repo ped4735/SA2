@@ -12,7 +12,7 @@ import game.Missile;
 public class Loading extends Scene{
 	
 	int count = 0;
-	int contMax = 100;
+	int contMax = 10;
 	Missile m;
 	public Loading() {
 		//getObjsInScene().add(new AnimatedObject("loadingScene.png", 0, 0, 1, 1));	
