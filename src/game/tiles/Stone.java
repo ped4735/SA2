@@ -81,9 +81,7 @@ public class Stone extends GameObject implements Interactable {
 		
 		if(game.TrueHero.class.isInstance(gameobj)){
 			game.TrueHero hero = (game.TrueHero) gameobj;
-			
-			CollisionFace colFace = Utils.getInstance().collisionEnterIn(gameobj.getRectangle(), getRectangle());
-			
+			CollisionFace colFace = Utils.getInstance().collisionEnterIn(gameobj.getRectangle(), getRectangle());			
 			/*if(colFace == CollisionFace.top_bot){
 				hero.setVelY(5);
 				System.out.println("Top Bot");
@@ -93,8 +91,6 @@ public class Stone extends GameObject implements Interactable {
 				hero.setVelX(5);
 				System.out.println("Left Right");
 			}*/
-			
-			
 			
 			
 			switch (Utils.getInstance().collisionEnterIn(gameobj.getRectangle(), getRectangle())) {

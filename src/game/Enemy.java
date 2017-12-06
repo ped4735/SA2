@@ -86,5 +86,10 @@ public abstract class Enemy extends AnimatedObject implements Updatable, Collida
 	public void setVelY(int velY) {
 		this.velY = velY;
 	}
+	
+	@Override
+	public Rectangle getRectangle() {
+		return Utils.getInstance().reshapeRectangleByAngle(super.getRectangle(), super.getTheta());
+	}
 
 }

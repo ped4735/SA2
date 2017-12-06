@@ -11,7 +11,7 @@ import javax.rmi.CORBA.Util;
 
 import br.senai.sc.engine.Utils;
 
-public abstract class GameObject {
+public class GameObject {
 
 	private Image sprite;
 	private int frameX;
@@ -53,6 +53,11 @@ public abstract class GameObject {
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, float scale) {
 		this(spriteFileName, posX, posY, colFrames, lineFrames);
 		this.scale = scale;
+
+	}
+	
+	public GameObject(String spriteFileName, int posX, int posY) {
+		this(spriteFileName, posX, posY, 1, 1);
 
 	}
 

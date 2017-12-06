@@ -36,12 +36,16 @@ public class Ui {
 								// + 15;
 
 	Image dial;
-	Image image;
+	Image heatingScale;
+	Image baseUI;
 
 	public Ui(game.TrueHero hero) {
 		this.hero = hero;
+		
 		dial = Utils.getInstance().loadImage("images/bgDial.png");
-		image = Utils.getInstance().loadImage("images/heatingScale.png");
+		heatingScale = Utils.getInstance().loadImage("images/heatingScale.png");
+		baseUI = Utils.getInstance().loadImage("images/baseUI.png");
+
 
 		centerDialVelX = Utils.getInstance().getWidth() / 2 - 50;
 		centerDialVelY = Utils.getInstance().getHeight() - heightBar + 40;
@@ -64,6 +68,17 @@ public class Ui {
 	public void draw(Graphics2D g) {
 		g.setColor(Color.white);
 		g.drawRect(0, Utils.getInstance().getHeight() - heightBar, Utils.getInstance().getWidth(), heightBar);
+		g.drawImage(baseUI,
+				0,
+				0,
+				baseUI.getWidth(null),
+				baseUI.getHeight(null),
+				0,
+				0,
+				baseUI.getWidth(null),
+				baseUI.getHeight(null),
+				null);
+
 		
 		
 
@@ -127,12 +142,12 @@ public class Ui {
 		float currentHeating = hero.getHeating();
 		float maxHeating = hero.getMaxHeating();
 
-		int imageSizeX = (int) (image.getWidth(null) * 1.8f);
-		int imageSizeY = (int) (image.getHeight(null) / 5f);
+		int imageSizeX = (int) (heatingScale.getWidth(null) * 1.8f);
+		int imageSizeY = (int) (heatingScale.getHeight(null) / 5f);
 
 		// desenha a barra
-		g.drawImage(image, heatingBarPosX, heatingBarPosY, heatingBarPosX + imageSizeX, heatingBarPosY + imageSizeY, 0,
-				0, image.getWidth(null), image.getHeight(null), null);
+		g.drawImage(heatingScale, heatingBarPosX, heatingBarPosY, heatingBarPosX + imageSizeX, heatingBarPosY + imageSizeY, 0,
+				0, heatingScale.getWidth(null), heatingScale.getHeight(null), null);
 
 		// desenha o bloqueio
 		g.setColor(Color.BLACK);

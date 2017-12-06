@@ -3,9 +3,12 @@ package game.scenes;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.LinkedList;
+import java.util.List;
 
 import game.GameStates;
 import game.JetpackGame;
+import game.Score;
 
 public class Ranking extends Scene{
 	
@@ -22,7 +25,10 @@ public class Ranking extends Scene{
 		g.drawString("Ranking", 600, 30);
 		g.drawString("Press any key to continue", 600, 600);
 	}
+	
+	public void drawScore(){
 
+	}
 
 	
 }

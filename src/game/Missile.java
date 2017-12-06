@@ -14,8 +14,13 @@ public class Missile extends Enemy implements Interactable {
 	public Missile(int posX, int posY, int velX, int velY,double Theta) {
 		super("rocket.png", posX, posY, 2, 1, velX, velY);
 		super.setTheta((float)Theta);
-
 	}
+	
+	public Missile(int posX, int posY, int velX, int velY,float Theta) {
+		super("rocket.png", posX, posY, 2, 1, velX, velY);
+		super.setTheta(Theta);
+	}
+	
 
 	@Override
 	public void update() {

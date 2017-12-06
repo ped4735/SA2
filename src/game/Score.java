@@ -10,6 +10,7 @@ public class Score {
 		this.score = score;
 	}
 
+
 	public String getNome() {
 		return nome;
 	}
@@ -26,6 +27,7 @@ public class Score {
 		this.score = score;
 	}
 	
+
 	
 	
 }
