@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import br.senai.sc.engine.Utils;
 import game.GameStates;
 import game.JetpackGame;
 import game.Missile;
@@ -26,19 +27,21 @@ public class Gameplay extends Scene {
 	private int ROWS = 22;
 	private int[][] tileMapMatrix;
 	private String tmxFile;
-	private int colletableInScene;
 	Ui ui;
 	
 	public Gameplay(String tmxFile) {
 
 		//getObjsInScene().add(new BlackHole(300, 100));
 
+		LevelManager.getInstance().setColletableInScene(0);
 		this.tmxFile = tmxFile;
 		tileMapMatrix = new int[ROWS][COLS];
 		lerArquivo();
 			
 	}
 
+	
+	
 	private void lerArquivo() {
 		try { // try ler arquivo tmx
 			File file = new File("src/levels/" + tmxFile + ".tmx");
@@ -84,6 +87,7 @@ public class Gameplay extends Scene {
 						break;
 					case 5:
 						getObjsInScene().add(new Coletable(c * TILE_SIZE, r * TILE_SIZE));
+						LevelManager.getInstance().addColletableInScene();
 						break;
 
 					case 6:
