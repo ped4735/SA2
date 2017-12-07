@@ -11,7 +11,7 @@ import game.MovableBackground;
 public class Loading extends Scene{
 	
 	int count = 0;
-	int contMax = 10;
+	int contMax = 30;
 	Missile m;
 	MovableBackground background;
 	
@@ -46,22 +46,11 @@ public class Loading extends Scene{
 		getObjsInScene().clear();
 		Random r = new Random();
 		
-		//String nome = "images/Space" + r.nextInt(2) + ".jpg";
-		String name = "Space1.jpg";
-
+		String name = "loadingbg/Space" + r.nextInt(5) + ".jpg";
 		System.out.println("name: " + name);
 		background = new MovableBackground(name);
 		
-		
-		/*
-		m = new Missile(0, 0, r.nextInt(5)-2, r.nextInt(5)-2, 0f);
-		m.setColFrames(1);
-		m.setLineFrames(1);
-		m.setSprite(Utils.getInstance().loadImage(nome));
-		m.setWidth((Utils.getInstance().loadImage(nome)).getWidth(null));
-		m.setHeight((Utils.getInstance().loadImage(nome)).getHeight(null));
-		*/
-		
+
 		getObjsInScene().add(background);	
 		
 	}
