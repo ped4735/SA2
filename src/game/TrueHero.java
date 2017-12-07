@@ -90,7 +90,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		isGravityOn = true;
 		theta = thetaInit;
 		setScale(1f);
-		GameManager.getInstance().setScore(0);
+		//GameManager.getInstance().setScore(0);
 		this.heating = 0;
 	}
 	

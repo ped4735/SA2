@@ -77,31 +77,10 @@ public class GameManager {
 	}
 
 	public void getNameToWriteInScoreFile() {
-		/*try {
-			File file = new File("Ranking.txt");
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-			FileWriter fw = new FileWriter(file, true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter pw = new PrintWriter(bw);
-
-			pw.println(this.enterName() + "," + GameManager.getInstance().getScore());
-			
-			pw.close();
-
-		} catch (IOException ioe) {
-			System.out.println("Exception occurred:");
-			ioe.printStackTrace();
-		} finally {
-			JetpackGame.currentGameState = GameStates.Ranking;
-		}*/
+	
 		scores.addScore(new Score(enterName(), gameScore));
 		scores.printList();
 		JetpackGame.currentGameState = GameStates.Ranking;
-		
-		saveScore();
-		
 	}
 	
 	public void saveScore(){

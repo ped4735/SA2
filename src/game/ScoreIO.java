@@ -22,15 +22,19 @@ public class ScoreIO implements Serializable {
 		if (scores.size() == 0) {
 			scores.add(score);
 		} else {
+			
+			boolean addInScore = false;
 
 			for (int i = 0; i < scores.size(); i++) {
 				if (score.getScore() > scores.get(i).getScore()) {
 					scores.add(i, score);
+					addInScore = true;
 					break;
-				}else{
-					scores.add(i+1, score);
-					break;
-				}
+				}				
+			}
+			
+			if(!addInScore){
+				scores.add(scores.size(), score);
 			}
 		}
 		
