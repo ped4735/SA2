@@ -1,7 +1,13 @@
 package game;
 
-public class Score {
+import java.io.Serializable;
 
+public class Score implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3296658815298936148L;
 	private String nome;
 	private int score;
 	
@@ -26,8 +32,14 @@ public class Score {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
 
+
+	@Override
+	public String toString() {
+		return "Score [nome=" + nome + ", score=" + score + "]";
+	}
+	
+	
 	
 	
 }
