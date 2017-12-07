@@ -27,7 +27,7 @@ public class Ranking extends Scene{
 		super.draw(g);
 		
 		g.setColor(Color.WHITE);
-		g.setFont(new Font("Arial", Font.BOLD, 40));
+		g.setFont(new Font("Arial", Font.PLAIN, 40));
 		g.drawString("Ranking", 600, 60);
 		
 	
@@ -38,7 +38,7 @@ public class Ranking extends Scene{
 		}
 			
 		
-		g.setFont(new Font("Arial", Font.BOLD, 20));
+		g.setFont(new Font("Arial", Font.PLAIN, 20));
 		g.drawString("Press any key to continue", 400, 600);
 		
 	}
