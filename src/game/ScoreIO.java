@@ -50,14 +50,21 @@ public class ScoreIO implements Serializable {
 
 	}
 
-	public void printList() {
+	public String printList() {
 
 		Iterator<Score> itr = scores.iterator();
+		String stringToReturn = "";
+		
 		while (itr.hasNext()) {
 			Score tempScore = itr.next();
-			System.out.println("{" + tempScore.getNome() + " "
-					+ tempScore.getScore() + "}");
+			/*System.out.println("{" + tempScore.getNome() + " "
+					+ tempScore.getScore() + "}");*/
+			
+			stringToReturn += tempScore.getNome() + " ........................................ "
+					+ tempScore.getScore() + "\n";
 		}
+		
+		return stringToReturn;
 
 	}
 

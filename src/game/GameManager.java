@@ -50,6 +50,9 @@ public class GameManager {
 		this.gameScore = 0;	
 	}
 	
+	public ScoreIO getScoreIO(){
+		return scores;
+	}
 	
 	
 	private String enterName() {
@@ -113,11 +116,6 @@ public class GameManager {
 			ioe.printStackTrace();
 		}	
 		
-	}
-	
-	
-	public ScoreIO getScores(){
-		return scores;
 	}
 	
 
