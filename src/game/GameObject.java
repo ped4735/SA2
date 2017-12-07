@@ -11,7 +11,7 @@ import javax.rmi.CORBA.Util;
 
 import br.senai.sc.engine.Utils;
 
-public class GameObject {
+public abstract class GameObject {
 
 	private Image sprite;
 	private int frameX;
@@ -182,6 +182,7 @@ public class GameObject {
 		null);
 		*/
 		g.rotate(getTheta(),getPosX()+getWidth()/2,getPosY()+getHeight()/2);
+
 		g.drawImage(getSprite(), 
 		getPosX(),
 		getPosY(),
@@ -212,10 +213,10 @@ public class GameObject {
 */
 
 		
-		if (Utils.getInstance().isDebug() && !this.getClass().equals(TrueHero.class)) {
-			g.setColor(Color.GREEN);
-			g.draw(getRectangle());
-		}
+//		if (Utils.getInstance().isDebug() && !this.getClass().equals(TrueHero.class)) {
+//			g.setColor(Color.GREEN);
+//			g.draw(getRectangle());
+//		}
 
 	}
 
