@@ -160,7 +160,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	public void heatingUp() {
 		cooling = false;
-		this.heating += (heatingUpRate + heatingUpRate);
+		this.heating += heatingUpRate;
 		if (this.heating >= this.maxHeating * 0.85f) {
 			warningOverheating = true;
 
