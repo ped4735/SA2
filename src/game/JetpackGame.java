@@ -51,6 +51,8 @@ public class JetpackGame extends Game {
 
 		addNewFont("Space", "game/fonts/spaceAge.otf", 25, Font.PLAIN);
 		addNewFont("Andromeda", "game/fonts/Andromeda.ttf", 25, Font.PLAIN);
+		
+		
 
 		
 

@@ -6,6 +6,7 @@ import game.AnimatedObject;
 import game.GameManager;
 import game.GameObject;
 import game.interfaces.Interactable;
+import game.scenes.LevelManager;
 
 public class Coletable extends AnimatedObject implements Interactable{
 
@@ -18,8 +19,12 @@ public class Coletable extends AnimatedObject implements Interactable{
 	public void actionEnter(GameObject gameobj) {
 		if(game.TrueHero.class.isInstance(gameobj)){
 			game.TrueHero hero = (game.TrueHero) gameobj;
+			
 			GameManager.getInstance().addScore(10);
 			System.out.println(GameManager.getInstance().getScore());
+			
+			LevelManager.getInstance().removeColletableInScene();
+
 			setDestroyed(true);
 		}
 	}

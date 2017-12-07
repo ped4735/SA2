@@ -244,6 +244,7 @@ public abstract class Game extends Canvas {
 		graphics2D.setColor(color);
 		graphics2D.setFont(new Font("Arial", Font.BOLD, fontSize));
 		graphics2D.drawString(mensagem, x, y);
+		
 	}
 
 	public void desenharString(String mensagem, int x, int y, Color color, int fontSize, String fontName) {

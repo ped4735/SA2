@@ -68,7 +68,9 @@ public class Ui {
 
 		drawHeatingBar(g);
 
-		g.drawRect(0, Utils.getInstance().getHeight() - heightBar, Utils.getInstance().getWidth(), heightBar);
+		// g.drawRect(0, Utils.getInstance().getHeight() - heightBar,
+		// Utils.getInstance().getWidth(), heightBar);
+
 		g.drawImage(baseUI, 0, 0, baseUI.getWidth(null), baseUI.getHeight(null), 0, 0, baseUI.getWidth(null),
 				baseUI.getHeight(null), null);
 
@@ -136,21 +138,28 @@ public class Ui {
 		g.drawRect(heatingBarPosX, heatingBarPosY, imageSizeX, imageSizeY);
 
 		// alertas
-		if (hero.isWarningOverheating() || currentHeating > 0.85 * maxHeating) {
+		if (currentHeating > 0.85 * maxHeating) {
 			g.setColor(Color.RED);
 			g.fillRect(319, 679, 449 - 316, 701 - 676);
 
 			g.setColor(Color.WHITE);
 			g.drawString("Overheating!", 319 + 20, 679 + 15);
+		} else {
+			g.setColor(new Color(71, 0, 0));
+			g.fillRect(319, 679, 449 - 316, 701 - 676);
 		}
 
-		if (hero.isCooling() && oldCurrentHeating > currentHeating) {
+		// if (hero.isCooling() && oldCurrentHeating > currentHeating) {
+		if (oldCurrentHeating > currentHeating) {
 			g.setColor(Color.BLUE);
 			g.fillOval(heatingBarPosX + 180, heatingBarPosY + imageSizeY + 20, 10, 10);
 			g.fillRect(170, 675, 135, 30);
 
 			g.setColor(Color.WHITE);
 			g.drawString("Cooling!", heatingBarPosX + 180, heatingBarPosY + imageSizeY + 23);
+		} else {
+			g.setColor(new Color(0, 7, 71));
+			g.fillRect(170, 675, 135, 30);
 		}
 
 		// text info
@@ -165,10 +174,30 @@ public class Ui {
 	}
 
 	private void drawTextInfo(Graphics2D g) {
-		int lineSize = 10;
+		int lineSize = 13;
+
+		g.setFont(new Font("Arial", Font.PLAIN, 15));
+		if (LevelManager.getInstance().getColletableInScene() > 0) {
+			g.setColor(Color.WHITE);
+		} else {
+			g.setColor(Color.GREEN);
+		}
+
+		g.translate(-150, 0);
+		g.drawString("Itens Remaining:", textInfoPosX, textInfoPosY + 1 * lineSize);
+		g.translate(0, +15);
+		g.drawString("" + LevelManager.getInstance().getColletableInScene(), textInfoPosX + 30,
+				textInfoPosY + 1 * lineSize);
+		g.translate(+150, -15);
+
+		g.setFont(new Font("Arial", Font.PLAIN, 12));
 		g.setColor(Color.WHITE);
-		g.drawString("Lifes:" + hero.getLife(), textInfoPosX, textInfoPosY + 0 * lineSize);
-		g.drawString("Score:" + game.GameManager.getInstance().getScore(), textInfoPosX, textInfoPosY + 1 * lineSize);
+
+		g.translate(0, -5);
+		g.drawString("Lifes:" + hero.getLife(), textInfoPosX, textInfoPosY + 1 * lineSize);
+		g.drawString("Score:" + game.GameManager.getInstance().getScore(), textInfoPosX, textInfoPosY + 2 * lineSize);
+		g.drawString("Level:" + LevelManager.getInstance().getNumLevel(), textInfoPosX, textInfoPosY + 3 * lineSize);
+		// g.translate(0,+5);
 
 	}
 
