@@ -4,8 +4,12 @@ import game.scenes.LevelManager;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 
 import javax.swing.JOptionPane;
@@ -13,8 +17,10 @@ import javax.swing.JOptionPane;
 public class GameManager {
 	
 	private static GameManager instance;
+	
 	private int gameScore;
 	private String playerName;
+	private ScoreIO scores = new ScoreIO();
 	
 	public static  GameManager getInstance() {
 		
@@ -22,7 +28,6 @@ public class GameManager {
 			instance = new GameManager();
 		}
 		return instance;
-		
 	}
 	
 	
@@ -72,7 +77,7 @@ public class GameManager {
 	}
 
 	public void getNameToWriteInScoreFile() {
-		try {
+		/*try {
 			File file = new File("Ranking.txt");
 			if (!file.exists()) {
 				file.createNewFile();
@@ -90,10 +95,51 @@ public class GameManager {
 			ioe.printStackTrace();
 		} finally {
 			JetpackGame.currentGameState = GameStates.Ranking;
-		}
+		}*/
+		scores.addScore(new Score(enterName(), gameScore));
+		scores.printList();
+		JetpackGame.currentGameState = GameStates.Ranking;
+		
+		saveScore();
+		
+	}
+	
+	public void saveScore(){
+		try {
+			FileOutputStream fOut = new FileOutputStream("Scores.ser");
+			ObjectOutputStream oOut = new ObjectOutputStream(fOut);
+			oOut.writeObject(scores);
+			oOut.close();
+			
+		} catch (IOException ioe) {
+			System.out.println("Exception occurred:");
+			ioe.printStackTrace();
+		} finally {
+			JetpackGame.currentGameState = GameStates.Ranking;
+		}	
 	}
 	
 	
+	public void loadScore(){
+		
+		try {
+			FileInputStream fIn= new FileInputStream("Scores.ser");
+			
+			
+			ObjectInputStream oIn= new ObjectInputStream(fIn);
+			scores = (ScoreIO) oIn.readObject();
+			oIn.close();
+		} catch (Exception ioe) {
+			System.out.println("Exception occurred:");
+			ioe.printStackTrace();
+		}	
+		
+	}
+	
+	
+	public ScoreIO getScores(){
+		return scores;
+	}
 	
 
 }

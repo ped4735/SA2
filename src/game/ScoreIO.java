@@ -5,28 +5,56 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ScoreIO implements Serializable{
+public class ScoreIO implements Serializable {
 
-	private static final long serialVersionUID = 8750314060189230438L;
-	List<Score> scores = new LinkedList<>();
 	
-	public void addScore(Score score){
-		
-		for (int i = 0; i < scores.size(); i++) {
-			if(scores.get(i).getScore() < score.getScore()){
-				scores.add(i, score);
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1173559520101450186L;
+
+	List<Score> scores = new LinkedList<>();
+
+	private final int MAX_POS_RANK = 5;
+	
+	public void addScore(Score score) {
+
+		if (scores.size() == 0) {
+			scores.add(score);
+		} else {
+
+			for (int i = 0; i < scores.size(); i++) {
+				if (score.getScore() > scores.get(i).getScore()) {
+					scores.add(i, score);
+					break;
+				}else{
+					scores.add(i+1, score);
+					break;
+				}
 			}
 		}
-	}
-	
-	public List<Score> getScores(){
 		
+		if(scores.size() > MAX_POS_RANK){
+			scores.remove(scores.size()-1);			
+		}
+		
+	}
+
+	public List<Score> getScores() {
+
 		return scores;
-		
+
 	}
-	
-	public void printList(){
-		System.out.println(scores.toString());
+
+	public void printList() {
+
+		Iterator<Score> itr = scores.iterator();
+		while (itr.hasNext()) {
+			Score tempScore = itr.next();
+			System.out.println("{" + tempScore.getNome() + " "
+					+ tempScore.getScore() + "}");
+		}
+
 	}
-	
+
 }
