@@ -58,7 +58,7 @@ public class JetpackGame extends Game {
 
 		menu = new MainMenu();
 		credits = new Credits();
-		LevelManager.getInstance().setLevelFiles("level2,level0,level1,level2,level1,level_1,level_3");
+		LevelManager.getInstance().setLevelFiles("level0,level2,level0,level1,level2,level1,level_1,level_3");
 		opening = new Opening();
 		gameOver = new GameOver();
 		ranking = new Ranking();
