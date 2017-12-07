@@ -37,8 +37,7 @@ public abstract class Game extends Canvas {
 	private Map<String, CustomFont> customFonts;
 
 	public Game() {
-		Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
-		
+		Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();	
 		Utils.getInstance().setHeight(fullscreen.height);
 		Utils.getInstance().setWidth(fullscreen.width);
 

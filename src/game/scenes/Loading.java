@@ -19,7 +19,7 @@ public class Loading extends Scene{
 		//getObjsInScene().add(new AnimatedObject("loadingScene.png", 0, 0, 1, 1));	
 		
 		
-		fundoMassa();
+		moveableBackground();
 
 	}
 	
@@ -33,7 +33,7 @@ public class Loading extends Scene{
 		if(count >= contMax){
 			LevelManager.getInstance().nextLevel();
 			count = 0;
-			fundoMassa();
+			moveableBackground();
 
 		}
 		
@@ -42,7 +42,7 @@ public class Loading extends Scene{
 		
 	}
 	
-	private void fundoMassa(){
+	private void moveableBackground(){
 		getObjsInScene().clear();
 		Random r = new Random();
 		

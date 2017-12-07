@@ -10,8 +10,9 @@ import br.senai.sc.engine.CustomFont;
 import br.senai.sc.engine.Utils;
 import game.GameObject;
 import game.JetpackGame;
+import game.PlaySound;
 
-public class Ui {
+	public class Ui {
 
 	// Ui sizeY (sizeX is the screen)
 	public int heightBar = 80;
@@ -38,6 +39,9 @@ public class Ui {
 	Image dial;
 	Image heatingScale;
 	Image baseUI;
+	
+	PlaySound overheating;
+
 
 	public Ui(game.TrueHero hero) {
 		this.hero = hero;
@@ -59,6 +63,8 @@ public class Ui {
 
 		textInfoPosX = Utils.getInstance().getWidth() - 80;
 		textInfoPosY = (Utils.getInstance().getHeight() - heightBar) + 15;
+
+		overheating = new PlaySound("overheating.wav") ;
 
 	}
 
@@ -138,7 +144,9 @@ public class Ui {
 		g.drawRect(heatingBarPosX, heatingBarPosY, imageSizeX, imageSizeY);
 
 		// alertas
-		if (currentHeating > 0.85 * maxHeating) {
+		//if (currentHeating > 0.85 * maxHeating) {
+		if (hero.isWarningOverheating()) {
+
 			g.setColor(Color.RED);
 			g.fillRect(319, 679, 449 - 316, 701 - 676);
 
@@ -149,6 +157,7 @@ public class Ui {
 			g.fillRect(319, 679, 449 - 316, 701 - 676);
 		}
 
+		
 		// if (hero.isCooling() && oldCurrentHeating > currentHeating) {
 		if (oldCurrentHeating > currentHeating) {
 			g.setColor(Color.BLUE);

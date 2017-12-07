@@ -28,19 +28,18 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float maxHeating = 100f;
 	private float heatingUpRate = 0.5f;
 	private float heatingDownRate = 0.2f;
-	//para os sons e ui
+	// para os sons e ui
 	private boolean warningOverheating;
 	private boolean cooling;
 
-
-	//SceneRef
+	// SceneRef
 	private Gameplay onScene;
-	
+
 	// states
 	private boolean isGrounded;
 	private boolean isGravityOn;
 	// lists
-	private List<GameObject> objsInInteraction = new ArrayList<GameObject>();
+	private List <GameObject> objsInInteraction = new ArrayList <GameObject>();
 	// position
 	private float posX;
 	private float posY;
@@ -69,15 +68,19 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float gravityInit = Utils.getInstance().getGravidade();
 	private float gravity = gravityInit;
 
+	// sounds
+	PlaySound overheatingWarning;
 
 	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, Scene onScene) {
 		super(spriteFileName, posX, posY, colFrames, lineFrames);
-		//super(spriteFileName, posX, posY, colFrames, lineFrames, new int[] { 1, 1 });
-		if(Gameplay.class.isInstance(onScene)){
-			this.onScene = (Gameplay)onScene;
+		// super(spriteFileName, posX, posY, colFrames, lineFrames, new int[] {
+		// 1, 1 });
+		if (Gameplay.class.isInstance(onScene)) {
+			this.onScene = (Gameplay) onScene;
 		}
 
 		setTag(GameTags.Player);
+		overheatingWarning = new PlaySound("overheating.wav");
 		init();
 	}
 
@@ -90,25 +93,26 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		isGravityOn = true;
 		theta = thetaInit;
 		setScale(1f);
-		//GameManager.getInstance().setScore(0);
+		// GameManager.getInstance().setScore(0);
 		this.heating = 0;
 	}
-	
-	public void start(int posX, int posY){
+
+	public void start(int posX, int posY) {
 		System.out.println("START!");
 		super.setPosX(posX);
 		super.setPosY(posY);
 		this.posX = (float) super.getPosX();
 		this.posY = (float) super.getPosY();
 
-		this.posXinit = (int) getPosX();;
+		this.posXinit = (int) getPosX();
+		;
 		this.posYinit = (int) getPosY();
-		
+
 		this.velX = 0;
 		this.velY = 0;
-		this.aceX=0;
-		this.aceY=0;
-		
+		this.aceX = 0;
+		this.aceY = 0;
+
 		isGravityOn = true;
 		theta = thetaInit;
 		setScale(1f);
@@ -125,7 +129,9 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		if (wPressed) {
 			this.forward();
 			this.heatingUp();
-			this.cooling=false;
+			this.cooling = false;
+		} else {
+			this.heatingDown();
 		}
 
 		if (aPressed || dPressed) {
@@ -143,33 +149,41 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		posX += velX * deltaTime;
 		posY += velY * deltaTime;
 
-		
-		this.heatingDown();
-		
 		this.floatToInts();
-		
-
-	}
-	
-	public void heatingUp(){
-		cooling = false;
-		this.heating += heatingUpRate;
-		if (this.heating >= this.maxHeating){
-			warningOverheating = true;
+		if (isWarningOverheating()) {
+			overheatingWarning.startLoop();
+		} else {
+			overheatingWarning.stop();
 		}
 
-		if (this.heating >= this.maxHeating){
+	}
+
+	public void heatingUp() {
+		cooling = false;
+		this.heating += (heatingUpRate + heatingUpRate);
+		if (this.heating >= this.maxHeating * 0.85f) {
+			warningOverheating = true;
+
+		} else {
+			warningOverheating = false;
+
+		}
+
+		if (this.heating >= this.maxHeating) {
 			this.takeDamage();
 			warningOverheating = false;
 		}
 	}
-	public void heatingDown(){
-		warningOverheating = false;
+
+	public void heatingDown() {
 		this.heating -= heatingDownRate;
-		if (this.heating <= 0.0f){
+		if (this.heating <= 0.0f) {
 			this.heating = 0;
 			cooling = false;
 			return;
+		}
+		if (this.heating <= this.maxHeating * 0.85f) {
+			warningOverheating = false;
 		}
 		cooling = true;
 	}
@@ -195,18 +209,20 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 			JetpackGame.currentGameState = GameStates.GameOver;
 		}
 	}
-	public void fall(){
-		aceY+=gravity;
+
+	public void fall() {
+		aceY += gravity;
 	}
-	
+
 	public void goDown() {
 		aceY += Utils.getInstance().getGravidade();
-		velY+=aceY*deltaTime;
-		
+		velY += aceY * deltaTime;
+
 	}
-	public void goUp(){
+
+	public void goUp() {
 		aceY -= gravity;
-		velY+=aceY*deltaTime;
+		velY += aceY * deltaTime;
 
 	}
 
@@ -236,7 +252,6 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	@Override
 	public void draw(Graphics2D g) {
 
-
 		if (Utils.getInstance().isDebug()) {
 			drawDebug(g);
 		}
@@ -246,8 +261,6 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		super.draw(g);
 		g.rotate((-1) * (theta + a), posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
 
-		
-		
 	}
 
 	@Override
@@ -286,8 +299,6 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		g.drawString("Life:" + this.getLife(), 20, 160);
 		g.drawString("Heating: " + heating, 20, 180);
 
-		
-
 		int offset = 30;
 		g.setColor(Color.red);
 		g.drawLine((int) posX - offset, (int) posY, (int) posX + (int) (velX * 0.5f) - offset,
@@ -298,8 +309,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		g.drawLine((int) posX - offset, (int) posY, (int) posX + (int) (aceX * 1f) - offset,
 				(int) posY + (int) (aceY * 1f));
 
-		
-		if(Utils.getInstance().isDebug()){
+		if (Utils.getInstance().isDebug()) {
 			g.draw(getRectangle());
 			g.setColor(Color.BLUE);
 			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.bot));
@@ -311,8 +321,6 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 			g.fill(Utils.getInstance().getRectangleFace(getRectangle(), CollisionFace.right));
 		}
 	}
-		
-	
 
 	// colisões
 	@Override
@@ -335,7 +343,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	@Override
 	public void collisionExit(GameObject objExtCol) {
-		Iterator<GameObject> itr = objsInInteraction.listIterator();
+		Iterator <GameObject> itr = objsInInteraction.listIterator();
 		while (itr.hasNext()) {
 			GameObject tempObj = itr.next();
 
@@ -483,8 +491,5 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	public void setCooling(boolean cooling) {
 		this.cooling = cooling;
 	}
-	
-		
-	
 
 }
