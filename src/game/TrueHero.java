@@ -4,7 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.font.TransformAttribute;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.NoninvertibleTransformException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -47,6 +50,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float theta;// = (float) ((1f) * Math.PI / 2f);
 	private int posXinit;
 	private int posYinit;
+	private boolean fliped;
 	// speed
 	private float velX;
 	private float velY;
@@ -203,12 +207,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		setVelX(0);
 		setVelY(0);
 		this.heating = 0.0f;
-		
-		overheatingWarning.stop();
-		
-		
-		
 
+		overheatingWarning.stop();
 
 		setLife(getLife() - 1);
 		if (getLife() <= 0) {
@@ -234,8 +234,11 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 	private void turn() {
 		if (aPressed) {
+			fliped = true;
 			theta -= turnRate;
 		} else if (dPressed) {
+			fliped = false;
+
 			theta += turnRate;
 		}
 	}
@@ -261,11 +264,29 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		if (Utils.getInstance().isDebug()) {
 			drawDebug(g);
 		}
+		
+
 
 		float a = (float) ((1f) * Math.PI / 2f);
 		g.rotate(theta + a, posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
-		super.draw(g);
+		if (fliped){
+			g.drawImage(getSprite(), 
+					super.getPosX(),
+					super.getPosY(),
+					super.getPosX() + (int) (getWidth() * super.getScale()),				
+					super.getPosY() + (int) (getHeight() * super.getScale()),
+					getFrameX() * getWidth() + getWidth(), 
+					getFrameY() * getHeight(),
+					getFrameX() * getWidth(),
+					getFrameY() * getHeight()+getHeight(),
+					null);
+		}else{
+			super.draw(g);
+		}
 		g.rotate((-1) * (theta + a), posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
+
+		
+		
 
 	}
 

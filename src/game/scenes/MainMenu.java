@@ -20,7 +20,7 @@ public class MainMenu extends Scene {
 		this.getPositions();
 
 		// background
-		getObjsInScene().add(new AnimatedObject("Space.jpg", 0, 0, 1, 1));
+		getObjsInScene().add(new AnimatedObject("background/Space.jpg", 0, 0, 1, 1));
 
 		// logo
 		AnimatedObject logo;
