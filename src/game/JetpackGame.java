@@ -50,8 +50,8 @@ public class JetpackGame extends Game {
 	public void init() {
 		Utils.getInstance().setGlobalScale(1f);
 
-		addNewFont("Space", "game/fonts/spaceAge.otf", 25, Font.PLAIN);
-		addNewFont("Andromeda", "game/fonts/Andromeda.ttf", 25, Font.PLAIN);
+		addNewFont("Space", "fonts/spaceAge.otf", 25, Font.PLAIN);
+		addNewFont("Andromeda", "fonts/Andromeda.ttf", 25, Font.PLAIN);
 		
 		
 		//Add event when application is closed

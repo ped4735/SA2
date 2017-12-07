@@ -46,7 +46,7 @@ public class Loading extends Scene{
 		getObjsInScene().clear();
 		Random r = new Random();
 		
-		String name = "loadingbg/Space" + r.nextInt(5) + ".jpg";
+		String name = "loadingbg/Space" + r.nextInt(7) + ".jpg";
 		System.out.println("name: " + name);
 		background = new MovableBackground(name);
 		

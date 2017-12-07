@@ -7,7 +7,11 @@ import java.awt.event.KeyEvent;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
+import br.senai.sc.engine.Utils;
+import game.AnimatedObject;
+import game.Button;
 import game.GameManager;
 import game.GameStates;
 import game.JetpackGame;
@@ -16,6 +20,18 @@ import game.ScoreIO;
 
 public class Ranking extends Scene{
 	
+	public Ranking(){
+
+		getObjsInScene().add(new AnimatedObject("rankingBackground.jpg", 0, 0, 1, 1));
+		
+		Button exit = new Button("exitButton.png", 500, 500, 1, 2, GameStates.Exit);
+		exit.setPosTopRight(10,10);
+		getObjsInScene().add(exit);
+
+
+		
+		
+	}
 	
 	@Override
 	public void keyPressed(KeyEvent key) {

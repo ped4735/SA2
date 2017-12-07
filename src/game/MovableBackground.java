@@ -29,7 +29,10 @@ public class MovableBackground extends GameObject implements Updatable {
 		Random r = new Random();
 
 		velX = (float) Math.sqrt(r.nextDouble() * 25);
+		velX = (float)(r.nextDouble() * 5);
+
 		velY = (float) Math.sqrt(r.nextDouble() * 16);
+		velY = (float)(r.nextDouble() * 4);
 		System.out.println("VelX:" + velX + ": VelY:" + velY);
 
 		offsetXtop = 0;
@@ -47,6 +50,12 @@ public class MovableBackground extends GameObject implements Updatable {
 
 		offsetXbot += velX;
 		offsetYbot += velY;
+		
+		
+		velX = velX/1.1f;
+		velY = velY/1.1f;
+		System.out.println("VelX:" + velX + ": VelY:" + velY);
+
 	}
 
 	@Override

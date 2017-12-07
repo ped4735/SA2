@@ -5,6 +5,8 @@ import game.scenes.LevelManager;
 
 import java.awt.Rectangle;
 
+import br.senai.sc.engine.Utils;
+
 public class Button extends GameObject implements Clickable{
 
 	private GameStates changeToState;
@@ -38,4 +40,12 @@ public class Button extends GameObject implements Clickable{
 		}
 	}
 
+	public void setPosTopRight(int offsetX, int offsetY){
+		this.setPosX(Utils.getInstance().getWidth() - this.getWidth() - offsetX);
+		this.setPosY(offsetY);
+	}
+	public void setPosTopRight(){
+		setPosTopRight(0,0);
+	}
+	
 }

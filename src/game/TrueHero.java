@@ -203,6 +203,12 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		setVelX(0);
 		setVelY(0);
 		this.heating = 0.0f;
+		
+		overheatingWarning.stop();
+		
+		
+		
+
 
 		setLife(getLife() - 1);
 		if (getLife() <= 0) {
