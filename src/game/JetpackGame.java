@@ -36,6 +36,7 @@ public class JetpackGame extends Game {
 		addMouseListener(new MouseInputHandler());
 		addKeyListener(new KeyInputHandler());
 		addMouseMotionListener(new MouseInputHandler());
+		
 	}
 
 	public static void main(String[] args) {
@@ -53,6 +54,16 @@ public class JetpackGame extends Game {
 		addNewFont("Andromeda", "game/fonts/Andromeda.ttf", 25, Font.PLAIN);
 		
 		
+		//Add event when application is closed
+		Runtime.getRuntime().addShutdownHook(new Thread() 
+		{
+		    @Override
+		    public void run()
+		    {
+		        GameManager.getInstance().saveScore();
+		        System.out.println("Saved");
+		    }
+		});
 
 		
 
@@ -187,5 +198,7 @@ public class JetpackGame extends Game {
 			currentScene.keyReleased(e);
 		}
 	}
+	
+	
 
 }

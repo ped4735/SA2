@@ -32,8 +32,6 @@ public class Loading extends Scene{
 		if(count >= contMax){
 			LevelManager.getInstance().nextLevel();
 			count = 0;
-			
-			
 			fundoMassa();
 
 		}
