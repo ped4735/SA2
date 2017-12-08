@@ -16,7 +16,7 @@ public class LevelManager {
 	private Gameplay level;
 	private int currentLevel;
 	String[] fileNames;
-	private int numLevel=1;
+	private int numLevel;
 	
 	
 	private int colletableInScene;
@@ -48,7 +48,7 @@ public class LevelManager {
 		
 		
 		if (currentLevel < fileNames.length) {
-			
+			System.out.println(fileNames.length);
 			level = new Gameplay(fileNames[currentLevel]);
 			currentLevel++;
 			numLevel++;
