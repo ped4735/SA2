@@ -2,6 +2,7 @@ package game.scenes;
 
 import java.awt.event.KeyEvent;
 
+import br.senai.sc.engine.Utils;
 import game.AnimatedObject;
 import game.Button;
 import game.GameObject;
@@ -13,7 +14,9 @@ public class Help extends Scene{
 	public Help(){
 		getObjsInScene().add(new AnimatedObject("background/helpBackground.jpg", 0, 0,1,1));
 		
-		getObjsInScene().add(new Button("exitButton.png", 500, 500, 1, 2, GameStates.Exit));
+		Button exit = new Button("exitButton.png", 500, 500, 1, 2, GameStates.MainMenu);
+		exit.setPosTopRight(10,10);
+		getObjsInScene().add(exit);
 
 		
 				

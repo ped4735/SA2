@@ -14,8 +14,10 @@ public class Credits extends Scene {
 	public Credits() {
 		
 		getObjsInScene().add(new AnimatedObject("bgImage.png", 0, 0, 1, 1));
-		getObjsInScene().add(new Button("exitButton.png", 0, 0, 1, 2, GameStates.MainMenu));
-		getObjsInScene().add(new AnimatedObject("coinssonic.png", 300, 100, 4, 4));		
+		
+		Button exit = new Button("exitButton.png", 500, 500, 1, 2, GameStates.MainMenu);
+		exit.setPosTopRight(10,10);
+		getObjsInScene().add(exit);
 		
 	}
 	

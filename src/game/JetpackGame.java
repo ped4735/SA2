@@ -3,6 +3,7 @@ package game;
 import game.scenes.Credits;
 import game.scenes.GameOver;
 import game.scenes.Gameplay;
+import game.scenes.Help;
 import game.scenes.MainMenu;
 import game.scenes.Opening;
 import game.scenes.Ranking;
@@ -68,6 +69,7 @@ public class JetpackGame extends Game {
 		
 
 		menu = new MainMenu();
+		help = new Help();
 		credits = new Credits();
 		LevelManager.getInstance().setLevelFiles("level_1,level1,level2,level1,level_1,level_3");
 		opening = new Opening();

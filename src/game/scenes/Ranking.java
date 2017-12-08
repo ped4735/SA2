@@ -24,7 +24,7 @@ public class Ranking extends Scene{
 
 		getObjsInScene().add(new AnimatedObject("background/rankingBackground.jpg", 0, 0, 1, 1));
 		
-		Button exit = new Button("exitButton.png", 500, 500, 1, 2, GameStates.Exit);
+		Button exit = new Button("exitButton.png", 500, 500, 1, 2, GameStates.MainMenu);
 		exit.setPosTopRight(10,10);
 		getObjsInScene().add(exit);
 
