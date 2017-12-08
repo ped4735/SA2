@@ -199,6 +199,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	}
 
 	public void takeDamage() {
+		overheatingWarning.stop();
+
 		this.setPosX(posXinit);
 		this.setPosY(posYinit);
 		posX = getPosX();
@@ -208,8 +210,12 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		setVelY(0);
 		this.heating = 0.0f;
 
-		overheatingWarning.stop();
-
+		//
+		System.out.println("TakeDamage tá dando vida infinita!! não entregar assim!!");
+		setLife(getLife() + 1);
+		//para testar o level design
+		//apagar tudo isso depois...
+		
 		setLife(getLife() - 1);
 		if (getLife() <= 0) {
 			JetpackGame.currentGameState = GameStates.GameOver;

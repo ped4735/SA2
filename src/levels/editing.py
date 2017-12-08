@@ -5,13 +5,13 @@ import glob2
 
 #pega os arquivos origiais, na pasta raw
 os.chdir("raw")
-print (os.getcwd())
+#print (os.getcwd())
 filenames=glob2.glob("*.tmx")
 os.chdir("..")
-print (os.getcwd())
+#print (os.getcwd())
 
 #escreve o nome, soh para garantir
-print(filenames)
+#print(filenames)
 
 
 #se a pasta ao existe, cria
@@ -43,9 +43,22 @@ namesToPrint = ""
 for name in filenames:
     #lembrar de tirar o .tmx para usar nosso metodo de importar java
     namesToPrint+="cleanMaps/"+name[:-4] + ","
-print(namesToPrint[:-1])
+#print(namesToPrint[:-1])
+
 
 f = open("validMaps.txt","w")
+f.write(namesToPrint[:-1] + "\n")
+
+#ela invertida
+namesToPrint = ""
+filenames.reverse()
+for name in filenames:
+    #lembrar de tirar o .tmx para usar nosso metodo de importar java
+    namesToPrint+="cleanMaps/"+name[:-4] + ","
+
+print(namesToPrint[:-1])    
 f.write(namesToPrint[:-1])
+
+
 f.close()
 

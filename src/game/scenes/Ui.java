@@ -40,8 +40,6 @@ import game.PlaySound;
 	Image heatingScale;
 	Image baseUI;
 	
-	PlaySound overheating;
-
 
 	public Ui(game.TrueHero hero) {
 		this.hero = hero;
@@ -58,28 +56,32 @@ import game.PlaySound;
 
 		lineSize = 38;
 
-		heatingBarPosX = 15;
-		heatingBarPosY = (Utils.getInstance().getHeight() - heightBar) + 10;
+		heatingBarPosX = 15 - 1;
+		heatingBarPosY = (Utils.getInstance().getHeight() - heightBar) + 10 ;
 
 		textInfoPosX = Utils.getInstance().getWidth() - 80;
 		textInfoPosY = (Utils.getInstance().getHeight() - heightBar) + 15;
 
-		overheating = new PlaySound("overheating.wav") ;
 
 	}
 
 	public void draw(Graphics2D g) {
+		//black background to cover the boundries tiles
+		g.setColor(Color.BLACK);
+		g.fillRect(0, Utils.getInstance().getHeight() - heightBar,Utils.getInstance().getWidth(), heightBar);
 
+		
+		//heating bar
 		g.setColor(Color.white);
-
 		drawHeatingBar(g);
 
-		// g.drawRect(0, Utils.getInstance().getHeight() - heightBar,
-		// Utils.getInstance().getWidth(), heightBar);
-
+		//ui base interface
 		g.drawImage(baseUI, 0, 0, baseUI.getWidth(null), baseUI.getHeight(null), 0, 0, baseUI.getWidth(null),
 				baseUI.getHeight(null), null);
 
+		
+		
+		
 		// drawDial
 		g.drawImage(dial, centerDialVelX - lineSize, centerDialVelY - lineSize,
 				centerDialVelX - lineSize + dial.getWidth(null), centerDialVelY - lineSize + dial.getHeight(null), 0, 0,
@@ -89,13 +91,12 @@ import game.PlaySound;
 				centerDialAceX - lineSize + dial.getWidth(null), centerDialAceY - lineSize + dial.getHeight(null), 0, 0,
 				dial.getWidth(null), dial.getHeight(null), null);
 
+		
 		// desenha as coisas da interface
 		drawSpeedDial(g);
 		drawAceDial(g);
 		drawTextInfo(g);
 
-		// g.setColor(Color.pink);
-		// g.fillRect(0, Utils.getInstance().getHeight() - 80, 20 , 80);
 
 	}
 
@@ -127,7 +128,7 @@ import game.PlaySound;
 		float currentHeating = hero.getHeating();
 		float maxHeating = hero.getMaxHeating();
 
-		int imageSizeX = (int) (heatingScale.getWidth(null) * 1.8f);
+		int imageSizeX = (int) (heatingScale.getWidth(null) * 1.8f) + 1;
 		int imageSizeY = (int) (heatingScale.getHeight(null) / 5f);
 
 		// desenha a barra

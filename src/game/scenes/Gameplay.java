@@ -24,7 +24,7 @@ public class Gameplay extends Scene {
 
 	private int TILE_SIZE = 32;
 	private int COLS = 40;
-	private int ROWS = 22;
+	private int ROWS = 20;
 	private int[][] tileMapMatrix;
 	private String tmxFile;
 	Ui ui;
@@ -38,14 +38,17 @@ public class Gameplay extends Scene {
 		tileMapMatrix = new int[ROWS][COLS];
 		lerArquivo();
 
-		
 		try {
-			//qualquer coisa pra ver se ela existe
+			// qualquer coisa pra ver se ela existe
 			ui.getClass();
 		} catch (Exception e) {
 			System.out.println("a fase nao tem heroi!");
 			throw new NullPointerException();
 		}
+
+		
+		// cria barreira fora do mapa...
+		makeBoundaries();
 	}
 
 	private void lerArquivo() {
@@ -70,6 +73,8 @@ public class Gameplay extends Scene {
 			br.close();
 			fr.close();
 
+			
+			
 			// instanciar objetos pelo tile
 			for (int r = 0; r < tileMapMatrix.length; r++) {
 				for (int c = 0; c < tileMapMatrix[r].length; c++) {
@@ -153,4 +158,24 @@ public class Gameplay extends Scene {
 		ui.draw(g);
 
 	}
+
+	private void makeBoundaries() {
+		int[] x = new int[] {-1, 40};
+		int[] y = new int[] {-1, 20};
+
+		//horizontal
+		for (int j : y) {
+			for (int i = x[0]; i<=x[1]; i++) {
+				getObjsInScene().add(new Stone(i * 32, j * 32));
+			}
+		}
+		
+		//Vertical
+		for (int i : x) {
+			for (int j = y[0]; j<=y[1]; j++) {
+				getObjsInScene().add(new Stone(i * 32, j * 32));
+			}
+		}
+	}
+
 }
