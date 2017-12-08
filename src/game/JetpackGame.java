@@ -72,7 +72,14 @@ public class JetpackGame extends Game {
 		String newmaps = "map1,map2,map3";
 		String maps;
 		try {
+			//para sempre carregar pela ultima fase feita
+			Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
+			
 			maps = readValidMaps();
+			System.out.println(maps);
+			
+			Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
+
 			LevelManager.getInstance().setLevelFiles(maps);
 			System.out.println("Maps: " + maps);
 		} catch (IOException e) {
@@ -218,6 +225,13 @@ public class JetpackGame extends Game {
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			String line = br.readLine();
+			
+			//para sempre carregar pela ultima fase feita
+			if (Utils.getInstance().isDebug()){
+				line = br.readLine();
+			}
+
+			
 			br.close();
 			return line;
 		} catch (IOException e) {
