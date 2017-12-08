@@ -28,29 +28,35 @@ public class Gameplay extends Scene {
 	private int[][] tileMapMatrix;
 	private String tmxFile;
 	Ui ui;
-	
+
 	public Gameplay(String tmxFile) {
 
-		//getObjsInScene().add(new BlackHole(300, 100));
+		// getObjsInScene().add(new BlackHole(300, 100));
 
 		LevelManager.getInstance().setColletableInScene(0);
 		this.tmxFile = tmxFile;
 		tileMapMatrix = new int[ROWS][COLS];
 		lerArquivo();
-			
+
+		
+		try {
+			//qualquer coisa pra ver se ela existe
+			ui.getClass();
+		} catch (Exception e) {
+			System.out.println("a fase nao tem heroi!");
+			throw new NullPointerException();
+		}
 	}
 
-	
-	
 	private void lerArquivo() {
 		try { // try ler arquivo tmx
 			File file = new File("src/levels/" + tmxFile + ".tmx");
-			System.out.println("src/levels/" + tmxFile + ".tmx 100%" );
-			
+			System.out.println("src/levels/" + tmxFile + ".tmx 100%");
+
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			String linha = br.readLine();
-			
+
 			int rowCount = 0;
 			while (linha != null && !linha.isEmpty()) {
 				String[] split = linha.split(",");
@@ -75,7 +81,7 @@ public class Gameplay extends Scene {
 						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE));
 						break;
 					case 2:
-						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI));
+						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE, (float) Math.PI));
 						break;
 					case 3:
 						TrueHero tempHero = new TrueHero("joe.png", c * TILE_SIZE, r * TILE_SIZE, 3, 1, this);
@@ -93,7 +99,7 @@ public class Gameplay extends Scene {
 					case 6:
 						getObjsInScene().add(new Stone(c * TILE_SIZE, r * TILE_SIZE));
 						break;
-						
+
 					case 7:
 						getObjsInScene().add(new GravityUp(c * TILE_SIZE, r * TILE_SIZE));
 						break;
@@ -104,50 +110,47 @@ public class Gameplay extends Scene {
 					case 9:
 						getObjsInScene().add(new CompleteLevel(c * TILE_SIZE, r * TILE_SIZE));
 						break;
-					
+
 					case 10:
 						break;
 					case 11:
-						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI/2));
+						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE, (float) Math.PI / 2));
 						break;
 					case 12:
-						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE,(float) Math.PI*3/2));
+						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE, (float) Math.PI * 3 / 2));
 						break;
 					case 13:
 						getObjsInScene().add(new EndLevel(c * TILE_SIZE, r * TILE_SIZE));
-						break;		
+						break;
 					case 15:
-						getObjsInScene().add(new Missile(c * TILE_SIZE, r * TILE_SIZE,0,5,Math.PI));
-						break;	
+						getObjsInScene().add(new Missile(c * TILE_SIZE, r * TILE_SIZE, 0, 5, Math.PI));
+						break;
 					case 16:
-						getObjsInScene().add(new Missile(c * TILE_SIZE, r * TILE_SIZE,5,0,Math.PI/2));
-						break;	
+						getObjsInScene().add(new Missile(c * TILE_SIZE, r * TILE_SIZE, 5, 0, Math.PI / 2));
+						break;
 
 					default:
 						break;
 					}
 				}
 			}
-			
-			
-			
+
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
-		
-		if(JetpackGame.currentGameState == GameStates.Loading){
-			
+
+		if (JetpackGame.currentGameState == GameStates.Loading) {
+
 			JetpackGame.currentGameState = GameStates.Gameplay;
 			System.out.println("Carregou novo level!");
 		}
-		
+
 	}
 
-	
 	@Override
 	public void draw(Graphics2D g) {
 		super.draw(g);
 		ui.draw(g);
+
 	}
 }
-

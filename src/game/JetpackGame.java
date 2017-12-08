@@ -73,15 +73,14 @@ public class JetpackGame extends Game {
 		String maps;
 		try {
 			maps = readValidMaps();
-			System.out.println("Maps: " + maps);
 			LevelManager.getInstance().setLevelFiles(maps);
+			System.out.println("Maps: " + maps);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		
 		menu = new MainMenu();
-		help = new Help();
 		credits = new Credits();
 		opening = new Opening();
 		gameOver = new GameOver();
