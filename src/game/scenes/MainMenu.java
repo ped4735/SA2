@@ -32,11 +32,10 @@ public class MainMenu extends Scene {
 		
 		// buttons
 		getObjsInScene().add(new Button("startButton.png", posX1, posY1, 1, 2, GameStates.Loading));
-		getObjsInScene().add(new Button("creditsButton.png", posX1, posY2, 1, 2, GameStates.Ranking));
+		getObjsInScene().add(new Button("rankingButton.png", posX1, posY2, 1, 2, GameStates.Ranking));
 		getObjsInScene().add(new Button("helpButton.png", posX2, posY1, 1, 2, GameStates.Help));
-		//ranking button
-		
 		getObjsInScene().add(new Button("exitButton.png", posX2, posY2, 1, 2, GameStates.Exit));
+		
 
 	}
 	

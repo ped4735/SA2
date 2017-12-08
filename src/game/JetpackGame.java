@@ -3,6 +3,7 @@ package game;
 import game.scenes.Credits;
 import game.scenes.GameOver;
 import game.scenes.Gameplay;
+import game.scenes.Help;
 import game.scenes.MainMenu;
 import game.scenes.Opening;
 import game.scenes.Ranking;
@@ -18,6 +19,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -36,7 +42,7 @@ public class JetpackGame extends Game {
 		addMouseListener(new MouseInputHandler());
 		addKeyListener(new KeyInputHandler());
 		addMouseMotionListener(new MouseInputHandler());
-		
+
 	}
 
 	public static void main(String[] args) {
@@ -45,46 +51,53 @@ public class JetpackGame extends Game {
 		jogo.startGame();
 	}
 
-
 	@Override
 	public void init() {
 		Utils.getInstance().setGlobalScale(1f);
 
 		addNewFont("Space", "fonts/spaceAge.otf", 25, Font.PLAIN);
 		addNewFont("Andromeda", "fonts/Andromeda.ttf", 25, Font.PLAIN);
-		
-		
-		//Add event when application is closed
-		Runtime.getRuntime().addShutdownHook(new Thread() 
-		{
-		    @Override
-		    public void run()
-		    {
-		        GameManager.getInstance().saveScore();
-		        System.out.println("Saved");
-		    }
+
+		// Add event when application is closed
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
+			public void run() {
+				GameManager.getInstance().saveScore();
+				System.out.println("Saved");
+			}
 		});
 
-		
 
+		String oldmaps = "level_1,level1,level2,level1,level_1,level_3";
+		String newmaps = "map1,map2,map3";
+		String maps;
+		try {
+			maps = readValidMaps();
+			System.out.println("Maps: " + maps);
+			LevelManager.getInstance().setLevelFiles(maps);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		menu = new MainMenu();
 		credits = new Credits();
-		LevelManager.getInstance().setLevelFiles("level_1,level1,level2,level1,level_1,level_3");
 		opening = new Opening();
 		gameOver = new GameOver();
 		ranking = new Ranking();
 		loading = new Loading();
 		victory = new Victory();
+		help = new Help();
 		currentGameState = GameStates.MainMenu;
-		
+
 		GameManager.getInstance().loadScore();
-		
+
 	}
 
 	@Override
 	public void gameLoop() {
-//		setFont("Space");
-		//setFont("Andromeda");
+		// setFont("Space");
+		// setFont("Andromeda");
 
 		switch (currentGameState) {
 		case OpeningPreMenu:
@@ -111,47 +124,46 @@ public class JetpackGame extends Game {
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
-			
+
 		case GameOver:
 			currentScene = gameOver;
-			currentScene.draw(getGraphics2D()); 
-			currentScene.update();			
+			currentScene.draw(getGraphics2D());
+			currentScene.update();
 
 			break;
-			
+
 		case Ranking:
 			currentScene = ranking;
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
-			
+
 		case Help:
 			currentScene = help;
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
-			
+
 		case Loading:
 			currentScene = loading;
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
-			
+
 		case Victory:
 			currentScene = victory;
 			currentScene.draw(getGraphics2D());
 			currentScene.update();
 			break;
-			
+
 		case Exit:
 			System.exit(0);
 			break;
-			
+
 		default:
 			break;
 
 		}
-
 
 	}
 
@@ -159,7 +171,7 @@ public class JetpackGame extends Game {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			currentScene.click(e.getX(), e.getY());
-			System.out.println("X: " + e.getX() + " Y: " +  e.getY());
+			System.out.println("X: " + e.getX() + " Y: " + e.getY());
 		}
 
 		@Override
@@ -180,15 +192,15 @@ public class JetpackGame extends Game {
 				Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
 			}
 			if (e.getKeyCode() == KeyEvent.VK_P) {
-				if(currentGameState == GameStates.Gameplay){
+				if (currentGameState == GameStates.Gameplay) {
 					currentGameState = GameStates.Loading;
 				}
 			}
-			if (e.getKeyCode() == KeyEvent.VK_NUMPAD1){
-			alterarFramesPorSegundos(5);
+			if (e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
+				alterarFramesPorSegundos(5);
 			}
-			if (e.getKeyCode() == KeyEvent.VK_NUMPAD2){
-			alterarFramesPorSegundos(30);
+			if (e.getKeyCode() == KeyEvent.VK_NUMPAD2) {
+				alterarFramesPorSegundos(30);
 			}
 
 		}
@@ -198,7 +210,20 @@ public class JetpackGame extends Game {
 			currentScene.keyReleased(e);
 		}
 	}
-	
-	
 
+	
+	private String readValidMaps() throws IOException {
+		File file = new File("src/levels/validMaps.txt");
+		try {
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			String line = br.readLine();
+			br.close();
+			return line;
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+
+	}
 }

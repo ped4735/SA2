@@ -28,6 +28,9 @@ public class Ranking extends Scene{
 		exit.setPosTopRight(10,10);
 		getObjsInScene().add(exit);
 
+		Button c = new Button("exitButton.png", 500, 500, 1, 2, GameStates.MainMenu);
+		c.setPosTopRight(10,10 + c.getHeight());
+		getObjsInScene().add(c);
 
 		
 		
