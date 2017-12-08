@@ -210,11 +210,13 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		setVelY(0);
 		this.heating = 0.0f;
 
-		//
-		System.out.println("TakeDamage tá dando vida infinita!! não entregar assim!!");
-		setLife(getLife() + 1);
-		//para testar o level design
-		//apagar tudo isso depois...
+		if (false) {
+			//
+			System.out.println("TakeDamage tá dando vida infinita!! não entregar assim!!");
+			setLife(getLife() + 1);
+			// para testar o level design
+			// apagar tudo isso depois...
+		}
 		
 		setLife(getLife() - 1);
 		if (getLife() <= 0) {
@@ -270,29 +272,18 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		if (Utils.getInstance().isDebug()) {
 			drawDebug(g);
 		}
-		
-
 
 		float a = (float) ((1f) * Math.PI / 2f);
 		g.rotate(theta + a, posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
-		if (fliped){
-			g.drawImage(getSprite(), 
-					super.getPosX(),
-					super.getPosY(),
-					super.getPosX() + (int) (getWidth() * super.getScale()),				
-					super.getPosY() + (int) (getHeight() * super.getScale()),
-					getFrameX() * getWidth() + getWidth(), 
-					getFrameY() * getHeight(),
-					getFrameX() * getWidth(),
-					getFrameY() * getHeight()+getHeight(),
-					null);
-		}else{
+		if (fliped) {
+			g.drawImage(getSprite(), super.getPosX(), super.getPosY(),
+					super.getPosX() + (int) (getWidth() * super.getScale()),
+					super.getPosY() + (int) (getHeight() * super.getScale()), getFrameX() * getWidth() + getWidth(),
+					getFrameY() * getHeight(), getFrameX() * getWidth(), getFrameY() * getHeight() + getHeight(), null);
+		} else {
 			super.draw(g);
 		}
 		g.rotate((-1) * (theta + a), posX + (sizeX * getScale()) / 2, posY + (sizeY * getScale()) / 2);
-
-		
-		
 
 	}
 
@@ -394,32 +385,32 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	// key action
 	@Override
 	public void pressAction(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_W) {
+		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
 			wPressed = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_S) {
+		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
 			sPressed = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_A) {
+		if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
 			aPressed = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_D) {
+		if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			dPressed = true;
 		}
 	}
 
 	@Override
 	public void releaseAction(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_W) {
+		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
 			wPressed = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_S) {
+		if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
 			sPressed = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_A) {
+		if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
 			aPressed = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_D) {
+		if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			dPressed = false;
 		}
 

@@ -1,2 +1,2 @@
-cleanMaps/map01,cleanMaps/map02,cleanMaps/map03,cleanMaps/map04,cleanMaps/map04_hard,cleanMaps/map05,cleanMaps/map06,cleanMaps/map07,cleanMaps/map20
-cleanMaps/map20,cleanMaps/map07,cleanMaps/map06,cleanMaps/map05,cleanMaps/map04_hard,cleanMaps/map04,cleanMaps/map03,cleanMaps/map02,cleanMaps/map01
+cleanMaps/map01,cleanMaps/map02,cleanMaps/map03,cleanMaps/map04,cleanMaps/map04_hard,cleanMaps/map05,cleanMaps/map06,cleanMaps/map07,cleanMaps/map08,cleanMaps/map20
+cleanMaps/map20,cleanMaps/map08,cleanMaps/map07,cleanMaps/map06,cleanMaps/map05,cleanMaps/map04_hard,cleanMaps/map04,cleanMaps/map03,cleanMaps/map02,cleanMaps/map01

@@ -103,22 +103,24 @@ import game.PlaySound;
 	private void drawSpeedDial(Graphics2D g) {
 		float module = (float) Math.hypot(hero.getVelX(), hero.getVelY());
 
+		//draw twice to add contrast
 		g.setColor(Color.red);
 		g.drawLine(centerDialVelX, centerDialVelY, centerDialVelX + (int) (lineSize * hero.getVelX() / module),
 				centerDialVelY + (int) (lineSize * hero.getVelY() / module));
-
-		g.fillArc(centerDialVelX - lineSize, centerDialVelY - lineSize, lineSize * 2, lineSize * 2,
-				(int) Math.toDegrees(Math.acos(lineSize * hero.getVelX() / module)) - 5,
-				(int) Math.toDegrees(Math.asin(lineSize * hero.getVelY() / module)) + 5);
+		g.drawLine(centerDialVelX, centerDialVelY, centerDialVelX +1+ (int) ((lineSize-1) * hero.getVelX() / module),
+				centerDialVelY +1+ (int) ((lineSize-1) * hero.getVelY() / module));
 
 	}
 
 	private void drawAceDial(Graphics2D g) {
 		float module = (float) Math.hypot(hero.getAceX(), hero.getAceY());
 
-		g.setColor(Color.green);
+		g.setColor(Color.BLUE);
+		//draw twice to add contrast
 		g.drawLine(centerDialAceX, centerDialAceY, centerDialAceX + (int) (lineSize * hero.getAceX() / module),
-				centerDialAceY + (int) (lineSize * hero.getAceY() / module));
+				centerDialAceY + (int) ((lineSize-1) * hero.getAceY() / module));
+		g.drawLine(centerDialAceX, centerDialAceY, centerDialAceX +1+ (int) ((lineSize-1) * hero.getAceX() / module),
+				centerDialAceY +1+ (int) ((lineSize-1) * hero.getAceY() / module));
 
 	}
 

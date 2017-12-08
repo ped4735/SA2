@@ -16,13 +16,11 @@ public class Credits extends Scene {
 		getObjsInScene().add(new AnimatedObject("background/rankingBackground2.jpg", 0, 0, 1, 1));
 		
 		
-		Button b = new Button("exitButton.png", 500, 500, 1, 2, GameStates.Exit);
+		Button b = new Button("exitButton.png", 500, 500, 1, 2, GameStates.MainMenu);
 		b.setPosTopRight(10,10);
 		getObjsInScene().add(b);	
 		
-		Button c = new Button("exitButton.png", 500, 500, 1, 2, GameStates.MainMenu);
-		c.setPosTopRight(10,10 + c.getHeight());
-		getObjsInScene().add(c);
+
 	}
 	
 	@Override
