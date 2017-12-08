@@ -38,7 +38,7 @@ public class Ranking extends Scene{
 	
 	@Override
 	public void keyPressed(KeyEvent key) {
-		JetpackGame.currentGameState = GameStates.Credits;	
+		JetpackGame.currentGameState = GameStates.Credits;
 	}
 	
 	@Override
@@ -49,7 +49,7 @@ public class Ranking extends Scene{
 		g.setFont(new Font("Arial", Font.PLAIN, 40));
 		g.drawString("Ranking", 600, 60);
 		
-	
+		
 		
 		for (int i = 0; i < GameManager.getInstance().getScoreIO().getScores().size(); i++) {
 			g.drawString(GameManager.getInstance().getScoreIO().getScores().get(i).getNome(), 400, i*80 + 200);

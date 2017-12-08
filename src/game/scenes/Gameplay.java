@@ -85,6 +85,7 @@ public class Gameplay extends Scene {
 						break;
 					case 3:
 						TrueHero tempHero = new TrueHero("joe.png", c * TILE_SIZE, r * TILE_SIZE, 3, 1, this);
+						tempHero.setScale(0.5f);
 						getObjsInScene().add(tempHero);
 						ui = new Ui(tempHero);
 						break;
