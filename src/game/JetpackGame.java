@@ -81,6 +81,7 @@ public class JetpackGame extends Game {
 		
 		
 		menu = new MainMenu();
+		help = new Help();
 		credits = new Credits();
 		opening = new Opening();
 		gameOver = new GameOver();
