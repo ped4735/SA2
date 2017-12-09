@@ -19,10 +19,16 @@ import game.Score;
 import game.ScoreIO;
 
 public class Ranking extends Scene{
-	
+	AnimatedObject logo;
 	public Ranking(){
 
 		getObjsInScene().add(new AnimatedObject("background/rankingBackground.jpg", 0, 0, 1, 1));
+		
+		
+		logo = new AnimatedObject("ranking.png", 0, 0, 1, 1);
+		logo.setPosX(Utils.getInstance().getWidth()/2 - logo.getWidth()/2);
+		getObjsInScene().add(logo);
+		
 		
 		Button exit = new Button("exitButton.png", 500, 500, 1, 2, GameStates.MainMenu);
 		exit.setPosTopRight(10,10);
@@ -44,7 +50,7 @@ public class Ranking extends Scene{
 		
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Arial", Font.PLAIN, 40));
-		g.drawString("Ranking", 600, 60);
+		//g.drawString("Ranking", 600, 60);
 		
 		
 		
@@ -55,7 +61,7 @@ public class Ranking extends Scene{
 			
 		
 		g.setFont(new Font("Arial", Font.PLAIN, 20));
-		g.drawString("Press any key to continue", 400, 600);
+		g.drawString("Press any key to continue", 500, 650);
 		
 	}
 	
