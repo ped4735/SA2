@@ -66,7 +66,7 @@ public class Saw extends Enemy implements Interactable{
 		if (game.TrueHero.class.isInstance(gameobj)) {
 			game.TrueHero hero = (game.TrueHero) gameobj;
 			hero.takeDamage();
-			setDestroyed(true);
+			//setDestroyed(true);
 
 		}
 		

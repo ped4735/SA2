@@ -132,12 +132,12 @@ public class Utils {
 			}
 		}
 		
-		for (int i = 0; i < endMatrix.length; i++) {
+		/*for (int i = 0; i < endMatrix.length; i++) {
 			for (int j = 0; j < endMatrix[i].length; j++) {
 				System.out.print("[" + endMatrix[i][j] + "]");
 			}
 			System.out.println();
-		}
+		}*/
 		
 		return endMatrix;
 	}
