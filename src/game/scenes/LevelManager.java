@@ -17,7 +17,7 @@ public class LevelManager {
 	private int currentLevel;
 	String[] fileNames;
 	private int numLevel;
-	
+	private int gameLife = 20;
 	
 	private int colletableInScene;
 	
@@ -47,9 +47,15 @@ public class LevelManager {
 	public void nextLevel() {
 		
 		
+		
+		
+		
 		if (currentLevel < fileNames.length) {
 			System.out.println(fileNames.length);
 			level = new Gameplay(fileNames[currentLevel]);
+			if(currentLevel != 0){
+				GameManager.getInstance().addScore(50);
+			}
 			currentLevel++;
 			numLevel++;
 			
@@ -58,6 +64,7 @@ public class LevelManager {
 			level = new Gameplay(fileNames[currentLevel]);
 			currentLevel = 1;
 			numLevel=1;
+			 GameManager.getInstance().addScore(100*LevelManager.getInstance().getGameLife());
 			JetpackGame.currentGameState = GameStates.Victory;
 		}
 	}
@@ -80,6 +87,14 @@ public class LevelManager {
 	}
 	public void removeColletableInScene(){
 		colletableInScene--;
+	}
+
+	public int getGameLife() {
+		return gameLife;
+	}
+
+	public void setGameLife(int gameLife) {
+		this.gameLife = gameLife;
 	}
 	
 }

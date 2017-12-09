@@ -48,6 +48,7 @@ public class GameManager {
 		LevelManager.getInstance().setCurrentLevel(0);
 		GameManager.getInstance().getNameToWriteInScoreFile();
 		this.gameScore = 0;	
+		LevelManager.getInstance().setGameLife(20);
 	}
 	
 	public ScoreIO getScoreIO(){
