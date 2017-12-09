@@ -20,6 +20,10 @@ public class Credits extends Scene {
 		logo.setPosX(Utils.getInstance().getWidth()/2 - logo.getWidth()/2);
 		getObjsInScene().add(logo);
 		
+
+		getObjsInScene().add(new AnimatedObject("creditsNames.png", 0, 0, 1, 1));
+		
+		
 		Button b = new Button("exitButton.png", 500, 500, 1, 2, GameStates.MainMenu);
 		b.setPosTopRight(10,10);
 		getObjsInScene().add(b);	
@@ -30,7 +34,6 @@ public class Credits extends Scene {
 	@Override
 	public void draw(Graphics2D g) {
 		super.draw(g);
-		g.drawString("Credits", 600, 30);
 	}
 	
 	@Override
