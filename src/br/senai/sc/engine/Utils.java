@@ -124,13 +124,21 @@ public class Utils {
 		getGraphics2d().fillOval(x, y, width, width);
 	}
 
-	public boolean[][] makeBooleanMatrix(int sizeX, int sizeY, int[] numOfTrues) {
+	public boolean[][] makeBooleanMatrix(int sizeY, int sizeX, int[] numOfTrues) {
 		boolean[][] endMatrix = new boolean[sizeX][sizeY];
 		for (int i = 0; i < endMatrix.length; i++) {
 			for (int j = 0; j < numOfTrues[i]; j++) {
 				endMatrix[i][j] = true;
 			}
 		}
+		
+		for (int i = 0; i < endMatrix.length; i++) {
+			for (int j = 0; j < endMatrix[i].length; j++) {
+				System.out.print("[" + endMatrix[i][j] + "]");
+			}
+			System.out.println();
+		}
+		
 		return endMatrix;
 	}
 

@@ -1,9 +1,6 @@
 package game.tiles;
 
 import game.GameObject;
-import game.GameTags;
-import game.TrueHero;
-import game.interfaces.Collidable;
 import game.interfaces.Interactable;
 
 import java.awt.Rectangle;
@@ -15,7 +12,7 @@ public class Spike extends GameObject implements Interactable{
 	
 	public Spike(int posX, int posY) {
 		super("spike.png", posX, posY, 1, 1);
-
+		
 	}
 	
 	public Spike(int posX, int posY,float theta){

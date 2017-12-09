@@ -5,17 +5,24 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import br.senai.sc.engine.Utils;
+import game.AnimatedObject;
 import game.CollisionFace;
 import game.GameObject;
 import game.GameTags;
 import game.interfaces.Interactable;
 
-public class Stone extends GameObject implements Interactable {
+public class Stone extends AnimatedObject implements Interactable {
 
-	public Stone(int posX, int posY) {
+	
+	private boolean notColide;
+	
+	
+	
+	public Stone(int posX, int posY, boolean notcolide) {
 
-		super("stone.png", posX, posY, 1, 1, GameTags.Ground);
-
+		super("stone.png", posX, posY, 1, 2, new int[]{1,1});
+		setTag(GameTags.Ground);
+		this.notColide = notcolide;
 	}
 
 	@Override
@@ -37,40 +44,8 @@ public class Stone extends GameObject implements Interactable {
 	@Override
 	public void actionEnter(GameObject gameobj) {
 		
-		if(game.TrueHero.class.isInstance(gameobj)){
-			game.TrueHero hero = (game.TrueHero) gameobj;
-			
-			CollisionFace colFace = Utils.getInstance().collisionEnterIn(gameobj.getRectangle(), getRectangle());
-			
-			/*if(colFace == CollisionFace.top_bot){
-				hero.setVelY(5);
-				System.out.println("Top Bot");
-			}
-			
-			if(colFace == CollisionFace.left_right){
-				hero.setVelX(5);
-				System.out.println("Left Right");
-			}*/
-			
-			
-			/*switch (Utils.getInstance().collisionEnterIn(gameobj.getRectangle(), getRectangle())) {
-			case top_bot:
-				hero.setVelY(0);
-				break;
-			case left_right:
-				hero.setVelX(0);
-			case right_left:
-				hero.setVelX(0);
-				break;	
-			default:
-				break;
-			}*/
-			
-			
-			//hero.setGrounded(true);
-			//hero.halt();
-			//hero.setVelX((-2f)*hero.getVelX()/hero.getVelX());
-		}
+		
+		
 		
 	}
 	
@@ -80,42 +55,36 @@ public class Stone extends GameObject implements Interactable {
 	public void actionStay(GameObject gameobj) {
 		
 		if(game.TrueHero.class.isInstance(gameobj)){
-			game.TrueHero hero = (game.TrueHero) gameobj;
-			CollisionFace colFace = Utils.getInstance().collisionEnterIn(gameobj.getRectangle(), getRectangle());			
-			/*if(colFace == CollisionFace.top_bot){
-				hero.setVelY(5);
-				System.out.println("Top Bot");
-			}
 			
-			if(colFace == CollisionFace.left_right){
-				hero.setVelX(5);
-				System.out.println("Left Right");
-			}*/
-			
-			
-			switch (Utils.getInstance().collisionEnterIn(gameobj.getRectangle(), getRectangle())) {
-			case top_bot:
-				hero.setVelY(5);
-				//System.out.println("Top Bot");
-				break;
-			case left_right:
-				hero.setVelX(5);
-				//System.out.println("Left Right");
-				break;
-			case right_left:
-				hero.setVelX(-5);
-				//System.out.println("Right Left");
-				break;
-			case bot_top:
-				hero.setVelY(-5);
-				//System.out.println("Bot Top");
-				break;
-			default:
-				//hero.halt();
-				break;
-			}
-			
-			
+			if(notColide){
+				changeAnim(1);
+			}else{
+				game.TrueHero hero = (game.TrueHero) gameobj;
+				CollisionFace colFace = Utils.getInstance().collisionEnterIn(gameobj.getRectangle(), getRectangle());			
+				
+				
+				switch (Utils.getInstance().collisionEnterIn(gameobj.getRectangle(), getRectangle())) {
+				case top_bot:
+					hero.setVelY(5);
+					//System.out.println("Top Bot");
+					break;
+				case left_right:
+					hero.setVelX(5);
+					//System.out.println("Left Right");
+					break;
+				case right_left:
+					hero.setVelX(-5);
+					//System.out.println("Right Left");
+					break;
+				case bot_top:
+					hero.setVelY(-5);
+					//System.out.println("Bot Top");
+					break;
+				default:
+					//hero.halt();
+					break;
+				}
+			}			
 			
 		}
 		
@@ -124,10 +93,10 @@ public class Stone extends GameObject implements Interactable {
 
 	@Override
 	public void actionExit(GameObject gameobj) {
-		if(game.TrueHero.class.isInstance(gameobj)){
+		/*if(game.TrueHero.class.isInstance(gameobj)){
 			game.TrueHero hero = (game.TrueHero) gameobj;
 			hero.setGrounded(false);
-		}
+		}*/
 			
 	}
 
