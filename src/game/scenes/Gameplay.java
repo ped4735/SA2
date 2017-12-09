@@ -6,10 +6,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.xml.transform.sax.TemplatesHandler;
+
 import br.senai.sc.engine.Utils;
 import game.GameStates;
 import game.JetpackGame;
 import game.Missile;
+import game.Saw;
 import game.TrueHero;
 import game.tiles.BlackHole;
 import game.tiles.Coletable;
@@ -72,6 +75,17 @@ public class Gameplay extends Scene {
 			}
 			br.close();
 			fr.close();
+			
+			for (int r = 0; r < tileMapMatrix.length; r++) {
+				for (int c = 0; c < tileMapMatrix[r].length; c++) {
+					if(tileMapMatrix[r][c] == 3){
+						TrueHero tempHero = new TrueHero(c * TILE_SIZE, r * TILE_SIZE, this);
+						tempHero.setScale(0.5f);
+						getObjsInScene().add(tempHero);
+						ui = new Ui(tempHero);
+					}
+				}
+			}
 
 			
 			
@@ -89,10 +103,10 @@ public class Gameplay extends Scene {
 						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE, (float) Math.PI));
 						break;
 					case 3:
-						TrueHero tempHero = new TrueHero("joe.png", c * TILE_SIZE, r * TILE_SIZE, 3, 1, this);
+						/*TrueHero tempHero = new TrueHero(c * TILE_SIZE, r * TILE_SIZE, this);
 						tempHero.setScale(0.5f);
 						getObjsInScene().add(tempHero);
-						ui = new Ui(tempHero);
+						ui = new Ui(tempHero);*/
 						break;
 					case 4:
 						getObjsInScene().add(new BlackHole(c * TILE_SIZE, r * TILE_SIZE));
@@ -103,7 +117,7 @@ public class Gameplay extends Scene {
 						break;
 
 					case 6:
-						getObjsInScene().add(new Stone(c * TILE_SIZE, r * TILE_SIZE));
+						getObjsInScene().add(new Stone(c * TILE_SIZE, r * TILE_SIZE, false));
 						break;
 
 					case 7:
@@ -118,28 +132,39 @@ public class Gameplay extends Scene {
 						break;
 
 					case 10:
+						getObjsInScene().add(new Stone(c * TILE_SIZE, r * TILE_SIZE, true));
 						break;
+						
 					case 11:
 						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE, (float) Math.PI / 2));
 						break;
+						
 					case 12:
 						getObjsInScene().add(new Spike(c * TILE_SIZE, r * TILE_SIZE, (float) Math.PI * 3 / 2));
 						break;
+						
 					case 13:
 						getObjsInScene().add(new EndLevel(c * TILE_SIZE, r * TILE_SIZE));
 						break;
+						
+					case 14:
+						getObjsInScene().add(new Saw(c * TILE_SIZE, r * TILE_SIZE, 5, 5));
+						break;
+						
 					case 15:
 						getObjsInScene().add(new Missile(c * TILE_SIZE, r * TILE_SIZE, 0, 5, Math.PI));
 						break;
+						
 					case 16:
 						getObjsInScene().add(new Missile(c * TILE_SIZE, r * TILE_SIZE, 5, 0, Math.PI / 2));
 						break;
-
+						
 					default:
 						break;
 					}
 				}
 			}
+			
 
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
@@ -167,14 +192,14 @@ public class Gameplay extends Scene {
 		//horizontal
 		for (int j : y) {
 			for (int i = x[0]; i<=x[1]; i++) {
-				getObjsInScene().add(new Stone(i * 32, j * 32));
+				getObjsInScene().add(new Stone(i * 32, j * 32, false));
 			}
 		}
 		
 		//Vertical
 		for (int i : x) {
 			for (int j = y[0]; j<=y[1]; j++) {
-				getObjsInScene().add(new Stone(i * 32, j * 32));
+				getObjsInScene().add(new Stone(i * 32, j * 32, false));
 			}
 		}
 	}

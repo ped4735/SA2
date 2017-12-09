@@ -7,6 +7,9 @@ public class AnimatedObject extends GameObject implements Updatable {
 
 	private boolean[][] boolMatrix;
 	private int delayToRun = 5;
+	
+
+
 	private int delayCont;
 
 	public AnimatedObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
@@ -43,12 +46,32 @@ public class AnimatedObject extends GameObject implements Updatable {
 					}
 				}
 
-			} else if (getFrameX() + 1 >= boolMatrix.length) {
+				
+			} else if (getFrameX() + 1 >= boolMatrix[0].length) {
+				//System.out.println(boolMatrix.length);
 				setFrameX(0);
-			} else if (boolMatrix[getFrameX() + 1][getFrameY()]) {
+			} else if (boolMatrix[getFrameY()][getFrameX() + 1]) {
 				setFrameX(getFrameX() + 1);
 			}
 		}
 	}
+	
+	public int getDelayToRun() {
+		return delayToRun;
+	}
+
+	public void setDelayToRun(int delayToRun) {
+		this.delayToRun = delayToRun;
+	}
+	
+	public void changeAnim(int n){
+		
+		if(!boolMatrix[n][getFrameX()]){
+			setFrameX(0);
+		}
+		
+		setFrameY(n);
+	}
+	
 
 }

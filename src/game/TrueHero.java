@@ -76,8 +76,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	// sounds
 	PlaySound overheatingWarning;
 
-	public TrueHero(String spriteFileName, int posX, int posY, int colFrames, int lineFrames, Scene onScene) {
-		super(spriteFileName, posX, posY, colFrames, lineFrames);
+	public TrueHero(int posX, int posY, Scene onScene) {
+		super("joe.png", posX, posY, 3, 2, new int[]{3,1});
 		// super(spriteFileName, posX, posY, colFrames, lineFrames, new int[] {
 		// 1, 1 });
 		if (Gameplay.class.isInstance(onScene)) {
@@ -135,8 +135,10 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 			this.forward();
 			this.heatingUp();
 			this.cooling = false;
+			changeAnim(0);
 		} else {
 			this.heatingDown();
+			changeAnim(1);
 		}
 
 		if (aPressed || dPressed) {

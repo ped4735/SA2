@@ -48,7 +48,7 @@
   </interface>  
   <class id="6" language="java" name="game.tiles.Spike" project="SA2" file="/SA2/src/game/tiles/Spike.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="335" y="523"/>    
+    <position height="-1" width="-1" x="337" y="525"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -128,10 +128,6 @@
     <end type="TARGET" refId="5"/>  
   </realization>  
   <generalization id="22">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="23">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  

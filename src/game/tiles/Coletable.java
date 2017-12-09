@@ -14,8 +14,8 @@ public class Coletable extends AnimatedObject implements Interactable{
 	PlaySound ps;
 
 	public Coletable(int posX, int posY) {
-		super("coinssonic.png", posX, posY, 4, 4);
-		setScale(0.5f);
+		super("jewel.png", posX, posY, 4, 2);
+		setScale(0.6f);
 		ps =  new PlaySound("coin.wav");
 	}
 
