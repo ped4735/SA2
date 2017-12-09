@@ -18,6 +18,7 @@ import game.interfaces.Controllable;
 import game.interfaces.Interactable;
 import game.interfaces.Updatable;
 import game.scenes.Gameplay;
+import game.scenes.LevelManager;
 import game.scenes.Scene;
 
 public class TrueHero extends AnimatedObject implements Controllable, Updatable, Collidable {
@@ -30,7 +31,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float heating;
 	private float maxHeating = 100f;
 	private float heatingUpRate = 0.5f;
-	private float heatingDownRate = 0.2f;
+	private float heatingDownRate = 0.4f;
 	// para os sons e ui
 	private boolean warningOverheating;
 	private boolean cooling;
@@ -93,7 +94,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		this.posY = (float) super.getPosY();
 		this.posXinit = (int) this.posX;
 		this.posYinit = (int) this.posY;
-		this.life = 3;
+		this.life = LevelManager.getInstance().getGameLife();
 		isGravityOn = true;
 		theta = thetaInit;
 		setScale(1f);
@@ -219,6 +220,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		}
 		
 		setLife(getLife() - 1);
+		LevelManager.getInstance().setGameLife(getLife());
 		if (getLife() <= 0) {
 			JetpackGame.currentGameState = GameStates.GameOver;
 		}

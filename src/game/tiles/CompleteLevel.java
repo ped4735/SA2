@@ -1,11 +1,11 @@
 package game.tiles;
 
 import game.AnimatedObject;
+import game.GameManager;
 import game.GameObject;
 import game.GameStates;
 import game.JetpackGame;
 import game.interfaces.Interactable;
-import game.scenes.LevelManager;
 
 public class CompleteLevel extends AnimatedObject implements Interactable{
 
