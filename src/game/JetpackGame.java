@@ -72,16 +72,16 @@ public class JetpackGame extends Game {
 		String newmaps = "map1,map2,map3";
 		String maps;
 		try {
+			
 			//para sempre carregar pela ultima fase feita
-			Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
+			//Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
 			
 			maps = readValidMaps();
-			System.out.println(maps);
 			
-			Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
 
 			LevelManager.getInstance().setLevelFiles(maps);
 			System.out.println("Maps: " + maps);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -234,7 +234,9 @@ public class JetpackGame extends Game {
 			
 			br.close();
 			return line;
-		} catch (IOException e) {
+		} catch (IOException e) {			
+			System.out.println("ERRO NA LEITURA DAS FASES");
+
 			System.out.println(e.getMessage());
 			return null;
 		}
