@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 cleanMaps/map01,cleanMaps/map02,cleanMaps/map03,cleanMaps/map04,cleanMaps/map04_hard,cleanMaps/map05,cleanMaps/map06,cleanMaps/map07,cleanMaps/map08,cleanMaps/map09,cleanMaps/map10,cleanMaps/map20
 cleanMaps/map20,cleanMaps/map10,cleanMaps/map09,cleanMaps/map08,cleanMaps/map07,cleanMaps/map06,cleanMaps/map05,cleanMaps/map04_hard,cleanMaps/map04,cleanMaps/map03,cleanMaps/map02,cleanMaps/map01
+=======
+cleanMaps/map01,cleanMaps/map02,cleanMaps/map03,cleanMaps/map04,cleanMaps/map04_hard,cleanMaps/map05,cleanMaps/map06,cleanMaps/map07,cleanMaps/map08,cleanMaps/map09,cleanMaps/map99,cleanMaps/returnmap09,cleanMaps/returnmap08,cleanMaps/returnmap07,cleanMaps/returnmap06,cleanMaps/returnmap05,cleanMaps/returnmap04_hard,cleanMaps/returnmap04,cleanMaps/returnmap03,cleanMaps/returnmap02,cleanMaps/returnmap01
+cleanMaps/returnmap01,cleanMaps/returnmap02,cleanMaps/returnmap03,cleanMaps/returnmap04,cleanMaps/returnmap04_hard,cleanMaps/returnmap05,cleanMaps/returnmap06,cleanMaps/returnmap07,cleanMaps/returnmap08,cleanMaps/returnmap09,cleanMaps/map99,cleanMaps/map09,cleanMaps/map08,cleanMaps/map07,cleanMaps/map06,cleanMaps/map05,cleanMaps/map04_hard,cleanMaps/map04,cleanMaps/map03,cleanMaps/map02,cleanMaps/map01
+>>>>>>> 9d2a610b113bef66d54521c8e1349d15b3528c37

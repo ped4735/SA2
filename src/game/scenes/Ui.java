@@ -75,21 +75,11 @@ import game.PlaySound;
 		g.setColor(Color.white);
 		drawHeatingBar(g);
 
+		
+		
 		//ui base interface
 		g.drawImage(baseUI, 0, 0, baseUI.getWidth(null), baseUI.getHeight(null), 0, 0, baseUI.getWidth(null),
 				baseUI.getHeight(null), null);
-
-		
-		
-		
-		// drawDial
-		g.drawImage(dial, centerDialVelX - lineSize, centerDialVelY - lineSize,
-				centerDialVelX - lineSize + dial.getWidth(null), centerDialVelY - lineSize + dial.getHeight(null), 0, 0,
-				dial.getWidth(null), dial.getHeight(null), null);
-
-		g.drawImage(dial, centerDialAceX - lineSize, centerDialAceY - lineSize,
-				centerDialAceX - lineSize + dial.getWidth(null), centerDialAceY - lineSize + dial.getHeight(null), 0, 0,
-				dial.getWidth(null), dial.getHeight(null), null);
 
 		
 		// desenha as coisas da interface
