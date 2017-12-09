@@ -73,12 +73,12 @@ public class JetpackGame extends Game {
 		String maps;
 		try {
 			//para sempre carregar pela ultima fase feita
-			//Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
+			Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
 			
 			maps = readValidMaps();
 			System.out.println(maps);
 			
-			//Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
+			Utils.getInstance().setDebug(!Utils.getInstance().isDebug());
 
 			LevelManager.getInstance().setLevelFiles(maps);
 			System.out.println("Maps: " + maps);

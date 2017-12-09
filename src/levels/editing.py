@@ -37,6 +37,8 @@ for name in filenames:
         print ("ops. algo errado nao esta certo")
 
 
+
+
         
 #escreve os nomes em um arquivo para importar pelo java
 namesToPrint = ""
@@ -44,6 +46,9 @@ for name in filenames:
     #lembrar de tirar o .tmx para usar nosso metodo de importar java
     namesToPrint+="cleanMaps/"+name[:-4] + ","
 #print(namesToPrint[:-1])
+
+
+"""
 
 
 f = open("validMaps.txt","w")
@@ -61,4 +66,4 @@ f.write(namesToPrint[:-1])
 
 
 f.close()
-
+"""
