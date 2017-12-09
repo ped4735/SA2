@@ -54,7 +54,7 @@ public class MovableBackground extends GameObject implements Updatable {
 		
 		velX = velX/1.1f;
 		velY = velY/1.1f;
-		System.out.println("VelX:" + velX + ": VelY:" + velY);
+		//System.out.println("VelX:" + velX + ": VelY:" + velY);
 
 	}
 

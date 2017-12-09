@@ -2,7 +2,6 @@ package game.tiles;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 
 import br.senai.sc.engine.Utils;
 import game.AnimatedObject;

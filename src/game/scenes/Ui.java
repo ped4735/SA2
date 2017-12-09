@@ -179,6 +179,13 @@ import game.PlaySound;
 		int lineSize = 13;
 
 		g.setFont(new Font("Arial", Font.PLAIN, 15));
+		
+		g.setColor(Color.WHITE);
+		g.drawString("Vel", 514, 660);
+		g.drawString("Ace", 740, 660);
+
+		
+		
 		if (LevelManager.getInstance().getColletableInScene() > 0) {
 			g.setColor(Color.WHITE);
 		} else {
@@ -186,7 +193,7 @@ import game.PlaySound;
 		}
 
 		g.translate(-150, 0);
-		g.drawString("Itens Remaining:", textInfoPosX, textInfoPosY + 1 * lineSize);
+		g.drawString("Items Remaining:", textInfoPosX, textInfoPosY + 1 * lineSize);
 		g.translate(0, +15);
 		g.drawString("" + LevelManager.getInstance().getColletableInScene(), textInfoPosX + 30,
 				textInfoPosY + 1 * lineSize);

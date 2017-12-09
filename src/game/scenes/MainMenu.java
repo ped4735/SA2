@@ -1,9 +1,12 @@
 package game.scenes;
 
+import java.awt.event.KeyEvent;
+
 import br.senai.sc.engine.Utils;
 import game.AnimatedObject;
 import game.Button;
 import game.GameStates;
+import game.JetpackGame;
 
 public class MainMenu extends Scene {
 
@@ -59,5 +62,12 @@ public class MainMenu extends Scene {
 		posY1 = Utils.getInstance().getHeight() / 2 - sizeY / 2 - offsetY;
 		posY2 = Utils.getInstance().getHeight() * 3 / 4 - sizeY / 2 + offsetY;
 
+	}
+	
+	public void keyPressed(KeyEvent key) {
+		if (key.getKeyCode() == KeyEvent.VK_ENTER) {
+			JetpackGame.currentGameState =  GameStates.Loading;
+		} 
+		
 	}
 }
