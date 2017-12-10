@@ -55,8 +55,8 @@ public class Ranking extends Scene{
 		
 		
 		for (int i = 0; i < GameManager.getInstance().getScoreIO().getScores().size(); i++) {
-			g.drawString(GameManager.getInstance().getScoreIO().getScores().get(i).getNome(), 400, i*80 + 200);
-			g.drawString(""+GameManager.getInstance().getScoreIO().getScores().get(i).getScore(), 800, i*80 + 200);
+			g.drawString(GameManager.getInstance().getScoreIO().getScores().get(i).getNome(), 400, i*80 + 300);
+			g.drawString(""+GameManager.getInstance().getScoreIO().getScores().get(i).getScore(), 800, i*80 + 300);
 		}
 			
 		

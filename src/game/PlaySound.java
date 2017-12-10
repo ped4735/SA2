@@ -45,16 +45,20 @@ public class PlaySound {
 		// Clip clip = AudioSystem.getClip();
 		// clip.open(audioInputStream);
 		//if (!clip.isRunning()) {
+		
+			System.out.println(clip.getFramePosition());
 			clip.stop();
 			clip.start();
+			clip.setFramePosition(0);
 			clip.setMicrosecondPosition(0);
 		//}
 	}
 
 	public void stop() {
-		if (clip.isRunning()) {
-			clip.stop();
+			//System.out.println("Clip is running");
+			//System.out.println(clip.getMicrosecondPosition());
+			clip.setFramePosition(0);
 			clip.setMicrosecondPosition(0);
-		}
+			clip.stop();
 	}
 }
