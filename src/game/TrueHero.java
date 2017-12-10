@@ -74,7 +74,7 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 	private float gravity = gravityInit;
 
 	// sounds
-	PlaySound overheatingWarning;
+	PlaySound overheatingWarning, soundFlying, soundTakeDamage;
 
 	public TrueHero(int posX, int posY, Scene onScene) {
 		super("joe.png", posX, posY, 3, 2, new int[]{3,1});
@@ -86,6 +86,8 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 
 		setTag(GameTags.Player);
 		overheatingWarning = new PlaySound("overheating.wav");
+		soundFlying = new PlaySound("fly.wav");
+		soundTakeDamage = new PlaySound("damage.wav");
 		init();
 	}
 
@@ -135,8 +137,14 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 			this.forward();
 			this.heatingUp();
 			this.cooling = false;
+			
+			if(!warningOverheating){
+				soundFlying.startLoop();
+			}
+			
 			changeAnim(0);
 		} else {
+			soundFlying.stop();
 			this.heatingDown();
 			changeAnim(1);
 		}
@@ -213,14 +221,14 @@ public class TrueHero extends AnimatedObject implements Controllable, Updatable,
 		setVelY(0);
 		this.heating = 0.0f;
 
-		if (false) {
+		
 			//
-			System.out.println("TakeDamage tá dando vida infinita!! não entregar assim!!");
+		/*	System.out.println("TakeDamage tá dando vida infinita!! não entregar assim!!");
 			setLife(getLife() + 1);
 			// para testar o level design
-			// apagar tudo isso depois...
-		}
+			// apagar tudo isso depois...*/
 		
+		soundTakeDamage.start();
 		setLife(getLife() - 1);
 		LevelManager.getInstance().setGameLife(getLife());
 		if (getLife() <= 0) {

@@ -35,8 +35,6 @@ public class PlaySound {
 			//System.out.println("pos:" +clip.getMicrosecondPosition());
 			if (clip.getMicrosecondLength() <= clip.getMicrosecondPosition()) {
 				clip.setMicrosecondPosition(0);
-
-				
 			}
 		}
 	}
@@ -46,10 +44,11 @@ public class PlaySound {
 		// File(soundName).getAbsoluteFile());
 		// Clip clip = AudioSystem.getClip();
 		// clip.open(audioInputStream);
-		if (!clip.isRunning()) {
+		//if (!clip.isRunning()) {
 			clip.stop();
 			clip.start();
-		}
+			clip.setMicrosecondPosition(0);
+		//}
 	}
 
 	public void stop() {
