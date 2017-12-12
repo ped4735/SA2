@@ -29,15 +29,27 @@ public abstract class GameObject {
 
 	// Constructors
 	public GameObject(String spriteFileName, int posX, int posY, int colFrames, int lineFrames) {
-		this.sprite = Utils.getInstance().loadImage("images/" + spriteFileName);
+
+
+		try {
+			//para rodar no jar
+			this.sprite = Utils.getInstance().loadImage("src/images/" + spriteFileName);
+			this.width = sprite.getWidth(null) / colFrames;
+			this.height = sprite.getHeight(null) / lineFrames;
+		} catch (NullPointerException e) {
+			// para rodar no eclipse
+			this.sprite = Utils.getInstance().loadImage("images/" + spriteFileName);
+			this.width = sprite.getWidth(null) / colFrames;
+			this.height = sprite.getHeight(null) / lineFrames;
+		}
+		
+		
 		this.posXLocal = posX;
 		this.posYLocal = posY;
 		this.frameX = 0;
 		this.frameY = 0;
 		this.colFrames = colFrames;
-		this.lineFrames = lineFrames;
-		this.width = sprite.getWidth(null) / colFrames;
-		this.height = sprite.getHeight(null) / lineFrames;
+		this.lineFrames = lineFrames;		
 		this.tag = GameTags.Default;
 		this.scale = 1f;
 		thetaLocal = 0;
@@ -213,10 +225,10 @@ public abstract class GameObject {
 */
 
 		
-//		if (Utils.getInstance().isDebug() && !this.getClass().equals(TrueHero.class)) {
-//			g.setColor(Color.GREEN);
-//			g.draw(getRectangle());
-//		}
+		if (Utils.getInstance().isDebug() && !this.getClass().equals(TrueHero.class)) {
+			g.setColor(Color.GREEN);
+			g.draw(getRectangle());
+		}
 
 	}
 

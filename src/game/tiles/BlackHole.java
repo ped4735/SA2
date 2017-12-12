@@ -12,6 +12,13 @@ public class BlackHole extends AnimatedObject implements Interactable {
 	
 	public BlackHole(int posX, int posY) {
 		super("blackhole.png", posX, posY, 8, 1);
+		
+		super.setPosX(getPosX() - 18);
+		super.setPosY(getPosY() - 18);
+		
+		super.getHeight();
+		super.getWidth();
+		
 		this.setScale(0.5f);
 	}
 

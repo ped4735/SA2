@@ -46,7 +46,7 @@ public class PlaySound {
 		// clip.open(audioInputStream);
 		//if (!clip.isRunning()) {
 		
-			System.out.println(clip.getFramePosition());
+			//System.out.println(clip.getFramePosition());
 			clip.stop();
 			clip.start();
 			clip.setFramePosition(0);
